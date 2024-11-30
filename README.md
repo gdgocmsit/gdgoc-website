@@ -1,1 +1,1 @@
-# gdgoc-website
+# Google Developer Groups on Campus - MSIT
