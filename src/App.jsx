@@ -9,6 +9,7 @@ import Departments from './components/Departments';
 import Team from './components/Team';
 import ContactUs from './components/ContactUs';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 const App = () => {
   useEffect(() => {
@@ -59,6 +60,7 @@ const App = () => {
           />
         </Routes>
       </div>
+      <Footer/>
     </Router>
   );
 };
