@@ -1,0 +1,38 @@
+body{
+    background-color: #f2f3f6;
+}
+
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .h-[450px] {
+    height: 300px;
+  }
+  .h-[400px] {
+    height: 250px;
+  }
+  .w-[350px] {
+    width: 200px;
+  }
+  .left-[85%] {
+    left: 75%;
+  }
+}
+@media (max-width: 500px) {
+  .h-[300px] {
+    height: 150px; /* Smaller height for smaller screens */
+  }
+  .h-[200px] {
+    height: 120px; /* Slightly larger height than the previous */
+  }
+
+  .w-[250px] {
+    width: 120px; /* Reduce the width of images */
+  }
+
+  .left-[85%] {
+    left: 40%; /* Slight adjustment to ensure proper image positioning */
+  }
+}
