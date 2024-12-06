@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import webdev from "../../public/assets/Webdev.png";
-import dsa from "../../public/assets/DSA.png"
-import design from "../../public/assets/Design.jpg"
-import aiml from "../../public/assets/AIML.png"
-import content from "../../public/assets/CONTENT.jpg"
-import evm from "../../public/assets/EVM.jpg"
+import webdev from "/assets/Webdev.png";
+import dsa from "/assets/DSA.png"
+import design from "/assets/Design.jpg"
+import aiml from "/assets/AIML.png"
+import content from "/assets/CONTENT.jpg"
+import evm from "/assets/EVM.jpg"
 import "../styles/Departments.css";
 import { motion } from "framer-motion";
 import { useSwipeable } from "react-swipeable";
