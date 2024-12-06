@@ -154,8 +154,7 @@ const Team = ({ id, className }) => {
       department: "Operational Leads",
     },
   ];
-  
-  
+
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const groupedSlides = slides.reduce((acc, slide) => {
@@ -179,136 +178,139 @@ const Team = ({ id, className }) => {
 
   return (
     <section id={id} className={className}>
-    <div className="w-full overflow-hidden">
-    <div className="relative py-14 px-3 sm:px-6 lg:px-8">
-      <div className="relative">
-        <h1 className="text-center font-bebas-neue text-6xl sm:text-9xl lg:text-[10rem] xl:text-[14rem] leading-none mb-4">
-          <span className="text-[#0F9D58]">G</span>
-          <span className="text-[#FBBC04]">D</span>
-          <span className="text-[#EA4335]">G</span>
-          <span className="ml-4 sm:ml-4 lg:ml-9 text-[#0F9D58]">L</span>
-          <span className="text-[#4285F4]">E</span>
-          <span className="text-[#FBBC04]">A</span>
-          <span className="text-[#EA4335]">D</span>
-        </h1>
-        <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-[200px] sm:max-w-[300px] lg:max-w-[450px]">
-          <img
-            src={Harshita}
-            alt="GDG Lead"
-            width={400}
-            height={40}
-            className="w-full h-auto mx-auto"
-          />
+      <div className="w-full overflow-hidden">
+        <div className="relative py-14 px-3 sm:px-6 lg:px-8">
+          <div className="relative">
+            <h1 className="text-center font-bebas-neue text-6xl sm:text-9xl lg:text-[10rem] xl:text-[14rem] leading-none mb-4">
+              <span className="text-[#0F9D58]">G</span>
+              <span className="text-[#FBBC04]">D</span>
+              <span className="text-[#EA4335]">G</span>
+              <span className="ml-4 sm:ml-4 lg:ml-9 text-[#0F9D58]">L</span>
+              <span className="text-[#4285F4]">E</span>
+              <span className="text-[#FBBC04]">A</span>
+              <span className="text-[#EA4335]">D</span>
+            </h1>
+            <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-[200px] sm:max-w-[300px] lg:max-w-[450px]">
+              <img
+                src={Harshita}
+                alt="GDG Lead"
+                width={400}
+                height={40}
+                className="w-full h-auto mx-auto"
+              />
+            </div>
+          </div>
+          <div className="mt-28 sm:mt-72 lg:mt-72 text-center w-full px-4 sm:px-8 lg:px-16">
+            <p className="text-gray-600 text-base sm:text-lg leading-relaxed font-poppins">
+              <b>Harshita Gupta</b>, a very unique individual and the <b>GDG Lead at MSIT</b>,
+              is an award-winning coder by heart and a relentless innovator. She
+              has made her mark by winning prestigious hackathons with her
+              ingenious ideas and solutions. As a Beta MLSA and an open source
+              contributor, Harshita actively uplifts the community through her
+              impactful work as a phenomenal speaker and presenter who
+              captivates by being clear and passionate while talking. Know for
+              her eloquence makes her a perfect blend of brilliant technical
+              skills, leadership along with creativity.
+            </p>
+          </div>
         </div>
-      </div>
-      <div className="mt-28 sm:mt-72 lg:mt-72 text-center w-full px-4 sm:px-8 lg:px-16">
-        <p className="text-gray-600 text-base sm:text-lg leading-relaxed font-poppins">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-          ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.
-        </p>
-      </div>
-    </div>
 
-    <div className="py-10">
-      <h2 className="text-5xl sm:text-6xl lg:text-8xl xl:text-9xl mb-3 text-center font-bebas-neue text-black">
-        OUR TEAM
-      </h2>
+        <div className="py-10">
+          <h2 className="text-5xl sm:text-6xl lg:text-8xl xl:text-9xl mb-3 text-center font-bebas-neue text-black">
+            OUR TEAM
+          </h2>
 
-      <div className="relative w-full overflow-hidden">
-        <div className="mb-1">
-          <div
-            className="relative w-full transition-transform duration-500 ease-in-out"
-            style={{
-              transform: `translateX(-${currentSlide * 100}%)`,
-            }}
-          >
-            <div className="flex">
-              {slideGroups.map(([department, members], index) => (
-                <div
-                  key={index}
-                  className="relative flex-shrink-0 w-full flex flex-col items-center justify-center gap-4 sm:gap-8 py-8"
-                >
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-center font-bebas-neue mb-4 mt-6 sm:mt-9">
-                    {department}
-                  </h2>
-                  <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 md:gap-16 lg:gap-24 w-full px-4 sm:px-8">
-                    {members.map((member) => (
-                      <div
-                        key={member.id}
-                        className={`relative ${
-                          department === "Operational Leads"
-                            ? "w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
-                            : "w-2/3 sm:w-1/2 md:w-1/3 lg:w-1/4"
-                        } max-w-xs mb-8`}
-                      >
-                        {member.title && (
-                          <h3 className="text-center text-lg sm:text-xl lg:text-2xl font-text font-bold text-gray-800 mb-4">
-                            {member.title}
-                          </h3>
-                        )}
-                        <div
-                          className="relative overflow-hidden group"
-                          style={member.style}
-                        >
+          <div className="relative w-full overflow-hidden">
+            <div className="mb-1">
+              <div
+                className="relative w-full transition-transform duration-500 ease-in-out"
+                style={{
+                  transform: `translateX(-${currentSlide * 100}%)`,
+                }}
+              >
+                <div className="flex">
+                  {slideGroups.map(([department, members], index) => (
+                    <div
+                      key={index}
+                      className="relative flex-shrink-0 w-full flex flex-col items-center justify-center gap-4 sm:gap-8 py-8"
+                    >
+                      <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-center font-bebas-neue mb-4 mt-6 sm:mt-9">
+                        {department}
+                      </h2>
+                      <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 md:gap-16 lg:gap-24 w-full px-4 sm:px-8">
+                        {members.map((member) => (
                           <div
-                            className="w-full aspect-square bg-cover bg-center"
-                            style={{
-                              backgroundImage: `url(${member.image})`,
-                            }}
-                          />
-                          <div className="absolute inset-x-0 bottom-0 h-[0%] group-hover:h-[100%] bg-black bg-opacity-40 transition-all duration-300 ease-in-out">
-                            <p className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out flex items-center justify-center h-full">
-                              {member.name}
-                            </p>
+                            key={member.id}
+                            className={`relative ${
+                              department === "Operational Leads"
+                                ? "w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
+                                : "w-2/3 sm:w-1/2 md:w-1/3 lg:w-1/4"
+                            } max-w-xs mb-8`}
+                          >
+                            {member.title && (
+                              <h3 className="text-center text-lg sm:text-xl lg:text-2xl font-text font-bold text-gray-800 mb-4">
+                                {member.title}
+                              </h3>
+                            )}
+                            <div
+                              className="relative overflow-hidden group"
+                              style={member.style}
+                            >
+                              <div
+                                className="w-full aspect-square bg-cover bg-center"
+                                style={{
+                                  backgroundImage: `url(${member.image})`,
+                                }}
+                              />
+                              <div className="absolute inset-x-0 bottom-0 h-[0%] group-hover:h-[100%] bg-black bg-opacity-40 transition-all duration-300 ease-in-out">
+                                <p className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out flex items-center justify-center h-full">
+                                  {member.name}
+                                </p>
+                              </div>
+                            </div>
                           </div>
-                        </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
+              </div>
+            </div>
+
+            <div className="flex justify-center mb-5 mt-6">
+              <button
+                onClick={prevSlide}
+                className="mr-8 w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center hover:bg-blue-600 transition-colors"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                onClick={nextSlide}
+                className="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </div>
+
+            <div className="flex justify-center gap-2 mb-5">
+              {slideGroups.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    currentSlide === index ? "bg-red-500" : "bg-gray-300"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
               ))}
             </div>
           </div>
         </div>
-
-        <div className="flex justify-center mb-5 mt-6">
-          <button
-            onClick={prevSlide}
-            className="mr-8 w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center hover:bg-blue-600 transition-colors"
-            aria-label="Previous slide"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors"
-            aria-label="Next slide"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-        </div>
-
-        <div className="flex justify-center gap-2 mb-5">
-          {slideGroups.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-2 h-2 rounded-full transition-colors ${
-                currentSlide === index ? "bg-red-500" : "bg-gray-300"
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
       </div>
-    </div>
-  </div>
-  </section>
-  )
+    </section>
+  );
 };
 
 export default Team;
