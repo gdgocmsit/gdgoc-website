@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import "../styles/Teams.css";
 import Naman from "../assets/Naman.jpg";
 import Nevin from "../assets/Nevin.jpg";
-import Ishita from "../assets/Ishita.PNG";
+import Ishita from "../assets/Ishita.png";
 import Pranav from "../assets/pranav.jpg";
 import Siddharth from "../assets/Siddharth.jpg";
 import Udit from "../assets/Udit.jpg";
@@ -18,7 +18,7 @@ import Daksh from "../assets/Daksh.jpg";
 import Aryan from "../assets/Aryan.jpg";
 import Yashika from "../assets/op.jpg";
 import Tanuj from "../assets/tanujj.jpg";
-import Harshita from "../assets/lead.PNG";
+import Harshita from "../assets/lead.png";
 
 const Team = ({ id, className }) => {
   const slides = [
