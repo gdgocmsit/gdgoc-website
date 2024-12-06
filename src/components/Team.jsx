@@ -1,24 +1,24 @@
 import React, { useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "../styles/Teams.css";
-import Naman from "../../public/assets/Naman.jpg";
-import Nevin from "../../public/assets/Nevin.jpg";
-import Ishita from "../../public/assets/Ishita.png";
-import Pranav from "../../public/assets/pranav.jpg";
-import Siddharth from "../../public/assets/Siddharth.jpg";
-import Udit from "../../public/assets/Udit.jpg";
-import Samrat from "../../public/assets/samrat.jpg";
-import Mahima from "../../public/assets/Mahima.jpg";
-import Gauransh from "../../public/assets/gauransh.jpg";
-import Shivam from "../../public/assets/shivam.jpg";
-import Shaurya from "../../public/assets/shaurya.jpg";
-import Krishna from "../../public/assets/krishna.jpg";
-import Ansh from "../../public/assets/Ansh.jpg";
-import Daksh from "../../public/assets/Daksh.jpg";
-import Aryan from "../../public/assets/Aryan.jpg";
-import Yashika from "../../public/assets/op.jpg";
-import Tanuj from "../../public/assets/tanujj.jpg";
-import Harshita from "../../public/assets/lead.png";
+import Naman from "/assets/Naman.jpg";
+import Nevin from "/assets/Nevin.jpg";
+import Ishita from "/assets/Ishita.png";
+import Pranav from "/assets/pranav.jpg";
+import Siddharth from "/assets/Siddharth.jpg";
+import Udit from "/assets/Udit.jpg";
+import Samrat from "/assets/samrat.jpg";
+import Mahima from "/assets/Mahima.jpg";
+import Gauransh from "/assets/gauransh.jpg";
+import Shivam from "/assets/shivam.jpg";
+import Shaurya from "/assets/shaurya.jpg";
+import Krishna from "/assets/krishna.jpg";
+import Ansh from "/assets/Ansh.jpg";
+import Daksh from "/assets/Daksh.jpg";
+import Aryan from "/assets/Aryan.jpg";
+import Yashika from "/assets/op.jpg";
+import Tanuj from "/assets/tanujj.jpg";
+import Harshita from "/assets/lead.png";
 
 const Team = ({ id, className }) => {
   const slides = [
