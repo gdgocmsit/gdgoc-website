@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logo from "../assets/gdgLogo.png";
+import logo from "../../public/assets/gdgLogo.png";
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState('');
