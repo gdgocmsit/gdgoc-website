@@ -1,6 +1,6 @@
 export default {
   content: [
-    "./src//*.{html,js,jsx,ts,tsx}",
+    "./src/**/*.{html,js,jsx,ts,tsx}", // Includes all subdirectories and files
   ],
   theme: {
     extend: {
@@ -10,5 +10,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [],
 };
