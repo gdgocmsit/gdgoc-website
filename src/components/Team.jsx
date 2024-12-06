@@ -1,7 +1,24 @@
 import React, { useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "../styles/Teams.css";
-
+import Naman from "../assets/Naman.jpg";
+import Nevin from "../assets/Nevin.jpg";
+import Ishita from "../assets/Ishita.png";
+import Pranav from "../assets/pranav.jpg";
+import Siddharth from "../assets/Siddharth.jpg";
+import Udit from "../assets/Udit.jpg";
+import Samrat from "../assets/samrat.jpg";
+import Mahima from "../assets/Mahima.jpg";
+import Gauransh from "../assets/gauransh.jpg";
+import Shivam from "../assets/shivam.jpg";
+import Shaurya from "../assets/shaurya.jpg";
+import Krishna from "../assets/krishna.jpg";
+import Ansh from "../assets/Ansh.jpg";
+import Daksh from "../assets/Daksh.jpg";
+import Aryan from "../assets/Aryan.jpg";
+import Yashika from "../assets/op.jpg";
+import Tanuj from "../assets/tanujj.jpg";
+import Harshita from "../assets/lead.png";
 
 const Team = ({ id, className }) => {
   const slides = [
@@ -9,10 +26,8 @@ const Team = ({ id, className }) => {
       id: 1,
       title: "HEAD",
       name: "Naman",
-      style: {
-        borderRadius: "50% 50% 50% 50% / 40% 40% 60% 60%", 
-      },
-      image: "/src/assets/Naman.jpg",
+      style: { borderRadius: "50% 50% 50% 50% / 40% 40% 60% 60%" },
+      image: Naman,
       department: "Development",
     },
     {
@@ -20,7 +35,7 @@ const Team = ({ id, className }) => {
       title: "DEPUTY HEAD",
       name: "Nevin",
       style: { borderRadius: "70% 70% 30% 30% / 40% 40% 60% 60%" },
-      image: "/src/assets/Nevin.jpg",
+      image: Nevin,
       department: "Development",
     },
     {
@@ -28,7 +43,7 @@ const Team = ({ id, className }) => {
       title: "HEAD",
       name: "Ishita",
       style: { borderRadius: "50% 50% 50% 50% / 60% 60% 40% 40%" },
-      image: "/src/assets/Ishita.png",
+      image: Ishita,
       department: "DSA",
     },
     {
@@ -36,7 +51,7 @@ const Team = ({ id, className }) => {
       title: "DEPUTY HEAD",
       name: "Pranav",
       style: { borderRadius: "45% 45% 45% 45% / 40% 40% 60% 60%" },
-      image: "/src/assets/pranav.jpg",
+      image: Pranav,
       department: "DSA",
     },
     {
@@ -44,7 +59,7 @@ const Team = ({ id, className }) => {
       title: "HEAD",
       name: "Siddharth",
       style: { borderRadius: "40% 40% 60% 60% / 55% 55% 45% 45%" },
-      image: "/src/assets/Siddharth.jpg",
+      image: Siddharth,
       department: "AI/ML",
     },
     {
@@ -52,7 +67,7 @@ const Team = ({ id, className }) => {
       title: "DEPUTY HEAD",
       name: "Udit",
       style: { borderRadius: "65% 65% 35% 35% / 45% 45% 55% 55%" },
-      image: "/src/assets/Udit.jpg",
+      image: Udit,
       department: "AI/ML",
     },
     {
@@ -60,7 +75,7 @@ const Team = ({ id, className }) => {
       title: "HEAD",
       name: "Samrat",
       style: { borderRadius: "55% 55% 45% 45% / 60% 60% 40% 40%" },
-      image: "/src/assets/samrat.jpg",
+      image: Samrat,
       department: "EVM",
     },
     {
@@ -68,7 +83,7 @@ const Team = ({ id, className }) => {
       title: "DEPUTY HEAD",
       name: "Mahima",
       style: { borderRadius: "40% 40% 60% 60% / 45% 45% 55% 55%" },
-      image: "/src/assets/Mahima.jpg",
+      image: Mahima,
       department: "EVM",
     },
     {
@@ -76,7 +91,7 @@ const Team = ({ id, className }) => {
       title: "HEAD",
       name: "Gauransh",
       style: { borderRadius: "50% 50% 50% 50% / 40% 40% 60% 60%" },
-      image: "/src/assets/gauransh.jpg",
+      image: Gauransh,
       department: "Content",
     },
     {
@@ -84,7 +99,7 @@ const Team = ({ id, className }) => {
       title: "DEPUTY HEAD",
       name: "Shivam",
       style: { borderRadius: "45% 45% 55% 55% / 50% 50% 50% 50%" },
-      image: "/src/assets/shivam.jpg",
+      image: Shivam,
       department: "Content",
     },
     {
@@ -92,7 +107,7 @@ const Team = ({ id, className }) => {
       title: "HEAD",
       name: "Shaurya",
       style: { borderRadius: "60% 60% 40% 40% / 50% 50% 50% 50%" },
-      image: "/src/assets/shaurya.jpg",
+      image: Shaurya,
       department: "Design",
     },
     {
@@ -100,45 +115,46 @@ const Team = ({ id, className }) => {
       title: "DEPUTY HEAD",
       name: "Krishna",
       style: { borderRadius: "55% 55% 45% 45% / 45% 45% 55% 55%" },
-      image: "/src/assets/krishna.jpg",
+      image: Krishna,
       department: "Design",
     },
     {
       id: 13,
       name: "Ansh",
       style: { borderRadius: "55% 55% 45% 45% / 45% 45% 55% 55%" },
-      image: "/src/assets/Ansh.jpg",
+      image: Ansh,
       department: "Campaign Leads",
     },
     {
       id: 14,
       name: "Daksh",
       style: { borderRadius: "55% 55% 45% 45% / 45% 45% 55% 55%" },
-      image: "/src/assets/Daksh.jpg",
+      image: Daksh,
       department: "Campaign Leads",
     },
     {
       id: 15,
       name: "Aryan",
       style: { borderRadius: "55% 55% 45% 45% / 45% 45% 55% 55%" },
-      image: "/src/assets/Aryan.jpg",
+      image: Aryan,
       department: "Operational Leads",
     },
     {
       id: 16,
       name: "Yashika",
       style: { borderRadius: "55% 55% 45% 45% / 45% 45% 55% 55%" },
-      image: "/src/assets/op.jpg",
+      image: Yashika,
       department: "Operational Leads",
     },
     {
       id: 17,
       name: "Tanuj",
       style: { borderRadius: "55% 55% 45% 45% / 45% 45% 55% 55%" },
-      image: "/src/assets/tanujj.jpg",
+      image: Tanuj,
       department: "Operational Leads",
     },
   ];
+  
   
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -177,7 +193,7 @@ const Team = ({ id, className }) => {
         </h1>
         <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-[200px] sm:max-w-[300px] lg:max-w-[450px]">
           <img
-            src="/src/assets/lead.png"
+            src={Harshita}
             alt="GDG Lead"
             width={400}
             height={40}
