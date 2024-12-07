@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+.desktopView {
+    position: relative;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    position: absolute;
+    height: 350px;
+    width: 300px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.box1 {
+    z-index: 1;
+    background-color: #4285F4;
+    transform: rotate(5deg);
+    animation: move1 2s linear forwards;
+    animation-timeline: view();
+    animation-range-start: entry 100%;
+    animation-range-end: entry 200%;
+    box-shadow: 0px 7px 10px 0px #4285F4;
+}
+
+.box2 {
+    z-index: 2;
+    background-color: #FBBC04;
+    transform: rotate(10deg);
+    animation: move2 2s linear forwards;
+    animation-timeline: view();
+    animation-range-start: entry 100%;
+    animation-range-end: entry 200%;
+    box-shadow: 0px 7px 10px 0px #FBBC04;
+}
+
+.box3 {
+    z-index: 3;
+    background-color: #EA4335;
+    transform: rotate(15deg);
+    animation: move3 2s linear forwards;
+    animation-timeline: view();
+    animation-range-start: entry 100%;
+    animation-range-end: entry 200%;
+    box-shadow: 0px 7px 10px 0px #EA4335;
+}
+
+.box4 {
+    z-index: 4;
+    background-color: #1d1d1d;
+    transform: rotate(20deg);
+    animation: move4 2s linear forwards;
+    animation-timeline: view();
+    animation-range-start: entry 100%;
+    animation-range-end: entry 200%;
+}
+
+.box5 {
+    z-index: 5;
+    background-color: #4285F4;
+    transform: rotate(25deg);
+    animation: move5 2s linear forwards;
+    animation-timeline: view();
+    animation-range-start: entry 100%;
+    animation-range-end: entry 200%;
+    box-shadow: 0px 7px 10px 0px #4285F4;
+}
+
+.box6 {
+    z-index: 6;
+    background-color: #FBBC04;
+    transform: rotate(30deg);
+    animation: move6 2s linear forwards;
+    animation-timeline: view();
+    animation-range-start: entry 100%;
+    animation-range-end: entry 200%;
+    box-shadow: 0px 7px 10px 0px #FBBC04;
+}
+
+.box7 {
+    z-index: 7;
+    background-color: #EA4335;
+    transform: rotate(35deg);
+    animation: move7 2s linear forwards;
+    animation-timeline: view();
+    animation-range-start: entry 100%;
+    animation-range-end: entry 200%;
+    box-shadow: 0px 7px 10px 0px #EA4335;
+}
+
+.aboutUsTextBox{
+    z-index: 8;
+    color: #272727;
+    position: absolute;
+    font-size: 10rem;
+    font-weight: 800;
+    font-family: 'Bebas Neue', sans-serif;
+    animation: moveAboutUs linear forwards;
+    animation-timeline: view();
+    animation-range-start: entry 100%;
+    animation-range-end: entry 300%;
+    white-space: nowrap;
+}
+.aboutUsTextBoxMobile{
+    color: #272727;
+    font-size: 8rem;
+    font-weight: 800;
+    font-family: 'Bebas Neue', sans-serif;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+
+}
+
+.mobileView{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.textUnderAboutUs{
+    position: absolute;
+    font-size: 1.5rem;
+    width: 600px;
+    transform: translate(-600px,300px);
+    text-align: center;
+    opacity: 0;
+    animation: textAppear 2s forwards linear;
+    animation-timeline: view();
+    animation-range-start: entry 400%;
+    animation-range-end: entry 600%;
+}
+
+.textUnderAboutUsMobile{
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    width: 500px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.carouselBox{
+    height: 500px;
+    width: 500px;
+    background-color: #EA4335;
+    height: 500px;
+    width: auto;
+    object-fit: fill;
+    overflow: hidden;
+
+}
+
+@keyframes move1 {
+    from {transform: rotate(5deg) translate(0px, 0px);}
+    to {transform: rotate(0deg) translate(-700px, -300px);}
+}
+
+@keyframes move2 {
+    from {transform: rotate(10deg) translate(0px, 0px);}
+    to {transform: rotate(0deg) translate(-466px, -200px);}
+}
+
+@keyframes move3 {
+    from {transform: rotate(15deg) translate(0px, 0px);}
+    to {transform: rotate(0deg) translate(-233px, -100px);}
+}
+
+@keyframes move4 {
+    from {transform: rotate(20deg) translate(0px, 0px);}
+    to {transform: rotate(0deg) translate(0px, 0px);}
+}
+
+@keyframes move5 {
+    from {transform: rotate(25deg) translate(0px, 0px);}
+    to {transform: rotate(0deg) translate(233px, 100px);}
+}
+
+@keyframes move6 {
+    from {transform: rotate(30deg) translate(0px, 0px);}
+    to {transform: rotate(0deg) translate(466px, 200px);}
+}
+
+@keyframes move7 {
+    from {transform: rotate(35deg) translate(0px, 0px);}
+    to {transform: rotate(0deg) translate(700px, 300px);}
+}
+
+@keyframes moveAboutUs {
+    from{
+        transform: translate(0px,0px);
+        font-size: 10rem;
+        font-weight: 800;
+    }
+    to{
+        transform: translate(-600px,200px);
+        font-size: 6rem;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+}
+
+@keyframes textAppear {
+    from{
+        opacity: 0;
+    }to{
+        opacity: 1;
+    }
+}
