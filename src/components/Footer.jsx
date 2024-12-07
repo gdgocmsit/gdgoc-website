@@ -8,8 +8,18 @@ function Footer() {
   return (
     <div className="bg-[#272727] md:h-[530px] h-[470px] items-center justify-around text-white p-10">
       <div className="flex items-center justify-between gap-40">
-        <div className="left md:ml-20 ">
+        <div className="left  md:ml-20 ">
+          <div className="hidden md:block">
           <img src={logo} className="w-20 h-20" alt="" />
+          </div>
+          <div className="block md:hidden">
+          <img
+            src={GDG}
+            // width={50}
+            alt=""
+            className="h-20 w-40"
+          />
+          </div>
           <div className="mt-5 ">
             <a href="https://chat.whatsapp.com/FJO99dIJBRtH29SZta0lyg">
               <Button className="md:text-[16px]  text-[14px] p-[7px] md:p-3 border-[#ffffffbc] hover:border-[#ffffff]  border-2 rounded-3xl w-[250px] md:w-[350px] items-start flex ">
