@@ -27,7 +27,7 @@ const AboutUs = ({ id, className }) => {
               id="carouselExampleAutoplaying"
               className="carousel slide"
               data-bs-ride="carousel"
-              data-bs-interval="1000"
+              data-bs-interval="3000"
             >
               <div className="carousel-inner overflow-visible ">
                 <div className="carousel-item active">

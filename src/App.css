@@ -10,8 +10,8 @@
 
 .box {
     position: absolute;
-    height: 350px;
-    width: 300px;
+    height: 250px;
+    width: 200px;
     border-radius: 20px;
     display: flex;
     justify-content: center;
@@ -130,7 +130,7 @@
     position: absolute;
     font-size: 1.5rem;
     width: 600px;
-    transform: translate(-600px,300px);
+    transform: translate(-400px,300px);
     text-align: center;
     opacity: 0;
     animation: textAppear 2s forwards linear;
@@ -149,29 +149,26 @@
 }
 
 .carouselBox{
-    height: 500px;
     width: 500px;
-    background-color: #EA4335;
-    height: 500px;
+    height: 380px;
     width: auto;
     object-fit: fill;
     overflow: hidden;
-
 }
 
 @keyframes move1 {
     from {transform: rotate(5deg) translate(0px, 0px);}
-    to {transform: rotate(0deg) translate(-700px, -300px);}
+    to {transform: rotate(0deg) translate(-500px, -180px);}
 }
 
 @keyframes move2 {
     from {transform: rotate(10deg) translate(0px, 0px);}
-    to {transform: rotate(0deg) translate(-466px, -200px);}
+    to {transform: rotate(0deg) translate(-333px, -120px);}
 }
 
 @keyframes move3 {
     from {transform: rotate(15deg) translate(0px, 0px);}
-    to {transform: rotate(0deg) translate(-233px, -100px);}
+    to {transform: rotate(0deg) translate(-166px, -60px);}
 }
 
 @keyframes move4 {
@@ -181,17 +178,17 @@
 
 @keyframes move5 {
     from {transform: rotate(25deg) translate(0px, 0px);}
-    to {transform: rotate(0deg) translate(233px, 100px);}
+    to {transform: rotate(0deg) translate(166px, 60px);}
 }
 
 @keyframes move6 {
     from {transform: rotate(30deg) translate(0px, 0px);}
-    to {transform: rotate(0deg) translate(466px, 200px);}
+    to {transform: rotate(0deg) translate(333px, 120px);}
 }
 
 @keyframes move7 {
     from {transform: rotate(35deg) translate(0px, 0px);}
-    to {transform: rotate(0deg) translate(700px, 300px);}
+    to {transform: rotate(0deg) translate(500px, 180px);}
 }
 
 @keyframes moveAboutUs {
@@ -201,7 +198,7 @@
         font-weight: 800;
     }
     to{
-        transform: translate(-600px,200px);
+        transform: translate(-400px,200px);
         font-size: 6rem;
         font-weight: 600;
         white-space: nowrap;
