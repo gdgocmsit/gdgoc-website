@@ -55,7 +55,7 @@ function Footer() {
             </a>
           </div>
         </div>
-        <div className="right md:flex flex items-center justify-center   ml-32 mb-10 md:mb-0">
+        <div className="right lg:flex hidden  items-center justify-center   ml-32 mb-10 md:mb-0">
           <img
             src={GDG}
             width={500}

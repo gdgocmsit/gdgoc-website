@@ -1,12 +1,12 @@
 const ContactUs = ({ id }) => {
   return (
-    <section id={id} className="flex pt-10 md:pt-20 bg-white md:justify-between md:h-[390px] pb-10 md:mb-0">
-      <div className="left hidden  md:flex w-1/2 text-white   font-bebas-neue">
+    <section id={id} className="flex pt-10 md:pt-20 bg-white md:justify-between lg:h-[390px] pb-10 md:mb-0">
+      <div className="left hidden  lg:flex w-1/2 text-white   font-bebas-neue">
       <div>
       <div className="w-72">
       <p className="bg-[#EA4335] p-4 rotate-[11.37deg] rounded-3xl text-5xl">ASk any doubt</p>
       </div>
-      <div>
+      <div className="w-[440px]">
       <p className="bg-[#4285F4] p-4 -rotate-[35.17deg] rounded-3xl translate-x-10  text-7xl translate-y-5">Have a question?</p>
       </div>
       <div>
@@ -34,7 +34,7 @@ const ContactUs = ({ id }) => {
       </div>
       </div>
       <div className="right gap-10 flex flex-col ml-7 mr-7 w-full md:items-center  ">
-        <h1 className="font-bebas-neue uppercase text-5xl md:hidden">contact us</h1>
+        <h1 className="font-bebas-neue uppercase text-5xl lg:hidden">contact us</h1>
       <input type="text" placeholder="Full Name" className="border-b-[1px] focus:outline-none  md:w-[500px] pr-20 focus:border-[#666666] focus:border-b-2 transition-colors  border-[#858585] p-1 "/>
       <input type="text" placeholder="Email" className="border-b-[1px] focus:outline-none  md:w-[500px] pr-20 focus:border-[#666666] focus:border-b-2 transition-colors  border-[#858585] p-1 "/>
       <input type="text" placeholder="Message" className="border-b-[1px] focus:outline-none md:w-[500px] pr-20 focus:border-[#666666] focus:border-b-2 transition-colors  border-[#858585] p-1 "/>
