@@ -1,27 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
-.desktopView {
-    position: relative;
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.box {
-    position: absolute;
-    height: 250px;
-    width: 200px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
 .box1 {
-    z-index: 1;
-    background-color: #4285F4;
     transform: rotate(5deg);
     animation: move1 2s linear forwards;
     animation-timeline: view();
@@ -31,8 +10,6 @@
 }
 
 .box2 {
-    z-index: 2;
-    background-color: #FBBC04;
     transform: rotate(10deg);
     animation: move2 2s linear forwards;
     animation-timeline: view();
@@ -42,8 +19,6 @@
 }
 
 .box3 {
-    z-index: 3;
-    background-color: #EA4335;
     transform: rotate(15deg);
     animation: move3 2s linear forwards;
     animation-timeline: view();
@@ -53,8 +28,6 @@
 }
 
 .box4 {
-    z-index: 4;
-    background-color: #1d1d1d;
     transform: rotate(20deg);
     animation: move4 2s linear forwards;
     animation-timeline: view();
@@ -63,8 +36,6 @@
 }
 
 .box5 {
-    z-index: 5;
-    background-color: #4285F4;
     transform: rotate(25deg);
     animation: move5 2s linear forwards;
     animation-timeline: view();
@@ -74,8 +45,6 @@
 }
 
 .box6 {
-    z-index: 6;
-    background-color: #FBBC04;
     transform: rotate(30deg);
     animation: move6 2s linear forwards;
     animation-timeline: view();
@@ -85,8 +54,6 @@
 }
 
 .box7 {
-    z-index: 7;
-    background-color: #EA4335;
     transform: rotate(35deg);
     animation: move7 2s linear forwards;
     animation-timeline: view();
@@ -96,9 +63,6 @@
 }
 
 .aboutUsTextBox{
-    z-index: 8;
-    color: #272727;
-    position: absolute;
     font-size: 10rem;
     font-weight: 800;
     font-family: 'Bebas Neue', sans-serif;
@@ -106,54 +70,17 @@
     animation-timeline: view();
     animation-range-start: entry 100%;
     animation-range-end: entry 300%;
-    white-space: nowrap;
 }
 .aboutUsTextBoxMobile{
-    color: #272727;
-    font-size: 6rem;
-    font-weight: 800;
     font-family: 'Bebas Neue', sans-serif;
-    white-space: nowrap;
-    display: flex;
-    justify-content: center;
-
-}
-
-.mobileView{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .textUnderAboutUs{
-    position: absolute;
-    font-size: 1.5rem;
-    width: 600px;
-    transform: translate(-400px,300px);
-    text-align: center;
     opacity: 0;
     animation: textAppear 2s forwards linear;
     animation-timeline: view();
     animation-range-start: entry 400%;
     animation-range-end: entry 600%;
-}
-
-.textUnderAboutUsMobile{
-    display: flex;
-    justify-content: center;
-    font-size: 1.1rem;
-    max-width: 500px;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.carouselBox{
-    max-width: 500px;
-    max-height: 380px;
-    width: auto;
-    object-fit: fill;
-    overflow: hidden;
 }
 
 @keyframes move1 {
