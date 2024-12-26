@@ -8,6 +8,11 @@ export default {
         'bebas-neue': ['"Bebas Neue"', 'serif'],
         'poppins': ['"Poppins"', 'sans-serif'],
       },
+      borderRadius:{
+        'extraLarge':'12rem' ,
+        'Large':'8rem',
+        'medium':'6rem',
+      },
     },
   },
   plugins: [],

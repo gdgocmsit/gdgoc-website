@@ -5,7 +5,7 @@ body{
 :root{
     --cards:6;
     --cardHeight:50vh;
-    --cardTopPadding:7em;
+    --cardTopPadding:8em;
     --cardMargin:0vw;
 }
 
