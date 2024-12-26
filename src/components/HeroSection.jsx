@@ -3,13 +3,12 @@ import { useEffect, useState } from "react";
 export default function HeroSection() {
   const [positions, setPositions] = useState([]);
 
-  // Generate random initial positions and directions for each circle
   const generateRandomPositions = () => {
     return Array.from({ length: 30 }, () => ({
-      top: Math.random() * 100, // Random starting position (top %)
-      left: Math.random() * 100, // Random starting position (left %)
-      dx: (Math.random() - 0.5) * 0.1, // Slower movement in x direction
-      dy: (Math.random() - 0.5) * 0.1, // Slower movement in y direction
+      top: Math.random() * 100,
+      left: Math.random() * 100,
+      dx: (Math.random() - 0.5) * 0.1,
+      dy: (Math.random() - 0.5) * 0.1,
     }));
   };
 
@@ -22,7 +21,6 @@ export default function HeroSection() {
         prevPositions.map((circle) => {
           let { top, left, dx, dy } = circle;
 
-          // Bounce off walls
           if (top <= 0 || top >= 100) dy = -dy;
           if (left <= 0 || left >= 100) dx = -dx;
 
@@ -50,21 +48,20 @@ export default function HeroSection() {
             key={index}
             className="absolute rounded-full"
             style={{
-              height: "4rem", // Fixed size
-              width: "4rem", // Fixed size
+              height: "4rem",
+              width: "4rem",
               backgroundColor: ["#EA4335", "#4285F4", "#FBBC04", "#0F9D58"][
                 index % 4
               ],
               top: `${circle.top}%`,
               left: `${circle.left}%`,
-              filter: "blur(10px)", // Apply blur effect
-              opacity: 0.5, // Reduce visibility
+              filter: "blur(5px)",
+              opacity: 0.5,
             }}
           />
         ))}
       </div>
 
-      {/* Hero Section */}
       <div className="relative px-4 sm:px-6 md:px-8">
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-12">
           <div className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[11rem] font-bold text-gray-800 tracking-tighter flex items-center">
