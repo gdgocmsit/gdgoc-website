@@ -174,6 +174,8 @@ const Team = ({ id, className }) => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [direction, setDirection] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const groupedSlides = slides.reduce((acc, slide) => {
     if (!acc[slide.department]) {
@@ -187,14 +189,21 @@ const Team = ({ id, className }) => {
   const totalSlides = slideGroups.length;
 
   const nextSlide = useCallback(() => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setDirection(1);
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
-  }, [totalSlides]);
+    setTimeout(() => setIsTransitioning(false), 500);
+  }, [totalSlides, isTransitioning]);
 
   const prevSlide = useCallback(() => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setDirection(-1);
     setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-  }, [totalSlides]);
+    setTimeout(() => setIsTransitioning(false), 500);
+  }, [totalSlides, isTransitioning]);
 
-  // Detect screen size changes
   useEffect(() => {
     const checkScreenSize = () => {
       setIsSmallScreen(window.innerWidth < 540);
@@ -206,22 +215,37 @@ const Team = ({ id, className }) => {
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
-  // Styling for slides based on screen size
   const getSlideStyle = (index) => {
-    const diff = (index - currentSlide + totalSlides) % totalSlides;
-    const baseStyle = { transition: 'all 0.5s ease-in-out' };
+    const baseStyle = { 
+      transition: 'all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1)',
+      position: 'absolute',
+      width: '100%',
+      height: '100%',
+    };
+    
+    let diff = index - currentSlide;
+
+    // Adjust diff for cyclic behavior
+    if (diff > Math.floor(totalSlides / 2)) diff -= totalSlides;
+    if (diff < -Math.floor(totalSlides / 2)) diff += totalSlides;
 
     if (isSmallScreen) {
-      // Small screen logic
       if (diff === 0) return { ...baseStyle, zIndex: 3, opacity: 1, transform: 'translateX(0)' };
-      return { ...baseStyle, zIndex: 1, opacity: 0, transform: 'translateX(100%)' };
+      return { ...baseStyle, zIndex: 1, opacity: 0, transform: `translateX(${100 * Math.sign(diff)}%)` };
     }
 
-    // Large screen logic
-    if (diff === 0) return { zIndex: 3, opacity: 1, transform: 'translateX(0)', filter: 'blur(0px)' };
-    if (diff === 1) return { zIndex: 2, opacity: 0.7, transform: 'translateX(75%)', filter: 'blur(2px)' };
-    if (diff === totalSlides - 1) return { zIndex: 2, opacity: 0.7, transform: 'translateX(-75%)', filter: 'blur(2px)' };
-    return { zIndex: 1, opacity: 0, transform: 'translateX(100%)' };
+    const translateX = diff * 68; 
+    const opacity = 1 - Math.abs(diff) * 0.3;
+    const scale = 1 - Math.abs(diff) * 0.1;
+    const zIndex = totalSlides - Math.abs(diff);
+
+    return {
+      ...baseStyle,
+      transform: `translateX(${translateX}%) scale(${scale})`,
+      opacity: opacity,
+      zIndex: zIndex,
+      filter: `blur(${Math.abs(diff) * 2}px)`,
+    };
   };
 
   return (
@@ -270,11 +294,11 @@ const Team = ({ id, className }) => {
 
           <div className="relative w-full overflow-hidden">
             <div className="mb-1">
-              <div className="relative flex justify-center items-center h-[800px] sm:h-[500px] lg:h-[600px]">
+              <div className="relative flex justify-center items-center h-[800px] sm:h-[500px] lg:h-[600px] overflow-hidden">
                 {slideGroups.map(([department, members], index) => (
                   <div
                     key={index}
-                    className="absolute w-full flex flex-col items-center justify-center gap-4 sm:gap-8 py-1 px-4 transition-all duration-500"
+                    className="absolute w-full flex flex-col items-center justify-center gap-4 sm:gap-8 py-1 px-4"
                     style={getSlideStyle(index)}
                   >
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-center font-bebas-neue mb-4 mt-1 sm:mt-5">
@@ -316,7 +340,7 @@ const Team = ({ id, className }) => {
                               </p>
                             </div>
                           </div>
-                          {member.name&& (
+                          {member.name && (
                             <h3 className="text-center text-lg sm:text-xl lg:text-2xl font-text text-gray-800 mt-4">
                               {member.name}
                             </h3>
@@ -334,6 +358,7 @@ const Team = ({ id, className }) => {
                 onClick={prevSlide}
                 className="mr-8 w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center hover:bg-blue-600 transition-colors"
                 aria-label="Previous slide"
+                disabled={isTransitioning}
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
@@ -341,6 +366,7 @@ const Team = ({ id, className }) => {
                 onClick={nextSlide}
                 className="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors"
                 aria-label="Next slide"
+                disabled={isTransitioning}
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
@@ -350,11 +376,18 @@ const Team = ({ id, className }) => {
               {slideGroups.map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => setCurrentSlide(index)}
+                  onClick={() => {
+                    if (!isTransitioning) {
+                      setIsTransitioning(true);
+                      setCurrentSlide(index);
+                      setTimeout(() => setIsTransitioning(false), 500);
+                    }
+                  }}
                   className={`w-2 h-2 rounded-full transition-colors ${
                     currentSlide === index ? "bg-red-500" : "bg-gray-300"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
+                  disabled={isTransitioning}
                 />
               ))}
             </div>
