@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import webdev from "../assets/Webdev.png";
-import dsa from "../assets/DSA.png"
-import design from "../assets/Design.png"
-import aiml from "../assets/AIML.png"
-import content from "../assets/CONTENT.jpg"
-import evm from "../assets/EVM.png"
+import webdev from "/assets/Webdev.png";
+import dsa from "/assets/DSA.png"
+import design from "/assets/Design.png"
+import aiml from "/assets/AIML.png"
+import content from "/assets/CONTENT.jpg"
+import evm from "/assets/EVM.png"
 import "../styles/Departments.css";
 import { motion } from "framer-motion";
 import { useSwipeable } from "react-swipeable";
@@ -20,7 +20,7 @@ const DepartmentsDesktop = ({ id, className }) => (
               <li className="card" id="card1">
                 <div className="card-body flex p-3 shadow-2xl  text-white bg-[#EA4335] rounded-lg w-4/5 place-self-center">
                   <div className="flex-1">
-                    <h2 className="text-8xl font-normal font-bebas-neue mb-5">WEB DEV</h2>
+                    <h2 className="text-8xl font-normal font-bebas-neue mb-5">Dev</h2>
                       <p className=" text-lg font-poppins font-medium leading-relaxed">We focus on building innovative web applications, enhancing user experiences, and leveraging modern technologies like React, Node.js, and AI to create dynamic, scalable, and visually engaging projects.</p>
                   </div>
                   <img
@@ -113,7 +113,7 @@ const DepartmentsMobile = ({ id, className }) => {
 
   const departments = [
     {
-      title: "WEB DEV",
+      title: "DEV",
       description:
         "We focus on building powerful web applications that deliver engaging user experiences. Using tools like React, Node.js, and AI, we create scalable and innovative solutions. Our projects emphasize dynamic designs and modern features tailored to meet user needs effectively.",
       color: "#EA4335",
