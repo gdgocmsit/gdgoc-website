@@ -32,28 +32,28 @@ const AboutUs = ({ id, className }) => {
               <div className="carousel-inner overflow-visible ">
                 <div className="carousel-item active">
                   <img
-                    src="/public/assets/aboutUs4.jpg"
+                    src="/assets/aboutUs4.jpg"
                     className="d-block h-100vh scale-150"
                     alt="..."
                   />
                 </div>
                 <div className="carousel-item">
                   <img
-                    src="/public/assets/aboutUs3.jpg"
+                    src="/assets/aboutUs3.jpg"
                     className="d-block h-100vh"
                     alt="..."
                   />
                 </div>
                 <div className="carousel-item">
                   <img
-                    src="/public/assets/aboutUs2.jpg"
+                    src="/assets/aboutUs2.jpg"
                     className="d-block h-100vh"
                     alt="..."
                   />
                 </div>
                 <div className="carousel-item">
                   <img
-                    src="/public/assets/aboutUs7.jpg"
+                    src="/assets/aboutUs7.jpg"
                     className="d-block h-100vh"
                     alt="..."
                   />
@@ -97,37 +97,37 @@ const AboutUs = ({ id, className }) => {
           <div className="box1 z-100 bg-[#4285F4] absolute h-[250px] w-[200px] rounded-[20px] flex justify-center items-center overflow-hidden ">
             <img
               className="h-full w-auto object-cover"
-              src="/public/assets/aboutUs4.jpg"
+              src="/assets/aboutUs4.jpg"
               alt=""
             />
           </div>
           <div className="box2 z-200 bg-[#FBBC04] absolute h-[250px] w-[200px] rounded-[20px] flex justify-center items-center overflow-hidden">
-            <img src="/public/assets/aboutUs5.jpg" alt="" />
+            <img src="/assets/aboutUs5.jpg" alt="" />
           </div>
           <div className="box3 z-300 bg-[#EA4335] absolute h-[250px] w-[200px] rounded-[20px] flex justify-center items-center overflow-hidden">
             <img
               className="h-full w-auto object-cover"
-              src="/public/assets/aboutUs3.jpg"
+              src="/assets/aboutUs3.jpg"
               alt=""
             />
           </div>
           <div className="box4 z-400 bg-[#1d1d1d] absolute h-[250px] w-[200px] rounded-[20px] flex justify-center items-center overflow-hidden">
-            <img src="/public/assets/gdgLogo.png" alt="" />
+            <img src="/assets/gdgLogo.png" alt="" />
           </div>
           <div className="box5 z-500 bg-[#4285F4] absolute h-[250px] w-[200px] rounded-[20px] flex justify-center items-center overflow-hidden">
-            <img src="/public/assets/aboutUs1.png" alt="" />
+            <img src="/assets/aboutUs1.png" alt="" />
           </div>
           <div className="box6 z-600 bg-[#FBBC04] absolute h-[250px] w-[200px] rounded-[20px] flex justify-center items-center overflow-hidden">
             <img
               className="h-full w-auto object-cover"
-              src="/public/assets/aboutUs7.jpg"
+              src="/assets/aboutUs7.jpg"
               alt=""
             />
           </div>
           <div className="box7 z-700 bg-[#EA4335] absolute h-[250px] w-[200px] rounded-[20px] flex justify-center items-center overflow-hidden">
             <img
               className="h-full w-auto object-cover"
-              src="/public/assets/aboutUs2.jpg"
+              src="/assets/aboutUs2.jpg"
               alt=""
             />
           </div>
