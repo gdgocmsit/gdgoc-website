@@ -80,8 +80,8 @@
     opacity: 0;
     animation: textAppear 2s forwards linear;
     animation-timeline: view();
-    animation-range-start: entry 400%;
-    animation-range-end: entry 600%;
+    animation-range-start: entry 200%;
+    animation-range-end: entry 500%;
 }
 
 @keyframes move1 {
@@ -90,7 +90,7 @@
     }
 
     to {
-        transform: rotate(0deg) translate(-500px, -180px);
+        transform: rotate(0deg) translate(-400px, -180px);
     }
 }
 
@@ -100,7 +100,7 @@
     }
 
     to {
-        transform: rotate(0deg) translate(-333px, -120px);
+        transform: rotate(0deg) translate(-266px, -120px);
     }
 }
 
@@ -110,7 +110,7 @@
     }
 
     to {
-        transform: rotate(0deg) translate(-166px, -60px);
+        transform: rotate(0deg) translate(-133px, -60px);
     }
 }
 
@@ -130,7 +130,7 @@
     }
 
     to {
-        transform: rotate(0deg) translate(166px, 60px);
+        transform: rotate(0deg) translate(133px, 60px);
     }
 }
 
@@ -140,7 +140,7 @@
     }
 
     to {
-        transform: rotate(0deg) translate(333px, 120px);
+        transform: rotate(0deg) translate(266px, 120px);
     }
 }
 
@@ -150,7 +150,7 @@
     }
 
     to {
-        transform: rotate(0deg) translate(500px, 180px);
+        transform: rotate(0deg) translate(400px, 180px);
     }
 }
 

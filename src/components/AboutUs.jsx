@@ -94,37 +94,37 @@ const AboutUs = ({ id, className }) => {
         </div>
       ) : (
         <div className="relative m-[10px] flex justify-center items-center">
-          <div className="box1 z-100 bg-[#4285F4] absolute h-[250px] w-[200px] rounded-[20px] flex justify-center items-center overflow-hidden ">
+          <div className="box1 z-100 bg-[#4285F4] absolute h-[220px] w-[176px] rounded-[20px] flex justify-center items-center overflow-hidden ">
             <img
               className="h-full w-auto object-cover"
               src="/assets/aboutUs4.jpg"
               alt=""
             />
           </div>
-          <div className="box2 z-200 bg-[#FBBC04] absolute h-[250px] w-[200px] rounded-[20px] flex justify-center items-center overflow-hidden">
+          <div className="box2 z-200 bg-[#FBBC04] absolute h-[220px] w-[176px] rounded-[20px] flex justify-center items-center overflow-hidden">
             <img src="/assets/aboutUs5.jpg" alt="" />
           </div>
-          <div className="box3 z-300 bg-[#EA4335] absolute h-[250px] w-[200px] rounded-[20px] flex justify-center items-center overflow-hidden">
+          <div className="box3 z-300 bg-[#EA4335] absolute h-[220px] w-[176px] rounded-[20px] flex justify-center items-center overflow-hidden">
             <img
               className="h-full w-auto object-cover"
               src="/assets/aboutUs3.jpg"
               alt=""
             />
           </div>
-          <div className="box4 z-400 bg-[#1d1d1d] absolute h-[250px] w-[200px] rounded-[20px] flex justify-center items-center overflow-hidden">
+          <div className="box4 z-400 bg-[#1d1d1d] absolute h-[220px] w-[176px] rounded-[20px] flex justify-center items-center overflow-hidden">
             <img src="/assets/gdgLogo.png" alt="" />
           </div>
-          <div className="box5 z-500 bg-[#4285F4] absolute h-[250px] w-[200px] rounded-[20px] flex justify-center items-center overflow-hidden">
+          <div className="box5 z-500 bg-[#4285F4] absolute h-[220px] w-[176px] rounded-[20px] flex justify-center items-center overflow-hidden">
             <img src="/assets/aboutUs1.png" alt="" />
           </div>
-          <div className="box6 z-600 bg-[#FBBC04] absolute h-[250px] w-[200px] rounded-[20px] flex justify-center items-center overflow-hidden">
+          <div className="box6 z-600 bg-[#FBBC04] absolute h-[220px] w-[176px] rounded-[20px] flex justify-center items-center overflow-hidden">
             <img
               className="h-full w-auto object-cover"
               src="/assets/aboutUs7.jpg"
               alt=""
             />
           </div>
-          <div className="box7 z-700 bg-[#EA4335] absolute h-[250px] w-[200px] rounded-[20px] flex justify-center items-center overflow-hidden">
+          <div className="box7 z-700 bg-[#EA4335] absolute h-[220px] w-[176px] rounded-[20px] flex justify-center items-center overflow-hidden">
             <img
               className="h-full w-auto object-cover"
               src="/assets/aboutUs2.jpg"
@@ -134,7 +134,7 @@ const AboutUs = ({ id, className }) => {
           <div className="aboutUsTextBox z-800 text-[#272727] absolute whitespace-nowrap">
             <h1>ABOUT US</h1>
           </div>
-          <div className="textUnderAboutUs absolute text-[1.5rem] w-[600px] transform translate-x-[-400px] translate-y-[300px] text-center">
+          <div className="textUnderAboutUs absolute text-[1.3rem] w-[400px] transform translate-x-[-400px] translate-y-[300px] text-center">
             <h1>
               At GDSC MSIT,we aim to learn, teach and grow. Together, the place
               where creative minds come together to build something amazing
