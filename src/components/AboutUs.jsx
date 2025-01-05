@@ -39,12 +39,7 @@ const AboutUs = ({ id, className }) => {
           <div className="aboutUsTextBoxMobile text-[#272727] text-[6rem] font-extrabold whitespace-nowrap flex justify-center">
             <h1>ABOUT US</h1>
           </div>
-          <div
-            style={{
-              maxHeight: "300px",
-              maxWidth: "550px",
-              overflow: "hidden",
-            }}
+          <div className="sliderMobile"
           >
             <Slider {...settings}>
               <div>
@@ -54,15 +49,12 @@ const AboutUs = ({ id, className }) => {
                 <img src={AboutUs3} alt="" />
               </div>
               <div>
-                <img src={AboutUs4} alt="" />
-              </div>
-              <div>
                 <img src={AboutUs7} alt="" />
               </div>
             </Slider>
           </div>
 
-          <div className="flex justify-center text-[1.1rem] max-w-[500px] text-center mt-5">
+          <div className="textUnderAboutUsMobile">
             <h1>
               At GDSC MSIT,we aim to learn, teach and grow. Together, the place
               where creative minds come together to build something amazing
