@@ -52,7 +52,7 @@ const App = () => {
             element={
               <div>
                 <HeroSection id="home" className="min-h-screen bg-blue-500" />
-                <AboutUs id="aboutUs" className="min-h-screen bg-green-500" />
+                <AboutUs id="aboutUs" className="min-h-screen flex justify-center" />
                 <Events id="events" className="min-h-screen bg-red-500" />
                 <Departments id="departments"/>
                 <Team id="team" />
