@@ -11,7 +11,7 @@ export default {
       borderRadius:{
         'extraLarge':'12rem' ,
         'Large':'8rem',
-        'medium':'6rem',
+        'medium':'4rem',
       },
     },
   },

@@ -3,12 +3,12 @@ import "../styles/AboutUs.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import AboutUs1 from "/public/assets/aboutUs1.png";
-import AboutUs2 from "/public/assets/aboutUs2.jpg";
-import AboutUs3 from "/public/assets/aboutUs3.jpg";
-import AboutUs4 from "/public/assets/aboutUs4.jpg";
-import AboutUs5 from "/public/assets/aboutUs5.jpg";
-import AboutUs7 from "/public/assets/aboutUs7.jpg";
+import AboutUs1 from "/assets/aboutUs1.png";
+import AboutUs2 from "/assets/aboutUs2.jpg";
+import AboutUs3 from "/assets/aboutUs3.jpg";
+import AboutUs4 from "/assets/aboutUs4.jpg";
+import AboutUs5 from "/assets/aboutUs5.jpg";
+import AboutUs7 from "/assets/aboutUs7.jpg";
 
 const AboutUs = ({ id, className }) => {
   const [isMobile, setIsMobile] = useState(false);

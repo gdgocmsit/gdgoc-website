@@ -1,112 +1,167 @@
 import React, { useState, useEffect } from "react";
-import webdev from "/assets/Webdev.png";
-import dsa from "/assets/DSA.png"
-import design from "/assets/Design.png"
-import aiml from "/assets/AIML.png"
-import content from "/assets/CONTENT.jpg"
-import evm from "/assets/EVM.png"
-import "../styles/Departments.css";
+import dev1 from "/departments/DEV.gif"
+import aiml1 from "/departments/AIML.gif"
+import content1 from "/departments/CONTENT.gif"
+import  dsa1 from "/departments/DSA.gif"
+import design1  from "/departments/DESIGN.gif"
+import evm1 from "/departments/EVM.gif"
+
 import { motion } from "framer-motion";
 import { useSwipeable } from "react-swipeable";
 
-const DepartmentsDesktop = ({ id, className }) => (
-  <section id={id} className={className}>
-    <div className=" bg-gray-100 scroll-smooth mb-24">
-          <h1 className="text-8xl text-right mr-10  text-[#272727] font-bebas-neue mt-10 mb-10 ">
-            DEPARTMENTS
-          </h1>
-          <div className="container ">
-            <ul id="cards">
-              <li className="card" id="card1">
-                <div className="card-body flex p-3 shadow-2xl  text-white bg-[#EA4335] rounded-lg w-4/5 place-self-center">
-                  <div className="flex-1">
-                    <h2 className="text-8xl font-normal font-bebas-neue mb-5">Dev</h2>
-                      <p className=" text-lg font-poppins font-medium leading-relaxed">We focus on building innovative web applications, enhancing user experiences, and leveraging modern technologies like React, Node.js, and AI to create dynamic, scalable, and visually engaging projects.</p>
-                  </div>
-                  <img
-                    src={webdev}
-                    alt="WEB-DEV"
-                    className="w-40 h-40 md:w-96 md:h-72 object-contain mr-8 ml-20"
-                  />
-                </div>
-              </li>
-              <li className="card" id="card2">
-                <div className="card-body flex p-3 shadow-2xl  text-white bg-[#FBBC04] rounded-lg  w-4/5 place-self-center">
-                  <div className="flex-1">
-                    <h2 className="text-8xl font-normal font-bebas-neue mb-3">DSA</h2>
-                      <p className=" text-lg font-poppins font-medium leading-relaxed">We are dedicated to strengthen problem-solving skills by exploring advanced algorithms, data structures, and optimization techniques, preparing students for competitive programming and technical interviews.</p>
-                      
-                  </div>
-                  <img
-                    src={dsa}
-                    alt="DSA"
-                    className="w-40 h-40 md:w-96 md:h-72 object-contain mr-8 ml-20"
-                  />
-                </div>
-              </li>
-              <li className="card" id="card3">
-                <div className="card-body flex p-3 shadow-2xl  text-white bg-[#4285F4] rounded-lg  w-4/5 place-self-center ">
-                  <div className="flex-1">
-                    <h2 className="text-8xl font-normal font-bebas-neue">Design</h2>
-                      <p className=" text-lg font-poppins font-medium leading-relaxed">We prioritize crafting visually stunning and user-friendly designs that balance creativity with functionality. By utilizing modern design tools and methodologies, we aim to deliver compelling visuals, intuitive interfaces, and exceptional user experiences that align with the latest industry trends.</p>
-                      
-                  </div>
-                  <img
-                    src={design}
-                    alt="Design"
-                    className="w-40 h-40 md:w-96 md:h-72 object-fill mr-8 ml-20"
-                  />
-                </div>
-              </li>
-              <li className="card" id="card4">
-                <div className="card-body flex p-3 shadow-2xl  text-white bg-[#0F9D58] rounded-lg  w-4/5 place-self-center">
-                  <div className="flex-1">
-                    <h2 className="text-8xl font-normal font-bebas-neue">AI/ML</h2>
-                      <p className=" text-lg font-poppins font-medium leading-relaxed">Our focus is on harnessing the power of artificial intelligence and machine learning to solve real-world problems. From predictive modeling to natural language processing, we explore cutting-edge algorithms and frameworks to develop intelligent, data-driven solutions that revolutionize industries.</p>
-                      
-                  </div>
-                  <img
-                    src={aiml}
-                    alt="AI/ML"
-                    className="w-40 h-40 md:w-96 md:h-72 object-cover mr-8 ml-20"
-                  />
-                </div>
-              </li>
-              <li className="card" id="card5">
-                <div className="card-body flex p-3 shadow-2xl  text-white bg-[#EA4335] rounded-lg  w-4/5 place-self-center">
-                  <div className="flex-1">
-                    <h2 className="text-8xl font-normal font-bebas-neue">Content</h2>
-                      <p className=" text-lg font-poppins font-medium leading-relaxed">Creating impactful and engaging content is at the core of what we do. We specialize in curating compelling narratives, and leveraging multimedia formats to connect with audiences, enhance brand presence, and drive meaningful engagement across platforms.</p>
-                      
-                  </div>
-                  <img
-                    src={content}
-                    alt="Content"
-                    className="w-40 h-40 md:w-96 md:h-72 rounded-lg object-cover mr-8 ml-20"
-                  />
-                </div>
-              </li>
-              <li className="card" id="card6">
-                <div className="card-body flex p-3 shadow-2xl  text-white bg-[#FBBC04] rounded-lg  w-4/5 place-self-center">
-                  <div className="flex-1">
-                    <h2 className="text-8xl font-normal font-bebas-neue mb-3">EVM</h2>
-                      <p className=" text-lg font-poppins font-medium leading-relaxed mb-10">We excel in organizing seamless and memorable events by combining meticulous planning, creative execution, and strong team collaboration. From brainstorming innovative themes to ensuring every detail is perfect, we bring ideas to life and create experiences that leave lasting impressions.</p>
-                      
-                  </div>
-                  <img
-                    src={evm}
-                    alt="EVM"
-                    className="w-40 h-40 md:w-96 md:h-72 object-fill mr-8 ml-20"
-                  />
-                </div>
-              </li>
-            </ul>
-          </div>
+
+const upvariant = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (custom) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: 'easeOut',
+      delay: custom,
+    },
+  }),
+};
+
+const downvariant={
+  hidden: { opacity: 0, y: -30 },
+  visible: (custom) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: 'easeOut',
+      delay: custom,
+    },
+  }),
+}
+
+const DepartmentsDesktop = ({ id, className }) => {
+  const [expandedIndex, setExpandedIndex] = useState(null);
+
+  const handleCardClick = (index) => {
+    setExpandedIndex(index === expandedIndex ? -1 : index);
+  };
+
+  const cardVariants = {
+    expanded: {
+      width: "300px",
+      height: "470px",
+    },
+    collapsed: {
+      width: "200px",
+      height: "400px",
+    },
+  };
+
+  const departments = [
+    {
+      name: "DEV",
+      color: "bg-[#EA4335]",
+      icon: dev1,
+      color1: "bg-red-400",
+      imgcss: "",
+      description:
+        "Building web apps with React, Node.js, and AI, focusing on scalability, dynamic designs, and modern user experiences.",
+      custom: 0.3,
+      animation: upvariant
+    },
+    {
+      name: "AI/ML",
+      color: "bg-[#FBBC04]",
+      icon: aiml1,
+      color1: "bg-yellow-400",
+      imgcss: "size-40 object-cover",
+      description:
+        "Applying AI and machine learning to solve real-world problems, focusing on data prediction and natural language processing.",
+      custom: 0.6,
+      animation: downvariant
+    },
+    {
+      name: "EVM",
+      color: "bg-[#4285F4]",
+      icon: evm1,
+      color1: "bg-blue-400",
+      imgcss: "",
+      description:
+        "Organizing creative and seamless events, ensuring memorable experiences through detailed planning and flawless execution.",
+      custom: 0.9,
+      animation: upvariant
+    },
+    {
+      name: "DESIGN",
+      color: "bg-[#0F9D58]",
+      icon: design1,
+      color1: "bg-green-500",
+      imgcss: "size-40 object-cover",
+      description:
+        "Creating aesthetic and functional designs, enhancing usability with modern tools for exceptional user experiences.",
+      custom: 1.2,
+      animation: downvariant
+    },
+    {
+      name: "CONTENT",
+      color: "bg-[#EA4335]",
+      icon: content1,
+      color1: "bg-red-400",
+      imgcss: "size-72 object-cover",
+      description:
+        "Crafting engaging content through storytelling, SEO, and multimedia to boost brand visibility and audience engagement.",
+      custom: 1.5,
+      animation: upvariant
+    },
+    {
+      name: "DSA",
+      color: "bg-[#FBBC04]",
+      icon: dsa1,
+      color1: "bg-yellow-400",
+      imgcss: "size-32 object-cover",
+      description:
+        "Enhancing problem-solving skills with algorithms, data structures, and optimization techniques for coding and technical interviews.",
+      custom: 1.8,
+      animation: downvariant
+    },
+  ];
+  
+  return (
+    <section id={id} className={`${className} transition-all duration-500 ease-in-out mb-20`}>
+      <div className="flex flex-col py-10">
+        <h1 className="text-9xl text-right mr-10 text-[#272727] font-bebas-neue mt-10 mb-10 animate-fade-in">DEPARTMENTS</h1>
+        <div className="flex flex-wrap justify-center gap-4">
+          {departments.map((dept, index) => (
+            <motion.div
+            className=''
+            initial="hidden"
+            whileInView="visible"
+            custom={dept.custom}
+            variants={dept.animation}
+          >
+            <motion.div
+              key={index}
+              className={`relative flex flex-col items-center rounded-Large ${dept.color} shadow-lg transition-all transform cursor-pointer duration-500 ease-in-out`}
+              variants={cardVariants}
+              initial="collapsed"
+              animate={index === expandedIndex ? 'expanded' : 'collapsed'}
+              transition={{ duration: 0.5 }}
+              onClick={() => handleCardClick(index)}
+              style={{ width: "250px", height: "400px" }}
+            >
+            
+              <div className={`w-36 h-40 rounded-medium flex items-center ${dept.color1} justify-center text-3xl mt-10 transition-opacity duration-500`}>
+                <img src={dept.icon} alt={dept.name} className={`filter brightness-0 ${dept.imgcss}`} />
+              </div>
+              <p className="mt-4 text-white text-7xl font-bebas-neue">{dept.name}</p>
+              {index === expandedIndex && (
+                <p className=" text-white text-center font-poppins text-lg mr-2" >{dept.description}</p>
+              )}
+            </motion.div>
+            </motion.div>
+          ))}
         </div>
-  </section>
-);
-
-
+      </div>
+    </section>
+  );
+};
 
 const DepartmentsMobile = ({ id, className }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -114,47 +169,72 @@ const DepartmentsMobile = ({ id, className }) => {
   const departments = [
     {
       title: "DEV",
-      description:
-        "We focus on building powerful web applications that deliver engaging user experiences. Using tools like React, Node.js, and AI, we create scalable and innovative solutions. Our projects emphasize dynamic designs and modern features tailored to meet user needs effectively.",
       color: "#EA4335",
-      img: webdev,
-    },
-    {
-      title: "DSA",
+      icon: dev1,
+      color1: "bg-red-500",
+      imgcss: "",
       description:
-        "We strengthen problem-solving skills by exploring algorithms, data structures, and optimization techniques. Our mission is to prepare students for competitive programming, technical interviews, and real-world challenges. We empower learners to tackle problems.",
-      color: "#FBBC04",
-      img: dsa,
-    },
-    {
-      title: "Design",
-      description:
-        "We craft beautiful, user-friendly designs that combine creativity and functionality. Leveraging modern tools, we create interfaces that enhance usability and delight users. Our designs focus on balancing aesthetics with practicality to deliver exceptional experiences.",
-      color: "#4285F4",
-      img: design,
+        "Building web apps with React, Node.js, and AI, focusing on scalability, dynamic designs, and modern user experiences.",
+      custom: 0.3,
+      animation: upvariant
     },
     {
       title: "AI/ML",
+      color: "#FBBC04",
+      icon: aiml1,
+      color1: "bg-yellow-400",
+      imgcss: "",
       description:
-        "We explore the power of AI and machine learning to address real-world issues. By applying advanced algorithms, we develop intelligent solutions in areas like data prediction and natural language processing. Our goal is to innovate and revolutionize industries.",
-      color: "#0F9D58",
-      img: aiml,
-    },
-    {
-      title: "Content",
-      description:
-        "We create compelling and impactful content tailored to captivate audiences. By focusing on storytelling, SEO optimization, and multimedia formats, we aim to build meaningful connections. Our goal is to enhance brand visibility and engagement across platforms.",
-      color: "#EA4335",
-      img: content,
+        "Applying AI and machine learning to solve real-world problems, focusing on data prediction and natural language processing.",
+      custom: 0.6,
+      animation: downvariant
     },
     {
       title: "EVM",
+      color: "#4285F4",
+      icon: evm1,
+      color1: "bg-blue-400",
+      imgcss: "",
       description:
-        "We specialize in organizing seamless and memorable events through creative planning and execution. From ideation to perfection, we collaborate as a team to bring unique experiences to life. Our attention to detail ensures lasting impressions on all attendees.",
+        "Organizing creative and seamless events, ensuring memorable experiences through detailed planning and flawless execution.",
+      custom: 0.9,
+      animation: upvariant
+    },
+    {
+      title: "DESIGN",
+      color: "#0F9D58",
+      icon: design1,
+      color1: "bg-green-500",
+      imgcss: "",
+      description:
+        "Creating aesthetic and functional designs, enhancing usability with modern tools for exceptional user experiences.",
+      custom: 1.2,
+      animation: downvariant
+    },
+    {
+      title: "CONTENT",
+      color: "#EA4335",
+      icon: content1,
+      color1: "bg-red-400",
+      imgcss: "",
+      description:
+        "Crafting engaging content through storytelling, SEO, and multimedia to boost brand visibility and audience engagement.",
+      custom: 1.5,
+      animation: upvariant
+    },
+    {
+      title: "DSA",
       color: "#FBBC04",
-      img: evm,
+      icon: dsa1,
+      color1: "bg-yellow-400",
+      imgcss: "",
+      description:
+        "Enhancing problem-solving skills with algorithms, data structures, and optimization techniques for coding and technical interviews.",
+      custom: 1.8,
+      animation: downvariant
     },
   ];
+  
   
 
   const handlePrev = () => {
@@ -171,11 +251,14 @@ const DepartmentsMobile = ({ id, className }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      handleNext();
-    }, 5000); // Change card every 5 seconds
-
-    return () => clearInterval(interval);
-  }, [currentIndex]);
+      setCurrentIndex((prevIndex) =>
+        prevIndex === departments.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000);
+  
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []); // Empty dependency array prevents infinite loop
+  
 
   const handlers = useSwipeable({
     onSwipedLeft: () => handleNext(),
@@ -193,7 +276,7 @@ const DepartmentsMobile = ({ id, className }) => {
         <div className="relative container flex justify-center items-center">
           {/* Previous card */}
           <motion.div
-            className="card-body flex p-3 shadow-2xl text-white rounded-lg w-3/4 absolute left-0 z-10"
+            className="card-body flex p-3 shadow-2xl text-white rounded-Large w-3/4 h-full absolute left-0 z-10 flex-col items-center text-center"
             style={{ backgroundColor: departments[(currentIndex - 1 + departments.length) % departments.length].color }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.3 }}
@@ -201,41 +284,41 @@ const DepartmentsMobile = ({ id, className }) => {
             transition={{ duration: 0.5 }}
           >
             <div className="flex-1">
-              <h2 className="text-8xl font-normal font-bebas-neue">
+              <h2 className="text-7xl font-normal font-bebas-neue mt-10">
                 {departments[(currentIndex - 1 + departments.length) % departments.length].title}
               </h2>
-              <p className="text-xl font-poppins font-medium leading-relaxed">
+              <p className="text-xl font-poppins font-medium leading-relaxed mt-5">
                 {departments[(currentIndex - 1 + departments.length) % departments.length].description}
               </p>
             </div>
             <img
-              src={departments[(currentIndex - 1 + departments.length) % departments.length].img}
+              src={departments[(currentIndex - 1 + departments.length) % departments.length].icon}
               alt={departments[(currentIndex - 1 + departments.length) % departments.length].title}
-              className="w-40 h-40 md:w-96 md:h-80 mb-10 object-cover mr-8"
+              className={` w-40 h-40 mb-10 ${departments.imgcss} mr-8 filter brightness-0 ${departments.color1}`}
             />
           </motion.div>
 
           {/* Current card */}
           <motion.div
-            className="card-body flex p-3 shadow-2xl text-white rounded-lg w-3/4 transition-all duration-500 z-20"
+            className="card-body flex p-3 shadow-2xl text-white rounded-Large w-3/4 h-5/6 transition-all duration-500 z-20 flex-col items-center text-center"
             style={{ backgroundColor: departments[currentIndex].color }}
             {...handlers}
           >
             <div className="flex-1">
-              <h2 className="text-8xl font-normal font-bebas-neue">{departments[currentIndex].title}</h2>
-              <p className="text-xl font-poppins font-medium leading-relaxed">{departments[currentIndex].description}</p>
+              <h2 className="text-7xl font-normal font-bebas-neue mt-10">{departments[currentIndex].title}</h2>
+              <p className="text-xl font-poppins font-medium leading-relaxed mt-5">{departments[currentIndex].description}</p>
               
             </div>
             <img
-              src={departments[currentIndex].img}
+              src={departments[currentIndex].icon}
               alt={departments[currentIndex].title}
-              className="w-40 h-40 md:w-96 md:h-80 mb-10 object-cover mr-8"
+              className={`w-40 h-40 mb-10 filter brightness-0 `}
             />
           </motion.div>
 
           {/* Next card */}
           <motion.div
-            className="card-body flex p-3 shadow-2xl text-white rounded-lg w-3/4 absolute right-0 z-10"
+            className="card-body flex p-3 shadow-2xl text-white rounded-Large w-3/4 h-full absolute  right-0 z-10 flex-col items-center text-center"
             style={{ backgroundColor: departments[(currentIndex + 1) % departments.length].color }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.3 }}
@@ -243,17 +326,17 @@ const DepartmentsMobile = ({ id, className }) => {
             transition={{ duration: 0.5 }}
           >
             <div className="flex-1">
-              <h2 className="text-8xl font-normal font-bebas-neue">
+              <h2 className="text-7xl font-normal font-bebas-neue  mt-10">
                 {departments[(currentIndex + 1) % departments.length].title}
               </h2>
-              <p className="text-xl font-poppins font-medium leading-relaxed">
+              <p className="text-xl font-poppins font-medium leading-relaxed mt-5">
                 {departments[(currentIndex + 1) % departments.length].description}
               </p>
             </div>
             <img
-              src={departments[(currentIndex + 1) % departments.length].img}
+              src={departments[(currentIndex + 1) % departments.length].icon}
               alt={departments[(currentIndex + 1) % departments.length].title}
-              className="w-40 h-40 md:w-96 md:h-80 mb-10  object-cover  mr-8"
+              className={`w-40 h-40 mb-10 ${departments.imgcss} mr-8 filter brightness-0 ${departments.color1}`}
             />
           </motion.div>
           </div>
