@@ -270,7 +270,7 @@ const DepartmentsMobile = ({ id, className }) => {
   return (
     <section id={id} className={className}>
       <div className="bg-gray-100 scroll-smooth mb-24">
-        <h1 className="card-body-h1 text-8xl text-right mr-10 text-[#272727] font-bebas-neue mt-10 mb-10">
+        <h1 className="card-body-h1 text-7xl text-right  text-[#272727] font-bebas-neue mt-10 mb-10">
           DEPARTMENTS
         </h1>
         <div className="relative container flex justify-center items-center">
