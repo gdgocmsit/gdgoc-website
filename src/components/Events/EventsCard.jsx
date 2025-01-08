@@ -73,12 +73,12 @@ const EventsCard = ({ eventsList }) => {
                 {/* Chat Bubbule Wrap */}
                 <div className='w-full px-5 flex flex-col gap-2'>
                     <div className='w-full flex justify-start'>
-                        <p className=' relative border-[1px] border-zinc-100 rounded-xl bg-zinc-50 px-4  py-1 pr-10 text-xs' >
+                        <p className=' relative border-[1px] border-zinc-100 rounded-xl bg-zinc-50 px-4  py-1 pr-10 text-xs font-poppins' >
                             Wanna Explore Our Event ?
                         </p>
                     </div>
                     <div className='w-full flex justify-end'>
-                        <p className=' tracking-tighter text-xs relative border-[1px] border-zinc-100 rounded-xl bg-zinc-50 text-zinc-800 px-4  py-1 '>
+                        <p className=' tracking-tighter text-xs relative border-[1px] border-zinc-100 rounded-xl bg-zinc-50 text-zinc-800 px-4  py-1 font-poppins'>
                             For Sure
                         </p>
                     </div>
@@ -169,7 +169,7 @@ const EventsCard = ({ eventsList }) => {
 
 
                 {/* About */}
-                <div className='text-zinc-700 px-4'>
+                <div className='text-zinc-700 px-4 font-poppins'>
                     {eventsList[index].eventAbout}
                 </div>
 

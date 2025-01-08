@@ -32,18 +32,18 @@ const Events = ({ id, className }) => {
   return (
     <section id={id} className={className}>
 
-      <div className="w-full min-h-screen bg-white relative py-5 px-5 items-center">
+      <div className="w-full min-h-screen bg-white relative py-28 px-5 items-center">
         <div ref={ref} className='absolute top-[25%] w-10 h-10 '></div>
 
         <div className="w-full md:w-1/2 ">
-          <h1 className='w-full h-[4.5rem] overflow-y-hidden overflow-hidden relative mb-18 font-bebas-neue'>
+          <h1 className='w-full h-[6.5rem] overflow-y-hidden overflow-hidden relative mb-18 md:text-start md:box-border md:pl-20 '>
             {isInView &&
               "EVENTS".split("").map((item, index) => {
                 if (index == 1) {
-                  return (
+                  return (         
                     <motion.span
-                      className="text-6xl font-semibold text-zinc-800 italic relative"
-                      whileHover={{ fontSize: 60, fontStyle: "normal" }}
+                      className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bebas-neue font-semibold text-zinc-800 relative tracking-wide"
+                      whileHover={{ fontSize: 60, fontStyle: "italic" }}
                       initial={{ bottom: "-100%", }}
                       animate={{ bottom: "0" }}
                       transition={{ ease: easeIn, delay: index * 0.06 }}
@@ -55,7 +55,7 @@ const Events = ({ id, className }) => {
                 else {
                   return (
                     <motion.span
-                      className='text-6xl text-zinc-800 relative'
+                      className='text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bebas-neue font-bold text-zinc-800 relative tracking-wide'
                       initial={{ bottom: "-100%", }}
                       animate={{ bottom: "0" }}
                       transition={{ ease: easeIn, delay: index * 0.1 }}

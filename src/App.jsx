@@ -4,7 +4,7 @@ import './index.css';
 
 import HeroSection from './components/HeroSection';
 import AboutUs from './components/AboutUs';
-import Events from './components/Events';
+import Events from './components/Events/Events';
 import Departments from './components/Departments';
 import Team from './components/Team';
 import ContactUs from './components/ContactUs';
@@ -53,7 +53,7 @@ const App = () => {
               <div>
                 <HeroSection id="home" className="min-h-screen bg-blue-500" />
                 <AboutUs id="aboutUs" className="min-h-screen flex justify-center" />
-                <Events id="events" className="min-h-screen bg-red-500" />
+                <Events id="events" className="min-h-screen" />
                 <Departments id="departments"/>
                 <Team id="team" />
                 <ContactUs id="contactUs"  />
