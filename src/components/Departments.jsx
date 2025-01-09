@@ -1,40 +1,39 @@
 import React, { useState, useEffect } from "react";
-import dev1 from "/departments/DEV.gif"
-import aiml1 from "/departments/AIML.gif"
-import content1 from "/departments/CONTENT.gif"
-import  dsa1 from "/departments/DSA.gif"
-import design1  from "/departments/DESIGN.gif"
-import evm1 from "/departments/EVM.gif"
+import dev1 from "/departments/DEV.gif";
+import aiml1 from "/departments/AIML.gif";
+import content1 from "/departments/CONTENT.gif";
+import dsa1 from "/departments/DSA.gif";
+import design1 from "/departments/DESIGN.gif";
+import evm1 from "/departments/EVM.gif";
 
 import { motion } from "framer-motion";
 import { useSwipeable } from "react-swipeable";
 
-
 const upvariant = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 100 },
   visible: (custom) => ({
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.8,
-      ease: 'easeOut',
+      ease: "easeOut",
       delay: custom,
     },
   }),
 };
 
-const downvariant={
-  hidden: { opacity: 0, y: -30 },
+const downvariant = {
+  hidden: { opacity: 0, y: -100 },
   visible: (custom) => ({
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.8,
-      ease: 'easeOut',
+      ease: "easeOut",
       delay: custom,
     },
   }),
-}
+};
 
 const DepartmentsDesktop = ({ id, className }) => {
   const [expandedIndex, setExpandedIndex] = useState(null);
@@ -45,7 +44,7 @@ const DepartmentsDesktop = ({ id, className }) => {
 
   const cardVariants = {
     expanded: {
-      width: "300px",
+      width: "310px",
       height: "470px",
     },
     collapsed: {
@@ -64,7 +63,7 @@ const DepartmentsDesktop = ({ id, className }) => {
       description:
         "Building web apps with React, Node.js, and AI, focusing on scalability, dynamic designs, and modern user experiences.",
       custom: 0.3,
-      animation: upvariant
+      animation: upvariant,
     },
     {
       name: "AI/ML",
@@ -75,7 +74,7 @@ const DepartmentsDesktop = ({ id, className }) => {
       description:
         "Applying AI and machine learning to solve real-world problems, focusing on data prediction and natural language processing.",
       custom: 0.6,
-      animation: downvariant
+      animation: downvariant,
     },
     {
       name: "EVM",
@@ -86,7 +85,7 @@ const DepartmentsDesktop = ({ id, className }) => {
       description:
         "Organizing creative and seamless events, ensuring memorable experiences through detailed planning and flawless execution.",
       custom: 0.9,
-      animation: upvariant
+      animation: upvariant,
     },
     {
       name: "DESIGN",
@@ -97,7 +96,7 @@ const DepartmentsDesktop = ({ id, className }) => {
       description:
         "Creating aesthetic and functional designs, enhancing usability with modern tools for exceptional user experiences.",
       custom: 1.2,
-      animation: downvariant
+      animation: downvariant,
     },
     {
       name: "CONTENT",
@@ -108,7 +107,7 @@ const DepartmentsDesktop = ({ id, className }) => {
       description:
         "Crafting engaging content through storytelling, SEO, and multimedia to boost brand visibility and audience engagement.",
       custom: 1.5,
-      animation: upvariant
+      animation: upvariant,
     },
     {
       name: "DSA",
@@ -119,42 +118,61 @@ const DepartmentsDesktop = ({ id, className }) => {
       description:
         "Enhancing problem-solving skills with algorithms, data structures, and optimization techniques for coding and technical interviews.",
       custom: 1.8,
-      animation: downvariant
+      animation: downvariant,
     },
   ];
-  
+
   return (
-    <section id={id} className={`${className} transition-all duration-500 ease-in-out mb-20`}>
+    <section
+      id={id}
+      className={`${className} transition-all duration-500 ease-in-out mb-20`}
+    >
       <div className="flex flex-col py-10">
-        <h1 className="text-9xl text-right mr-10 text-[#272727] font-bebas-neue mt-10 mb-10 animate-fade-in">DEPARTMENTS</h1>
+        <h1 className="text-9xl text-right mr-10 text-[#272727] font-bebas-neue mt-10 mb-10 animate-fade-in">
+          DEPARTMENTS
+        </h1>
         <div className="flex flex-wrap justify-center gap-4">
           {departments.map((dept, index) => (
             <motion.div
-            className=''
-            initial="hidden"
-            whileInView="visible"
-            custom={dept.custom}
-            variants={dept.animation}
-          >
-            <motion.div
-              key={index}
-              className={`relative flex flex-col items-center rounded-Large ${dept.color} shadow-lg transition-all transform cursor-pointer duration-500 ease-in-out`}
-              variants={cardVariants}
-              initial="collapsed"
-              animate={index === expandedIndex ? 'expanded' : 'collapsed'}
-              transition={{ duration: 0.5 }}
-              onClick={() => handleCardClick(index)}
-              style={{ width: "250px", height: "400px" }}
+              className=""
+              initial="hidden"
+              whileInView="visible"
+              custom={dept.custom}
+              variants={dept.animation}
             >
-            
-              <div className={`w-36 h-40 rounded-medium flex items-center ${dept.color1} justify-center text-3xl mt-10 transition-opacity duration-500`}>
-                <img src={dept.icon} alt={dept.name} className={`filter brightness-0 ${dept.imgcss}`} />
-              </div>
-              <p className="mt-4 text-white text-7xl font-bebas-neue">{dept.name}</p>
-              {index === expandedIndex && (
-                <p className=" text-white text-center font-poppins text-lg mr-2" >{dept.description}</p>
-              )}
-            </motion.div>
+              <motion.div
+                key={index}
+                className={`relative flex flex-col items-center rounded-Large ${dept.color} shadow-lg transition-all transform cursor-pointer duration-500 ease-in-out`}
+                variants={cardVariants}
+                initial="collapsed"
+                animate={index === expandedIndex ? "expanded" : "collapsed"}
+                transition={{ duration: 0.2 }}
+                onClick={() => handleCardClick(index)}
+                style={{ width: "250px", height: "400px" }}
+              >
+                <div
+                  className={`w-36 h-40 rounded-medium flex items-center ${dept.color1} justify-center text-3xl mt-10 transition-opacity duration-500`}
+                >
+                  <img
+                    src={dept.icon}
+                    alt={dept.name}
+                    className={`filter brightness-0 ${dept.imgcss}`}
+                  />
+                </div>
+                <p className="mt-4 text-white text-7xl font-bebas-neue">
+                  {dept.name}
+                </p>
+                {index === expandedIndex && (
+                  <motion.p
+                    className="text-black text-center font-poppins text-lg mr-2 p-1"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5, duration: 0.3 }}
+                  >
+                    {dept.description}
+                  </motion.p>
+                )}
+              </motion.div>
             </motion.div>
           ))}
         </div>
@@ -176,7 +194,7 @@ const DepartmentsMobile = ({ id, className }) => {
       description:
         "Building web apps with React, Node.js, and AI, focusing on scalability, dynamic designs, and modern user experiences.",
       custom: 0.3,
-      animation: upvariant
+      animation: upvariant,
     },
     {
       title: "AI/ML",
@@ -187,7 +205,7 @@ const DepartmentsMobile = ({ id, className }) => {
       description:
         "Applying AI and machine learning to solve real-world problems, focusing on data prediction and natural language processing.",
       custom: 0.6,
-      animation: downvariant
+      animation: downvariant,
     },
     {
       title: "EVM",
@@ -198,7 +216,7 @@ const DepartmentsMobile = ({ id, className }) => {
       description:
         "Organizing creative and seamless events, ensuring memorable experiences through detailed planning and flawless execution.",
       custom: 0.9,
-      animation: upvariant
+      animation: upvariant,
     },
     {
       title: "DESIGN",
@@ -209,7 +227,7 @@ const DepartmentsMobile = ({ id, className }) => {
       description:
         "Creating aesthetic and functional designs, enhancing usability with modern tools for exceptional user experiences.",
       custom: 1.2,
-      animation: downvariant
+      animation: downvariant,
     },
     {
       title: "CONTENT",
@@ -220,7 +238,7 @@ const DepartmentsMobile = ({ id, className }) => {
       description:
         "Crafting engaging content through storytelling, SEO, and multimedia to boost brand visibility and audience engagement.",
       custom: 1.5,
-      animation: upvariant
+      animation: upvariant,
     },
     {
       title: "DSA",
@@ -231,11 +249,9 @@ const DepartmentsMobile = ({ id, className }) => {
       description:
         "Enhancing problem-solving skills with algorithms, data structures, and optimization techniques for coding and technical interviews.",
       custom: 1.8,
-      animation: downvariant
+      animation: downvariant,
     },
   ];
-  
-  
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
@@ -255,10 +271,9 @@ const DepartmentsMobile = ({ id, className }) => {
         prevIndex === departments.length - 1 ? 0 : prevIndex + 1
       );
     }, 5000);
-  
+
     return () => clearInterval(interval); // Cleanup on unmount
   }, []); // Empty dependency array prevents infinite loop
-  
 
   const handlers = useSwipeable({
     onSwipedLeft: () => handleNext(),
@@ -277,7 +292,12 @@ const DepartmentsMobile = ({ id, className }) => {
           {/* Previous card */}
           <motion.div
             className="card-body flex p-3 shadow-2xl text-white rounded-Large w-3/4 h-full absolute left-0 z-10 flex-col items-center text-center"
-            style={{ backgroundColor: departments[(currentIndex - 1 + departments.length) % departments.length].color }}
+            style={{
+              backgroundColor:
+                departments[
+                  (currentIndex - 1 + departments.length) % departments.length
+                ].color,
+            }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.3 }}
             exit={{ opacity: 0 }}
@@ -285,15 +305,31 @@ const DepartmentsMobile = ({ id, className }) => {
           >
             <div className="flex-1">
               <h2 className="text-7xl font-normal font-bebas-neue mt-10">
-                {departments[(currentIndex - 1 + departments.length) % departments.length].title}
+                {
+                  departments[
+                    (currentIndex - 1 + departments.length) % departments.length
+                  ].title
+                }
               </h2>
               <p className="text-xl font-poppins font-medium leading-relaxed mt-5">
-                {departments[(currentIndex - 1 + departments.length) % departments.length].description}
+                {
+                  departments[
+                    (currentIndex - 1 + departments.length) % departments.length
+                  ].description
+                }
               </p>
             </div>
             <img
-              src={departments[(currentIndex - 1 + departments.length) % departments.length].icon}
-              alt={departments[(currentIndex - 1 + departments.length) % departments.length].title}
+              src={
+                departments[
+                  (currentIndex - 1 + departments.length) % departments.length
+                ].icon
+              }
+              alt={
+                departments[
+                  (currentIndex - 1 + departments.length) % departments.length
+                ].title
+              }
               className={` w-40 h-40 mb-10 ${departments.imgcss} mr-8 filter brightness-0 ${departments.color1}`}
             />
           </motion.div>
@@ -305,9 +341,12 @@ const DepartmentsMobile = ({ id, className }) => {
             {...handlers}
           >
             <div className="flex-1">
-              <h2 className="text-7xl font-normal font-bebas-neue mt-10">{departments[currentIndex].title}</h2>
-              <p className="text-xl font-poppins font-medium leading-relaxed mt-5">{departments[currentIndex].description}</p>
-              
+              <h2 className="text-7xl font-normal font-bebas-neue mt-10">
+                {departments[currentIndex].title}
+              </h2>
+              <p className="text-xl font-poppins font-medium leading-relaxed mt-5">
+                {departments[currentIndex].description}
+              </p>
             </div>
             <img
               src={departments[currentIndex].icon}
@@ -319,7 +358,10 @@ const DepartmentsMobile = ({ id, className }) => {
           {/* Next card */}
           <motion.div
             className="card-body flex p-3 shadow-2xl text-white rounded-Large w-3/4 h-full absolute  right-0 z-10 flex-col items-center text-center"
-            style={{ backgroundColor: departments[(currentIndex + 1) % departments.length].color }}
+            style={{
+              backgroundColor:
+                departments[(currentIndex + 1) % departments.length].color,
+            }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.3 }}
             exit={{ opacity: 0 }}
@@ -330,7 +372,10 @@ const DepartmentsMobile = ({ id, className }) => {
                 {departments[(currentIndex + 1) % departments.length].title}
               </h2>
               <p className="text-xl font-poppins font-medium leading-relaxed mt-5">
-                {departments[(currentIndex + 1) % departments.length].description}
+                {
+                  departments[(currentIndex + 1) % departments.length]
+                    .description
+                }
               </p>
             </div>
             <img
@@ -339,25 +384,23 @@ const DepartmentsMobile = ({ id, className }) => {
               className={`w-40 h-40 mb-10 ${departments.imgcss} mr-8 filter brightness-0 ${departments.color1}`}
             />
           </motion.div>
-          </div>
-          {/* Dots */}
-          <div className="flex justify-center space-x-3 mt-6">
-            {departments.map((dept, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-4 h-4 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? "scale-125"
-                    : "opacity-50"
-                }`}
-                style={{
-                  backgroundColor:
-                    index === currentIndex ? dept.color : "#D3D3D3",
-                }}
-              ></button>
-            ))}
-          </div>
+        </div>
+        {/* Dots */}
+        <div className="flex justify-center space-x-3 mt-6">
+          {departments.map((dept, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-4 h-4 rounded-full transition-all duration-300 ${
+                index === currentIndex ? "scale-125" : "opacity-50"
+              }`}
+              style={{
+                backgroundColor:
+                  index === currentIndex ? dept.color : "#D3D3D3",
+              }}
+            ></button>
+          ))}
+        </div>
       </div>
     </section>
   );
