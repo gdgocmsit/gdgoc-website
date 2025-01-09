@@ -99,14 +99,15 @@
 @media (max-width: 512px) {
     .textUnderAboutUsMobile {
         font-size: 1.1rem;
-        max-width: 300px;
+        max-width: calc(100vw - 25px);
     }
     .sliderMobile{
         height: 250px;
         width: 90%;
-        max-width:400px;
+        max-width:calc(100vw - 20px);
         overflow: hidden;
-        border:2px solid black
+        border:2px solid black;
+        margin: 0 auto;
     }
 }
 

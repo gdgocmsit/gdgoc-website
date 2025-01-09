@@ -6,19 +6,19 @@ import styled, { keyframes } from "styled-components";
 
 function Footer() {
   return (
-    <div className="bg-[#272727] md:h-[530px] h-[470px] items-center justify-around text-white p-10">
+    <div className="bg-[#272727] relative z-20 md:h-[530px] h-[470px] items-center justify-around text-white p-10">
       <div className="flex items-center justify-between gap-40">
         <div className="left  md:ml-20 ">
           <div className="hidden md:block">
-          <img src={logo} className="w-20 h-20" alt="" />
+            <img src={logo} className="w-20 h-20" alt="" />
           </div>
           <div className="block md:hidden">
-          <img
-            src={GDG}
-            // width={50}
-            alt=""
-            className="h-20 w-40"
-          />
+            <img
+              src={GDG}
+              // width={50}
+              alt=""
+              className="h-20 w-40"
+            />
           </div>
           <div className="mt-5 ">
             <a href="https://chat.whatsapp.com/FJO99dIJBRtH29SZta0lyg">
@@ -26,31 +26,23 @@ function Footer() {
                 <div className="flex items-center md:mt-1 mt-[5px]">
                   JOIN OUR WHATSAPP GROUP
                 </div>
-                <button>
-                  <a href="https://chat.whatsapp.com/FJO99dIJBRtH29SZta0lyg">
-                    <img
-                      src={Frame}
-                      className={` h-8 w-8 md:translate-x-20 translate-x-3 rounded-full -rotate-90  bg-[#ffffff]`}
-                      alt=""
-                    />
-                  </a>
-                </button>
+                <img
+                  src={Frame}
+                  className={` h-8 w-8 md:translate-x-20 translate-x-3 rounded-full -rotate-90  bg-[#ffffff]`}
+                  alt=""
+                />
               </Button>
             </a>
           </div>
           <div className="mt-5 ">
-            <a href="/#home">
+            <a href="#">
               <Button className="md:text-[16px] text-[14px] mb-3 md:mb-0 p-[7px] md:p-3 border-[#ffffffbc] hover:border-[#ffffff] border-2 rounded-3xl md:w-[220px] w-[200px]  items-start flex ">
                 <div className="md:mt-1 mt-[5px]">BACK TO TOP</div>
-                <button>
-                  <a href="/#home">
-                    <img
-                      src={Frame}
-                      className="h-8 w-8  rounded-full translate-x-16 bg-[#ffffff]"
-                      alt=""
-                    />
-                  </a>
-                </button>
+                <img
+                  src={Frame}
+                  className="h-8 w-8  rounded-full translate-x-16 bg-[#ffffff]"
+                  alt=""
+                />
               </Button>
             </a>
           </div>
@@ -90,10 +82,10 @@ function Footer() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Footer
+export default Footer;
 
 const slideIn = keyframes` from { 
   transform: translateX(0); 
