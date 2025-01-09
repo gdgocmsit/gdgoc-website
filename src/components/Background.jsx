@@ -3,10 +3,13 @@ import { useEffect, useState } from "react";
 export default function Background() {
   const [positions, setPositions] = useState([]);
 
+  const circleSize = 4;
+  const circleRadiusPercentage = (circleSize * 16) / window.innerHeight * 100;
+
   const generateRandomPositions = () => {
-    return Array.from({ length: 30 }, () => ({
-      top: Math.random() * 100,
-      left: Math.random() * 100,
+    return Array.from({ length: 35 }, () => ({
+      top: Math.random() * (100 - 2 * circleRadiusPercentage) + circleRadiusPercentage,
+      left: Math.random() * (100 - 2 * circleRadiusPercentage) + circleRadiusPercentage,
       dx: (Math.random() - 0.5) * 0.1,
       dy: (Math.random() - 0.5) * 0.1,
     }));
@@ -21,8 +24,8 @@ export default function Background() {
         prevPositions.map((circle) => {
           let { top, left, dx, dy } = circle;
 
-          if (top <= 0 || top >= 100) dy = -dy;
-          if (left <= 0 || left >= 100) dx = -dx;
+          if (top <= circleRadiusPercentage || top >= 100 - circleRadiusPercentage) dy = -dy;
+          if (left <= circleRadiusPercentage || left >= 100 - circleRadiusPercentage) dx = -dx;
 
           return {
             ...circle,
@@ -40,14 +43,14 @@ export default function Background() {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-0">
+    <div className="absolute inset-0 z-0 overflow-hidden">
       {positions.map((circle, index) => (
         <div
           key={index}
           className="absolute rounded-full"
           style={{
-            height: "4rem",
-            width: "4rem",
+            height: `${circleSize}rem`,
+            width: `${circleSize}rem`,
             backgroundColor: ["#EA4335", "#4285F4", "#FBBC04", "#0F9D58"][
               index % 4
             ],

@@ -5,6 +5,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { FaGoogle, FaCode, FaLightbulb } from 'react-icons/fa';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
+import Background from './Background';
 
 const FeatureCard = ({ icon: Icon, text, description, position }) => (
   <motion.div
@@ -20,8 +21,8 @@ const FeatureCard = ({ icon: Icon, text, description, position }) => (
     whileTap={{ scale: 0.95 }}
     className="relative group h-full feature-card"
   >
-    <div className="absolute inset-0 bg-gradient-to-r from-[#4285F4] to-[#0F9D58] rounded-[2rem] blur opacity-40 transition duration-300" />
-    <div className="relative flex flex-col items-center p-8 bg-white/80 backdrop-blur-sm rounded-[2rem] shadow-lg overflow-hidden h-full">
+    <div className="absolute inset-0 bg-gradient-to-r md:h-full h-[80%] from-[#4285F4] to-[#0F9D58] rounded-[2rem] blur opacity-40 transition duration-300" />
+    <div className="relative flex flex-col items-center p-8 bg-white/80 backdrop-blur-sm rounded-[2rem] shadow-lg overflow-hidden h-[80%">
       <motion.div
         className="absolute inset-0 bg-gradient-to-br from-blue-200 to-green-200 opacity-100 transition-opacity duration-300"
         initial={false}
@@ -150,7 +151,7 @@ const FeatureCarousel = () => {
         <FeatureCard
           icon={FaGoogle}
           text="Google Campaign"
-          description="Join our Google Developer campaigns and events to learn from experts."
+          description="Join our Google campaigns and events to learn from experts."
           position="left"
         />
       </div>
@@ -176,6 +177,8 @@ const FeatureCarousel = () => {
 
 export default function HeroSection() {
   return (
+    <>
+    <Background />
     <div className="relative min-h-[70%] overflow-hidden md:mt-16 mt-44">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
         <div className="flex flex-col items-center justify-center space-y-12 sm:space-y-16">
@@ -220,7 +223,7 @@ export default function HeroSection() {
               <FeatureCard
                 icon={FaGoogle}
                 text="Google Campaign"
-                description="Join our Google Developer campaigns and events to learn from experts."
+                description="Join our Google campaigns and events to learn from experts."
                 position="left"
               />
               <FeatureCard
@@ -236,12 +239,13 @@ export default function HeroSection() {
                 position="right"
               />
             </div>
-            <div className="md:hidden">
+            <div className="md:hidden ">
               <FeatureCarousel />
             </div>
           </motion.div>
         </div>
       </div>
     </div>
+    </>
   );
 }
