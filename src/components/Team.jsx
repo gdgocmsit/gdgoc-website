@@ -156,18 +156,18 @@ const Team = ({ id, className }) => {
     },
     {
       id: 16,
-      name: "Yashika Sharma",
-      tag: "Crafting seamless operations with precision and charm",
-      style: { borderRadius: "55% 55% 45% 45% / 45% 45% 55% 55%" },
-      image: Yashika,
-      department: "Operational Leads",
-    },
-    {
-      id: 17,
       name: "Tanuj Khanna",
       tag: "Delivering impact with finesse and a touch of class",
       style: { borderRadius: "55% 55% 45% 45% / 45% 45% 55% 55%" },
       image: Tanuj,
+      department: "Operational Leads",
+    },
+    {
+      id: 17,
+      name: "Yashika Sharma",
+      tag: "Crafting seamless operations with precision and charm",
+      style: { borderRadius: "55% 55% 45% 45% / 45% 45% 55% 55%" },
+      image: Yashika,
       department: "Operational Leads",
     },
   ];
@@ -217,7 +217,7 @@ const Team = ({ id, className }) => {
 
   const getSlideStyle = (index) => {
     const baseStyle = { 
-      transition: 'all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1)',
+      transition: 'all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1)',
       position: 'absolute',
       width: '100%',
       height: '100%',
