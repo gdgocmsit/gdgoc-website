@@ -1,6 +1,6 @@
 export default {
   content: [
-    "./src/**/*.{html,js,jsx,ts,tsx}", // Includes all subdirectories and files
+    "./src/**/*.{html,js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
