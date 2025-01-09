@@ -8,6 +8,7 @@ export default {
         'bebas-neue': ['"Bebas Neue"', 'serif'],
         'poppins': ['"Poppins"', 'sans-serif'],
       },
+      backgroundClip: ['text'],
     },
   },
   plugins: [],

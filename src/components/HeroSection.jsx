@@ -1,111 +1,247 @@
-import { useEffect, useState } from "react";
+'use client';
 
-export default function HeroSection() {
-  const [positions, setPositions] = useState([]);
+import React, { useEffect, useState } from 'react';
+import { motion, useAnimation } from 'framer-motion';
+import { FaGoogle, FaCode, FaLightbulb } from 'react-icons/fa';
+import { useKeenSlider } from 'keen-slider/react';
+import 'keen-slider/keen-slider.min.css';
 
-  const generateRandomPositions = () => {
-    return Array.from({ length: 30 }, () => ({
-      top: Math.random() * 100,
-      left: Math.random() * 100,
-      dx: (Math.random() - 0.5) * 0.1,
-      dy: (Math.random() - 0.5) * 0.1,
-    }));
-  };
+const FeatureCard = ({ icon: Icon, text, description, position }) => (
+  <motion.div
+    whileHover={{
+      scale: 1.05,
+      rotate:
+        position === 'left'
+          ? -5
+          : position === 'right'
+          ? 5
+          : 0,
+    }}
+    whileTap={{ scale: 0.95 }}
+    className="relative group h-full feature-card"
+  >
+    <div className="absolute inset-0 bg-gradient-to-r from-[#4285F4] to-[#0F9D58] rounded-[2rem] blur opacity-40 transition duration-300" />
+    <div className="relative flex flex-col items-center p-8 bg-white/80 backdrop-blur-sm rounded-[2rem] shadow-lg overflow-hidden h-full">
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-br from-blue-200 to-green-200 opacity-100 transition-opacity duration-300"
+        initial={false}
+        animate={{ scale: [1, 1.5, 1] }}
+        transition={{ repeat: Infinity, duration: 5 }}
+      />
+      <div className="relative z-10 p-5 bg-white rounded-full shadow-inner mb-6">
+        <Icon className="h-8 w-8 sm:h-10 sm:w-10 text-blue-500" />
+      </div>
+      <h3 className="relative z-10 text-xl sm:text-2xl font-semibold text-gray-800 mb-4">
+        {text}
+      </h3>
+      <p className="relative z-10 text-gray-600 text-center">{description}</p>
+    </div>
+  </motion.div>
+);
+
+const AnimatedText = ({ text }) => (
+  <motion.span
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+    className="inline-block"
+  >
+    {text}
+  </motion.span>
+);
+
+const FallingLetter = ({ children, delay }) => {
+  const controls = useAnimation();
+  const randomRotation = Math.random() * 360 - 180;
 
   useEffect(() => {
-    const circles = generateRandomPositions();
-    setPositions(circles);
-
-    const moveCircles = () => {
-      setPositions((prevPositions) =>
-        prevPositions.map((circle) => {
-          let { top, left, dx, dy } = circle;
-
-          if (top <= 0 || top >= 100) dy = -dy;
-          if (left <= 0 || left >= 100) dx = -dx;
-
-          return {
-            ...circle,
-            top: top + dy,
-            left: left + dx,
-            dx,
-            dy,
-          };
-        })
-      );
-      requestAnimationFrame(moveCircles);
+    const sequence = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 900 + delay * 100));
+      await controls.start({
+        y: ['-100vh', '0vh'],
+        rotate: [randomRotation, randomRotation, randomRotation / 2, 0],
+        opacity: [0, 1, 1],
+        transition: {
+          y: { type: 'spring', stiffness: 50, damping: 10, duration: 1.5 },
+          rotate: { type: 'spring', stiffness: 60, damping: 8, duration: 1.5 },
+          opacity: { duration: 0.3, times: [0, 0.2, 1] },
+        },
+      });
     };
-
-    moveCircles();
-  }, []);
+    sequence();
+  }, [controls, delay, randomRotation]);
 
   return (
-    <div className="relative min-h-screen bg-white p-4 sm:p-8 flex items-center justify-center overflow-hidden">
-      {/* Background dots */}
-      <div className="absolute inset-0">
-        {positions.map((circle, index) => (
-          <div
-            key={index}
-            className="absolute rounded-full"
-            style={{
-              height: "4rem",
-              width: "4rem",
-              backgroundColor: ["#EA4335", "#4285F4", "#FBBC04", "#0F9D58"][
-                index % 4
-              ],
-              top: `${circle.top}%`,
-              left: `${circle.left}%`,
-              filter: "blur(5px)",
-              opacity: 0.5,
-            }}
-          />
-        ))}
+    <motion.span style={{ display: 'inline-block', opacity: 0 }} animate={controls}>
+      {children}
+    </motion.span>
+  );
+};
+
+const FallingText = ({ text, startDelay }) => (
+  <span className="inline-flex">
+    {text.split('').map((letter, index) => (
+      <FallingLetter key={index} delay={startDelay + index}>
+        {letter}
+      </FallingLetter>
+    ))}
+  </span>
+);
+
+const FeatureCarousel = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [sliderRef] = useKeenSlider(
+    {
+      loop: true,
+      mode: 'free-snap',
+      slides: {
+        perView: 1,
+        spacing: 15,
+      },
+      created(s) {
+        s.moveToIdx(1);
+      },
+      updated(s) {
+        setCurrentSlide(s.track.details.rel);
+      },
+      animationEnded(s) {
+        setCurrentSlide(s.track.details.rel);
+      },
+    },
+    [
+      (slider) => {
+        let timeout;
+        let mouseOver = false;
+        function clearNextTimeout() {
+          clearTimeout(timeout);
+        }
+        function nextTimeout() {
+          clearTimeout(timeout);
+          if (mouseOver) return;
+          timeout = setTimeout(() => {
+            slider.next();
+          }, 2000);
+        }
+        slider.on('created', () => {
+          slider.container.addEventListener('mouseover', () => {
+            mouseOver = true;
+            clearNextTimeout();
+          });
+          slider.container.addEventListener('mouseout', () => {
+            mouseOver = false;
+            nextTimeout();
+          });
+          nextTimeout();
+        });
+        slider.on('dragStarted', clearNextTimeout);
+        slider.on('animationEnded', nextTimeout);
+        slider.on('updated', nextTimeout);
+      },
+    ]
+  );
+
+  return (
+    <div
+      ref={sliderRef}
+      className="keen-slider"
+      style={{ height: '320px', maxWidth: '90%', margin: '0 auto' }}
+    >
+      <div className="keen-slider__slide">
+        <FeatureCard
+          icon={FaGoogle}
+          text="Google Campaign"
+          description="Join our Google Developer campaigns and events to learn from experts."
+          position="left"
+        />
       </div>
+      <div className="keen-slider__slide">
+        <FeatureCard
+          icon={FaCode}
+          text="Learning Sessions"
+          description="Enhance your skills through interactive workshops and sessions."
+          position="center"
+        />
+      </div>
+      <div className="keen-slider__slide">
+        <FeatureCard
+          icon={FaLightbulb}
+          text="Innovative Projects"
+          description="Build real-world projects with cutting-edge technologies."
+          position="right"
+        />
+      </div>
+    </div>
+  );
+};
 
-      <div className="relative px-4 sm:px-6 md:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-12">
-          <div className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[11rem] font-bold text-gray-800 tracking-tighter flex items-center">
-            <span className="relative -translate-y-3 md:-translate-y-7">G</span>
-            <span className="relative translate-y-3 md:translate-y-7">D</span>
-            <span className="relative -translate-y-3 md:-translate-y-7">G</span>
-          </div>
+export default function HeroSection() {
+  return (
+    <div className="relative min-h-[70%] overflow-hidden md:mt-16 mt-44">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+        <div className="flex flex-col items-center justify-center space-y-12 sm:space-y-16">
+          {/* Main Title */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="text-center relative"
+          >
+            <motion.div
+              animate={{
+                rotate: [0, 5, -5, 0],
+                scale: [1, 1.02, 0.98, 1],
+              }}
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+                repeatType: 'reverse',
+              }}
+              className="absolute -inset-4 sm:-inset-6 md:-inset-8 bg-gradient-to-r from-blue-500/10 via-green-500/10 to-red-500/10 rounded-2xl blur-2xl"
+            />
+            <h1 className="relative text-7xl sm:text-8xl md:text-9xl font-black tracking-tighter">
+              <span className="bg-clip-text text-[#272727] flex items-center justify-center gap-8">
+                <FallingText text="GDG" startDelay={0} />
+                <FallingText text="MSIT" startDelay={3} />
+              </span>
+            </h1>
+            <p className="mt-6 text-lg sm:text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto">
+              <AnimatedText text="Empowering students through technology and innovation" />
+            </p>
+          </motion.div>
 
-          <div className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[11rem] font-bold text-gray-800 tracking-tighter flex items-center">
-            <span className="relative translate-y-3 md:translate-y-7">M</span>
-            <span className="relative -translate-y-3 md:-translate-y-7">S</span>
-            <span className="relative translate-y-3 md:translate-y-7">I</span>
-            <span className="relative -translate-y-3 md:-translate-y-7">T</span>
-          </div>
-        </div>
-        <div className="absolute -top-4 md:-top-1 left-[20%] bg-[#4285F4] text-white px-3 py-1.5 rounded-full text-sm md:text-base font-medium shadow-lg transform -rotate-12">
-          Development
-        </div>
-
-        <div className="absolute top-[80%] left-[10%] bg-[#EA4335] text-white px-3 py-1.5 rounded-full text-sm md:text-base font-medium shadow-lg transform rotate-6">
-          DSA
-        </div>
-
-        <div className="absolute bottom-0 left-[40%] bg-[#0F9D58] text-white px-3 py-1.5 rounded-full text-sm md:text-base font-medium shadow-lg transform -rotate-6">
-          Design
-        </div>
-
-        <div className="absolute -top-7 right-[10%] bg-[#FBBC04] text-white px-3 py-1.5 rounded-full text-sm md:text-base font-medium shadow-lg transform -rotate-12">
-          AI ML
-        </div>
-
-        <div className="absolute -top-4 md:top-40 left-[73%] bg-[#4285F4] text-white px-3 py-1.5 rounded-full text-sm md:text-base font-medium shadow-lg transform -rotate-12">
-          EVM
-        </div>
-
-        <div className="absolute top-[10%] left-[45%] bg-[#EA4335] text-white px-3 py-1.5 rounded-full text-sm md:text-base font-medium shadow-lg transform rotate-12">
-          Social Media
+          {/* Feature Cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="w-full max-w-5xl mx-auto"
+          >
+            <div className="hidden md:grid grid-cols-3 gap-6 sm:gap-8">
+              <FeatureCard
+                icon={FaGoogle}
+                text="Google Campaign"
+                description="Join our Google Developer campaigns and events to learn from experts."
+                position="left"
+              />
+              <FeatureCard
+                icon={FaCode}
+                text="Learning Sessions"
+                description="Enhance your skills through interactive workshops and sessions."
+                position="center"
+              />
+              <FeatureCard
+                icon={FaLightbulb}
+                text="Innovative Projects"
+                description="Build real-world projects with cutting-edge technologies."
+                position="right"
+              />
+            </div>
+            <div className="md:hidden">
+              <FeatureCarousel />
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>
   );
 }
-
-
-
-
-
