@@ -40,7 +40,7 @@ const App = () => {
       });
     };
 
-    const throttledScroll = throttle(handleScroll, 200); // Apply throttle with a 200ms delay
+    const throttledScroll = throttle(handleScroll, 200);
 
     window.addEventListener("scroll", throttledScroll);
 
@@ -52,7 +52,7 @@ const App = () => {
   return (
     <>
       <Navbar />
-      <Background />
+      {/* <Background /> */}
       <div className="min-h-screen bg-gray-100">
         <section id="#" className="h-screen">
           <HeroSection />
