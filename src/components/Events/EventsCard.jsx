@@ -61,24 +61,24 @@ const EventsCard = ({ eventsList }) => {
 
     return (
         <div
-            className='h-[70vh] md:h-[65vh] w-[85vw] md:w-[25vw] flex items-center justify-center px-5 relative gap-20 '
+            className='h-[70vh] md:h-[80vh] w-[85vw] md:w-[25vw] flex items-center justify-center px-5 relative gap-20 '
             onMouseEnter={onMouseEnterNext}
             onMouseLeave={onMouseExitsNext}
         >
 
             <div
-                className='flex flex-col gap-4 w-full h-full md:h-auto bg-zinc-100 tracking-tighter md:text-xs text-lg md:leading-none text-zinc-800 relative py-4 px-2 rounded-xl'
+                className='flex flex-col gap-4 w-full h-full md:h-auto bg-zinc-200 tracking-tighter md:text-xs text-lg md:leading-none text-zinc-800 relative py-4 px-2 rounded-lg'
             >
 
                 {/* Chat Bubbule Wrap */}
                 <div className='w-full px-5 flex flex-col gap-2'>
                     <div className='w-full flex justify-start'>
-                        <p className=' relative border-[1px] border-zinc-100 rounded-xl bg-zinc-50 px-4  py-1 pr-10 text-xs font-poppins' >
-                            Wanna Explore Our Event ?
+                        <p className='tracking-tight uppercase relative border-[1px] border-zinc-100 rounded-xl bg-white px-4  py-1 pr-10 text-xs font-poppins' >
+                            Wanna Explore Our Event?
                         </p>
                     </div>
                     <div className='w-full flex justify-end'>
-                        <p className=' tracking-tighter text-xs relative border-[1px] border-zinc-100 rounded-xl bg-zinc-50 text-zinc-800 px-4  py-1 font-poppins'>
+                        <p className='uppercase text-xs relative border-[1px] border-zinc-100 rounded-xl bg-white text-zinc-800 px-4  py-1 font-poppins'>
                             For Sure
                         </p>
                     </div>
@@ -169,7 +169,7 @@ const EventsCard = ({ eventsList }) => {
 
 
                 {/* About */}
-                <div className='text-zinc-700 px-4 font-poppins'>
+                <div className='px-4 font-poppins tracking-tight text-xs text-zinc-500'>
                     {eventsList[index].eventAbout}
                 </div>
 
