@@ -1,7 +1,7 @@
 import { easeIn, motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import EventsCard from "./EventsCard";
-import DinoAbout from "./EventAboutDino";
+import DinoAbout from "./DinoAbout";
 
 const Events = ({ id, className }) => {
 
@@ -14,6 +14,7 @@ const Events = ({ id, className }) => {
     Img: ["./EventsImgs/talk1.jpeg", "./EventsImgs/talk2.jpeg", "./EventsImgs/talk3.jpeg"],
     eventName: "Talk",
     eventAbout: "From Campus to Google - An Intern's Journey: A captivating talk sharing insights, challenges, and triumphs of a Google internship",
+    eventKnowMore: "Know MoreFrom Campus to Google - An Intern's Journey: A captivating talk sharing insights, challenges, and triumphs of a Google internshipFrom Campus to Google - An Intern's Journey: A captivating talk sharing insights, challenges, and triumphs of a Google internship",
     nextImg: ["./EventsImgs/talk1.jpeg", "./EventsImgs/talk2.jpeg", "./EventsImgs/talk3.jpeg"]
   }
 
@@ -78,10 +79,8 @@ const Events = ({ id, className }) => {
             eventImg={orientationImg}
             eventsList={eventsList}
           />
-
+          
         </div>
-
-        <DinoAbout />
       </div>
 
     </section>

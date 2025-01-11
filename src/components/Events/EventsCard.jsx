@@ -2,6 +2,7 @@ import { delay, easeIn, easeInOut, easeOut, motion, useAnimationControls } from 
 import React, { useRef, useState } from 'react'
 import { GrNext } from 'react-icons/gr'
 import { useMediaQuery } from 'react-responsive';
+import DinoAbout from './DinoAbout';
 
 const EventsCard = ({ eventsList }) => {
 
@@ -11,6 +12,7 @@ const EventsCard = ({ eventsList }) => {
     const [isHover, setIsHover] = useState(false)
     const [nextSlid, setNextSlid] = useState(false)
     const [clicked, setClicked] = useState(false)
+    const [knowMore, setKnowMore] = useState(false)
     const isMobile = useMediaQuery({ query: '(max-width: 767px)' }); // Adjust breakpoint as needed
 
     const onMouseEnter = () => {
@@ -22,12 +24,12 @@ const EventsCard = ({ eventsList }) => {
     }
 
     const onMouseExitsNext = () => {
-        console.log(isHover)
+        // console.log(isHover)
 
         controls.start({ x: -50, opacity: 0 })
     }
     const onMouseEnterNext = () => {
-        console.log(isHover)
+        // console.log(isHover)
 
         controls.start({ x: 0, opacity: 1 })
     }
@@ -59,6 +61,9 @@ const EventsCard = ({ eventsList }) => {
         }
     }
 
+    const onClickMore = () => {
+        setKnowMore(!knowMore)
+    }
     return (
         <div
             className='h-[70vh] md:h-[80vh] w-[85vw] md:w-[25vw] flex items-center justify-center px-5 relative gap-20 '
@@ -171,22 +176,23 @@ const EventsCard = ({ eventsList }) => {
                 {/* About */}
                 <div className='px-4 font-poppins tracking-tight text-xs text-zinc-500 flex flex-col justify-center '>
                     {eventsList[index].eventAbout}
-                    
+
                     <div className='w-full flex justify-center'>
 
-                    <motion.button 
-                        className=' w-fit text-xs text-zinc-50 bg-zinc-700 border-[1px] rounded-2xl font-poppins px-3 py-1 mt-2'
-                        whileHover={{ scale: 1.05, backgroundColor: "#111827", color: "FFFFFF"}}
-                        whileTap={{ scale: 0.99 }}
-                    > 
-                        Know More
-                    </motion.button>
+                        <motion.button
+                            className=' w-fit text-xs text-zinc-50 bg-zinc-700 border-[1px] rounded-2xl font-poppins px-3 py-1 mt-2'
+                            whileHover={{ scale: 1.05, backgroundColor: "#111827", color: "FFFFFF" }}
+                            whileTap={{ scale: 0.99 }}
+                            onClick={onClickMore}
+                        >
+                            Know More
+                        </motion.button>
                     </div>
                 </div>
 
             </div>
 
-            {/* While Hover : Cover Photo*/}
+            {/* While Hover : Collage Photo*/}
             <div
                 className={`h-[70vh] md:h-[65vh] w-[90vw] md:w-[25vw] ${clicked ? "block" : "hidden"} ${clicked ? "absolute" : "static"} md:block left-6 -top-4`}
                 onClick={handleOutsideClick}
@@ -225,6 +231,27 @@ const EventsCard = ({ eventsList }) => {
                 </motion.div>
             </div>
 
+            {/* Dino-Know More */}
+            {
+                knowMore &&
+                <motion.div
+                    className={
+                        `fixed bottom-0 left-0 flex items-end gap-0 rounded-lg p-4 pl-0 max-w-sm sm:max-w-md md:max-w-lg
+                        transition-transform duration-500 
+                        ${knowMore ? "translate-x-0" : "-translate-x-full"} `
+                    }
+                    style={{ zIndex: 1000 }}
+                    onClick={onClickMore}
+                    initial={{ scale: 1, y: 100, x:-100, opacity: 0.5 }}
+                    whileInView={{ scale: 1, y: 0, x:0, opacity: 1 }}
+                    transition={{ duration: 0.1 }}
+                >
+                    < DinoAbout
+                        eventName={eventsList[index].eventName}
+                        eventAbout={eventsList[index].eventKnowMore}
+                    />
+                </motion.div>
+            }
         </div>
     )
 }
