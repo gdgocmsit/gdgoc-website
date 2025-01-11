@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./index.css";
 import HeroSection from "./components/HeroSection";
 import AboutUs from "./components/AboutUs";
-import Events from "./components/Events";
+import Events from "./components/Events/Events"
 import Departments from "./components/Departments";
 import Team from "./components/Team";
 import ContactUs from "./components/ContactUs";
