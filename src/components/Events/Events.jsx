@@ -14,7 +14,7 @@ const Events = ({ id, className }) => {
     Img: ["./EventsImgs/talk1.jpeg", "./EventsImgs/talk2.jpeg", "./EventsImgs/talk3.jpeg"],
     eventName: "Talk",
     eventAbout: "From Campus to Google - An Intern's Journey: A captivating talk sharing insights, challenges, and triumphs of a Google internship",
-    eventKnowMore: "Know MoreFrom Campus to Google - An Intern's Journey: A captivating talk sharing insights, challenges, and triumphs of a Google internshipFrom Campus to Google - An Intern's Journey: A captivating talk sharing insights, challenges, and triumphs of a Google internship",
+    eventKnowMore: "Students gained valuable insights from Anoushka Gupta, a Google intern, during a online session. She shared her career journey and provided practical advice. The session also included a fun and interactive Kahoot quiz, making it a memorable learning experience.",
     nextImg: ["./EventsImgs/talk1.jpeg", "./EventsImgs/talk2.jpeg", "./EventsImgs/talk3.jpeg"]
   }
 
@@ -79,7 +79,7 @@ const Events = ({ id, className }) => {
             eventImg={orientationImg}
             eventsList={eventsList}
           />
-          
+
         </div>
       </div>
 

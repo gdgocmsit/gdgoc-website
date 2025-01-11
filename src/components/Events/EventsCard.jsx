@@ -1,12 +1,15 @@
-import { delay, easeIn, easeInOut, easeOut, motion, useAnimationControls } from 'framer-motion'
-import React, { useRef, useState } from 'react'
+import { AnimatePresence, delay, easeIn, easeInOut, easeOut, motion, useAnimationControls } from 'framer-motion'
+import React, { useEffect, useRef, useState } from 'react'
 import { GrNext } from 'react-icons/gr'
 import { useMediaQuery } from 'react-responsive';
 import DinoAbout from './DinoAbout';
-
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 const EventsCard = ({ eventsList }) => {
 
     const controls = useAnimationControls()
+    const controlDino = useAnimationControls()
     const nextRef = useRef(null)
     const [index, setIndex] = useState(0)
     const [isHover, setIsHover] = useState(false)
@@ -52,7 +55,6 @@ const EventsCard = ({ eventsList }) => {
             setClicked(!clicked)
         }
     }
-
     const handleOutsideClick = (e) => {
         if (isMobile) {
             if (e.target === e.currentTarget) {
@@ -64,6 +66,27 @@ const EventsCard = ({ eventsList }) => {
     const onClickMore = () => {
         setKnowMore(!knowMore)
     }
+
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    const settings = {
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        speed: 2000,
+        autoplaySpeed: 1000,
+        cssEase: "linear",
+        beforeChange: (current, next) => {
+            setCurrentSlide(next);
+        },
+    };
+
+    useEffect(() => {
+        // Reset to the first slide
+        setCurrentSlide(0);
+    }, [index]);
+
     return (
         <div
             className='h-[70vh] md:h-[80vh] w-[85vw] md:w-[25vw] flex items-center justify-center px-5 relative gap-20 '
@@ -193,7 +216,7 @@ const EventsCard = ({ eventsList }) => {
             </div>
 
             {/* While Hover : Collage Photo*/}
-            <div
+            {/* <div
                 className={`h-[70vh] md:h-[65vh] w-[90vw] md:w-[25vw] ${clicked ? "block" : "hidden"} ${clicked ? "absolute" : "static"} md:block left-6 -top-4`}
                 onClick={handleOutsideClick}
             >
@@ -229,29 +252,75 @@ const EventsCard = ({ eventsList }) => {
                         />
                     </div>
                 </motion.div>
+            </div> */}
+
+            <div
+                className={`h-[70vh] md:h-[65vh] w-[90vw] md:w-[25vw] ${clicked ? "block" : "hidden"} ${clicked ? "absolute" : "static"} md:block left-6 -top-4`}
+                onClick={handleOutsideClick}
+            >
+                <motion.div
+                    className={`w-[80%] md:h-[80%] h-[70%] ${isHover ? "md:flex" : "md:hidden"} flex-col justify-center absolute top-[14%] bg-[#717171d8] rounded-2xl pt-2 items-center z-30`}
+                    initial={{ scale: 1, x: 50, opacity: 0.5 }}
+                    whileInView={{ scale: 1, x: 0, opacity: 1 }}
+                    transition={{ duration: 0.5, ease: easeIn }}
+                >
+
+                    <h1 className='text-4xl font-extrabold text-zinc-100 w-full flex justify-center pb-2'>
+                        {eventsList[index].eventName}
+                    </h1>
+
+                    <Slider {...settings}>
+                        {eventsList[index].Img.map((img, slideIndex) => (
+                            <div key={slideIndex} className="w-full flex justify-center h-[45%] pt-5 md:pt-0">
+                                <img
+                                    src={img}
+                                    alt="Event Img"
+                                    className='object-fill h-full md:w-[95%] w-[90%] rounded-2xl'
+                                />
+                            </div>
+                        ))}
+                    </Slider>
+
+                    <div className='flex gap-2 w-full h-[60%] justify-center box-border pb-2'>
+                        <img
+                            src={eventsList[index].Img[currentSlide]}
+                            alt="Event-img"
+                            className='w-full h-full object-contain bg-black object-center rounded-xl'
+                        />
+                        {/* {eventsList[index].Img.length > 1 && (
+                            <img
+                                src={eventsList[index].Img[(currentSlide + 1) % eventsList[index].Img.length]}
+                                alt="Event-img"
+                                className='w-[45%] h-full object-cover object-center rounded-xl'
+                            />
+                        )} */}
+                    </div>
+
+                </motion.div>
             </div>
 
             {/* Dino-Know More */}
-            {
-                knowMore &&
-                <motion.div
-                    className={
-                        `fixed bottom-0 left-0 flex items-end gap-0 rounded-lg p-4 pl-0 max-w-sm sm:max-w-md md:max-w-lg
-                        transition-transform duration-500 
-                        ${knowMore ? "translate-x-0" : "-translate-x-full"} `
-                    }
-                    style={{ zIndex: 1000 }}
-                    onClick={onClickMore}
-                    initial={{ scale: 1, y: 100, x:-100, opacity: 0.5 }}
-                    whileInView={{ scale: 1, y: 0, x:0, opacity: 1 }}
-                    transition={{ duration: 0.1 }}
-                >
-                    < DinoAbout
-                        eventName={eventsList[index].eventName}
-                        eventAbout={eventsList[index].eventKnowMore}
-                    />
-                </motion.div>
-            }
+            <AnimatePresence>
+                {
+                    knowMore &&
+                    <motion.div
+                        className={
+                            `fixed bottom-0 left-0 flex items-end gap-0 rounded-lg p-4 pl-0 max-w-sm sm:max-w-md md:max-w-lg `
+                        }
+                        style={{ zIndex: 1000 }}
+                        onClick={onClickMore}
+                        initial={{ scale: 1, y: 100, x: -100, opacity: 0.5 }}
+                        animate={{ scale: 1, y: 0, x: 0, opacity: 1 }}
+                        exit={{ scale: 1, y: 100, x: -100, opacity: 1 }}
+                        transition={{ duration: 0.5, ease: easeInOut }}
+                    >
+                        < DinoAbout
+                            eventName={eventsList[index].eventName}
+                            eventAbout={eventsList[index].eventKnowMore}
+                        />
+                    </motion.div>
+                }
+            </AnimatePresence>
         </div>
     )
 }
