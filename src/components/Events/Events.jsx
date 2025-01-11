@@ -1,6 +1,7 @@
 import { easeIn, motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import EventsCard from "./EventsCard";
+import DinoAbout from "./EventAboutDino";
 
 const Events = ({ id, className }) => {
 
@@ -80,6 +81,7 @@ const Events = ({ id, className }) => {
 
         </div>
 
+        <DinoAbout />
       </div>
 
     </section>

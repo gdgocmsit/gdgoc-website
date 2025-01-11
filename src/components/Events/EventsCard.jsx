@@ -169,8 +169,19 @@ const EventsCard = ({ eventsList }) => {
 
 
                 {/* About */}
-                <div className='px-4 font-poppins tracking-tight text-xs text-zinc-500'>
+                <div className='px-4 font-poppins tracking-tight text-xs text-zinc-500 flex flex-col justify-center '>
                     {eventsList[index].eventAbout}
+                    
+                    <div className='w-full flex justify-center'>
+
+                    <motion.button 
+                        className=' w-fit text-xs text-zinc-50 bg-zinc-700 border-[1px] rounded-2xl font-poppins px-3 py-1 mt-2'
+                        whileHover={{ scale: 1.05, backgroundColor: "#111827", color: "FFFFFF"}}
+                        whileTap={{ scale: 0.99 }}
+                    > 
+                        Know More
+                    </motion.button>
+                    </div>
                 </div>
 
             </div>
