@@ -9,7 +9,7 @@ import 'slick-carousel/slick/slick-theme.css';
 const EventsCard = ({ eventsList }) => {
 
     const controls = useAnimationControls()
-    const controlDino = useAnimationControls()
+    const controlSlide = useAnimationControls()
     const nextRef = useRef(null)
     const [index, setIndex] = useState(0)
     const [isHover, setIsHover] = useState(false)
@@ -17,7 +17,6 @@ const EventsCard = ({ eventsList }) => {
     const [clicked, setClicked] = useState(false)
     const [knowMore, setKnowMore] = useState(false)
     const isMobile = useMediaQuery({ query: '(max-width: 767px)' }); // Adjust breakpoint as needed
-
     const onMouseEnter = () => {
         setIsHover(true)
     }
@@ -28,13 +27,13 @@ const EventsCard = ({ eventsList }) => {
 
     const onMouseExitsNext = () => {
         // console.log(isHover)
-
         controls.start({ x: -50, opacity: 0 })
+        controlSlide.start({ x: 50, opacity: 0 })
     }
     const onMouseEnterNext = () => {
         // console.log(isHover)
-
         controls.start({ x: 0, opacity: 1 })
+        controlSlide.start({ x: 0, opacity: 1 })
     }
 
     const onClickNext = () => {
@@ -70,12 +69,13 @@ const EventsCard = ({ eventsList }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
 
     const settings = {
+        arrows: false,
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
         speed: 2000,
-        autoplaySpeed: 1000,
+        autoplaySpeed: 4000,
         cssEase: "linear",
         beforeChange: (current, next) => {
             setCurrentSlide(next);
@@ -90,8 +90,6 @@ const EventsCard = ({ eventsList }) => {
     return (
         <div
             className='h-[70vh] md:h-[80vh] w-[85vw] md:w-[25vw] flex items-center justify-center px-5 relative gap-20 '
-            onMouseEnter={onMouseEnterNext}
-            onMouseLeave={onMouseExitsNext}
         >
 
             <div
@@ -117,6 +115,8 @@ const EventsCard = ({ eventsList }) => {
 
                     <div
                         className='w-[90vw] md:w-[30vw] h-[45vh] flex gap-2 relative -left-5'
+                        onMouseEnter={onMouseEnterNext}
+                        onMouseLeave={onMouseExitsNext}
                     >
                         <img
                             src={eventsList[index].Img[0]}
@@ -135,7 +135,7 @@ const EventsCard = ({ eventsList }) => {
                         />
 
                         <motion.div
-                            className='flex text-2xl items-center justify-start cursor-pointer relative left-4 md:left-0 '
+                            className={`hidden md:flex text-2xl items-center justify-start cursor-pointer relative left-4 md:left-0 `}
                             initial={{ x: -50, opacity: 0 }}
                             animate={controls}
                             transition={{ duration: 0.3, ease: easeOut }}
@@ -144,12 +144,27 @@ const EventsCard = ({ eventsList }) => {
                                 className='h-fit w-fit'
                                 onClick={onClickNext}
                                 onMouseEnter={hoverNext}
-
                             >
 
                                 <GrNext />
                             </div>
                         </motion.div>
+                        
+                        {isMobile &&
+                            <motion.div
+                                className={`flex text-2xl items-center justify-start cursor-pointer relative left-4 md:left-0 `}
+                            >
+                                <div
+                                    className='h-fit w-fit'
+                                    onClick={onClickNext}
+                                    onMouseEnter={hoverNext}
+                                >
+
+                                    <GrNext />
+                                </div>
+                            </motion.div>
+
+                        }
                     </div>
 
                     {/* //Second Slid  */}
@@ -216,88 +231,55 @@ const EventsCard = ({ eventsList }) => {
             </div>
 
             {/* While Hover : Collage Photo*/}
-            {/* <div
-                className={`h-[70vh] md:h-[65vh] w-[90vw] md:w-[25vw] ${clicked ? "block" : "hidden"} ${clicked ? "absolute" : "static"} md:block left-6 -top-4`}
-                onClick={handleOutsideClick}
-            >
+
+            <AnimatePresence>
                 <motion.div
-                    className={`w-[80%] md:h-[80%] h-[70%] ${isHover ? "md:flex" : "md:hidden"} flex-col justify-center absolute top-[14%] bg-[#717171d8] rounded-2xl pt-2 items-center z-30`}
-                    initial={{ scale: 1, x: 50, opacity: 0.5 }}
-                    whileInView={{ scale: 1, x: 0, opacity: 1 }}
-                    // animate={{ scale:1, opacity: 1 }}
-                    transition={{ duration: 0.5, ease: easeIn }}
-                >
-                    <div className='w-full flex justify-center h-[45%] pt-5 md:pt-0'>
-                        <img
-                            src={eventsList[index].Img[0]}
-                            alt="Event Img"
-                            className='object-fill h-full md:w-[95%] w-[90%] rounded-2xl'
-                        />
-                    </div>
-
-                    <h1 className='text-4xl font-extrabold text-zinc-100 w-full flex justify-center pb-2'>
-                        {eventsList[index].eventName}
-                    </h1>
-
-                    <div className='flex gap-2 w-full h-[40%] justify-center box-border pb-2'>
-                        <img
-                            src={eventsList[index].Img[1]}
-                            alt="Event-img"
-                            className='w-[45%] h-full object-cover object-center rounded-xl'
-                        />
-                        <img
-                            src={eventsList[index].Img[2]}
-                            alt="Event-img"
-                            className='w-[45%] h-full object-cover object-center rounded-xl'
-                        />
-                    </div>
-                </motion.div>
-            </div> */}
-
-            <div
-                className={`h-[70vh] md:h-[65vh] w-[90vw] md:w-[25vw] ${clicked ? "block" : "hidden"} ${clicked ? "absolute" : "static"} md:block left-6 -top-4`}
-                onClick={handleOutsideClick}
-            >
-                <motion.div
-                    className={`w-[80%] md:h-[80%] h-[70%] ${isHover ? "md:flex" : "md:hidden"} flex-col justify-center absolute top-[14%] bg-[#717171d8] rounded-2xl pt-2 items-center z-30`}
-                    initial={{ scale: 1, x: 50, opacity: 0.5 }}
-                    whileInView={{ scale: 1, x: 0, opacity: 1 }}
-                    transition={{ duration: 0.5, ease: easeIn }}
+                    className={`h-[70vh] md:h-[65vh] w-[80vw] md:w-[25vw] ${clicked ? "block" : "hidden"} ${clicked ? "absolute" : "static"} md:block left-10 -top-4`}
+                    onClick={handleOutsideClick}
                 >
 
-                    <h1 className='text-4xl font-extrabold text-zinc-100 w-full flex justify-center pb-2'>
-                        {eventsList[index].eventName}
-                    </h1>
+                    <motion.div
+                        className={`w-[80%] md:h-[80%] h-[70%] absolute top-[14%] bg-[#717171d8] rounded-2xl pt-2 items-center justify-around z-30`}
+                        initial={{ scale: 1, x: 50, opacity: 0.5 }}
+                        // whileInView={{ scale: 1, x: 0, opacity: 1 }}
+                        animate={controlSlide}
+                        transition={{ duration: 0.5, ease: easeIn }}
+                    >
 
-                    <Slider {...settings}>
-                        {eventsList[index].Img.map((img, slideIndex) => (
-                            <div key={slideIndex} className="w-full flex justify-center h-[45%] pt-5 md:pt-0">
-                                <img
-                                    src={img}
-                                    alt="Event Img"
-                                    className='object-fill h-full md:w-[95%] w-[90%] rounded-2xl'
-                                />
-                            </div>
-                        ))}
-                    </Slider>
+                        <Slider {...settings}>
+                            {eventsList[index].Img.map((img, slideIndex) => (
+                                <div key={slideIndex} className="w-full flex justify-center items-center h-[45%] pt-5 md:pt-0 ">
+                                    <img
+                                        src={img}
+                                        alt="Event Img"
+                                        className=' w-full pl-2 pr-2 h-28 object-fill object-center'
+                                    />
+                                </div>
+                            ))}
+                        </Slider>
 
-                    <div className='flex gap-2 w-full h-[60%] justify-center box-border pb-2'>
-                        <img
-                            src={eventsList[index].Img[currentSlide]}
-                            alt="Event-img"
-                            className='w-full h-full object-contain bg-black object-center rounded-xl'
-                        />
-                        {/* {eventsList[index].Img.length > 1 && (
+                        <h1 className='text-4xl font-extrabold text-zinc-100 w-full flex justify-center pb-2'>
+                            {eventsList[index].eventName}
+                        </h1>
+
+                        <div className='flex gap-2 w-full h-[50%] justify-center box-border pb-2'>
+                            <img
+                                src={eventsList[index].Img[currentSlide]}
+                                alt="Event-img"
+                                className='w-full h-full object-contain bg-black object-center '
+                            />
+                            {/* {eventsList[index].Img.length > 1 && (
                             <img
                                 src={eventsList[index].Img[(currentSlide + 1) % eventsList[index].Img.length]}
                                 alt="Event-img"
                                 className='w-[45%] h-full object-cover object-center rounded-xl'
                             />
                         )} */}
-                    </div>
+                        </div>
 
+                    </motion.div>
                 </motion.div>
-            </div>
+            </AnimatePresence>
 
             {/* Dino-Know More */}
             <AnimatePresence>
