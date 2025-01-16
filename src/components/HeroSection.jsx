@@ -21,21 +21,21 @@ const FeatureCard = ({ icon: Icon, text, description, position }) => (
     whileTap={{ scale: 0.95 }}
     className="relative group h-full feature-card"
   >
-    <div className="absolute inset-0 bg-gradient-to-r md:h-full h-[80%] from-[#4285F4] to-[#0F9D58] rounded-[2rem] blur opacity-40 transition duration-300" />
-    <div className="relative flex flex-col items-center p-8 bg-white/80 backdrop-blur-sm rounded-[2rem] shadow-lg overflow-hidden h-[80%">
+    <div className="absolute inset-0 bg-gradient-to-r md:h-[80%] h-[80%] from-[#4285F4] to-[#0F9D58] rounded-[2rem] blur opacity-40 transition duration-300" />
+    <div className="relative flex flex-col items-center p-8 bg-white/80 backdrop-blur-sm rounded-[2rem] shadow-lg overflow-hidden h-[100%]">
       <motion.div
         className="absolute inset-0 bg-gradient-to-br from-blue-200 to-green-200 opacity-100 transition-opacity duration-300"
         initial={false}
         animate={{ scale: [1, 1.5, 1] }}
         transition={{ repeat: Infinity, duration: 5 }}
       />
-      <div className="relative z-10 p-5 bg-white rounded-full shadow-inner mb-6">
-        <Icon className="h-8 w-8 sm:h-10 sm:w-10 text-blue-500" />
+      <div className="relative z-10 p-5 bg-white rounded-full shadow-inner mb-4">
+        <Icon className="h-10 w-10 sm:h-7 sm:w-7 text-blue-500" />
       </div>
-      <h3 className="relative z-10 text-xl sm:text-2xl font-semibold text-gray-800 mb-4">
+      <h3 className="relative z-10 text-2xl sm:text-xl font-semibold text-gray-800 mb-10 sm:mb-1">
         {text}
       </h3>
-      <p className="relative z-10 text-gray-600 text-center">{description}</p>
+      <p className="relative text-lg sm:text-sm z-10 text-gray-600 text-center">{description}</p>
     </div>
   </motion.div>
 );
@@ -144,8 +144,7 @@ const FeatureCarousel = () => {
   return (
     <div
       ref={sliderRef}
-      className="keen-slider"
-      style={{ height: '320px', maxWidth: '90%', margin: '0 auto' }}
+      className="keen-slider h-[320px] max-w-[90%] mx-auto"
     >
       <div className="keen-slider__slide">
         <FeatureCard
@@ -179,7 +178,7 @@ export default function HeroSection() {
   return (
     <>
     <Background />
-    <div className="relative min-h-[70%] overflow-hidden md:mt-16 mt-44">
+    <div className="relative min-h-[70%] overflow-hidden md:pt-20 md:mt-0 pt-44">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
         <div className="flex flex-col items-center justify-center space-y-12 sm:space-y-16">
           {/* Main Title */}
