@@ -10,54 +10,69 @@ const EventsCard = ({ eventsList }) => {
 
     const controls = useAnimationControls()
     const controlSlide = useAnimationControls()
-    const nextRef = useRef(null)
     const [index, setIndex] = useState(0)
-    const [isHover, setIsHover] = useState(false)
     const [nextSlid, setNextSlid] = useState(false)
     const [clicked, setClicked] = useState(false)
     const [knowMore, setKnowMore] = useState(false)
     const isMobile = useMediaQuery({ query: '(max-width: 767px)' }); // Adjust breakpoint as needed
-    const onMouseEnter = () => {
-        setIsHover(true)
-    }
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const variants = {
+        initial: { scale: 1, x: 50, opacity: 0 },
+        animate: { scale: 1, x: 0, opacity: 1 },
+        exit: { scale: 1, x: 50, opacity: 0 },
+    };
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
 
-    const onMouseExits = () => {
-        setIsHover(false)
-    }
+        window.addEventListener('resize', handleResize);
 
-    const onMouseExitsNext = () => {
-        // console.log(isHover)
-        controls.start({ x: -50, opacity: 0 })
-        controlSlide.start({ x: 50, opacity: 0 })
-    }
-    const onMouseEnterNext = () => {
-        // console.log(isHover)
-        controls.start({ x: 0, opacity: 1 })
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    const onMouseEnter = () => {   // For Next slid animation at entering
+        // setIsHover(true)
         controlSlide.start({ x: 0, opacity: 1 })
     }
 
+    const onMouseExits = () => {  // For Next slid animation at exting
+        controlSlide.start({ x: 50, opacity: 0 })
+    }
+
+    const onMouseExitsNext = () => { //For next button animation appear at entering the card 
+        // console.log(isHover)
+        controls.start({ x: -50, opacity: 0 })
+    }
+    const onMouseEnterNext = () => { // For next button animation appear at exiting the card
+        // console.log(isHover)
+        controls.start({ x: 0, opacity: 1 })
+    }
+
     const onClickNext = () => {
-        setIsHover(false);
+        // setIsHover(false);
         setNextSlid(true)
         setIndex((prevIndex) => {
             return prevIndex === eventsList.length - 1 ? 0 : prevIndex + 1
         });
+
+        setTimeout(() => {
+            setNextSlid(false)
+        }, 500)
     };
-
-    const hoverNext = () => {
-        setNextSlid(false)
-    }
-
 
     const onClickedPic = () => {
         if (isMobile) {
+            // controls.start({ x: -50, opacity: 0 })
             setClicked(!clicked)
         }
     }
     const handleOutsideClick = (e) => {
         if (isMobile) {
             if (e.target === e.currentTarget) {
-                setClicked(false);
+                setClicked(false)   
             }
         }
     }
@@ -77,6 +92,7 @@ const EventsCard = ({ eventsList }) => {
         speed: 2000,
         autoplaySpeed: 4000,
         cssEase: "linear",
+        dots: true,
         beforeChange: (current, next) => {
             setCurrentSlide(next);
         },
@@ -90,10 +106,13 @@ const EventsCard = ({ eventsList }) => {
     return (
         <div
             className='h-[70vh] md:h-[80vh] w-[85vw] md:w-[25vw] flex items-center justify-center px-5 relative gap-20 '
+            onClick={handleOutsideClick}
         >
 
             <div
-                className='flex flex-col gap-4 w-full h-full md:h-auto bg-zinc-200 tracking-tighter md:text-xs text-lg md:leading-none text-zinc-800 relative py-4 px-2 rounded-lg'
+                className={`flex flex-col gap-4 w-full h-full md:h-auto bg-zinc-200 tracking-tighter md:text-xs text-lg md:leading-none text-zinc-800 relative py-4 px-2 rounded-lg`}
+                onMouseEnter={onMouseEnterNext}
+                onMouseLeave={onMouseExitsNext}
             >
 
                 {/* Chat Bubbule Wrap */}
@@ -111,12 +130,10 @@ const EventsCard = ({ eventsList }) => {
                 </div>
 
                 {/* Photos Collection  :: Curr Slid*/}
-                <div className='h-fit relative'>
+                <div className={`h-fit relative`}>
 
                     <div
                         className='w-[90vw] md:w-[30vw] h-[45vh] flex gap-2 relative -left-5'
-                        onMouseEnter={onMouseEnterNext}
-                        onMouseLeave={onMouseExitsNext}
                     >
                         <img
                             src={eventsList[index].Img[0]}
@@ -131,7 +148,6 @@ const EventsCard = ({ eventsList }) => {
                             src={eventsList[index].nextImg[0]}
                             alt="event-img"
                             className=' w-[16%] object-left object-cover rounded-xl rounded-r-none'
-                            ref={nextRef}
                         />
 
                         <motion.div
@@ -143,21 +159,19 @@ const EventsCard = ({ eventsList }) => {
                             <div
                                 className='h-fit w-fit'
                                 onClick={onClickNext}
-                                onMouseEnter={hoverNext}
                             >
 
                                 <GrNext />
                             </div>
                         </motion.div>
-                        
+
                         {isMobile &&
                             <motion.div
                                 className={`flex text-2xl items-center justify-start cursor-pointer relative left-4 md:left-0 `}
                             >
                                 <div
-                                    className='h-fit w-fit'
+                                    className='h-fit w-fit relative z-50'
                                     onClick={onClickNext}
-                                    onMouseEnter={hoverNext}
                                 >
 
                                     <GrNext />
@@ -167,11 +181,12 @@ const EventsCard = ({ eventsList }) => {
                         }
                     </div>
 
-                    {/* //Second Slid  */}
+                    {/* //Next Slide  */}
                     <motion.div
-                        className={`${nextSlid ? 'flex' : 'hidden'} w-[90vw] md:w-[30vw] h-[45vh] gap-2 absolute top-0 -left-5 z-20`}
-                        initial={{ x: 50, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
+                        className={`${nextSlid ? 'flex' : 'hidden'}  ${isMobile ? 'overflow-x-hidden' : ''}  w-[90vw] md:w-[30vw] h-[45vh] gap-2 absolute top-0 -left-5 z-20 `}
+                        variants={{ initial2: windowWidth <= 768 ? { x:15, opacity: 0 } : { x: 50, opacity: 0 } }}
+                        initial="initial2"
+                        whileInView={{ x: 0, y: 0, opacity: 1 }}
                         transition={{ duration: 0.5, ease: easeIn }}
                     >
 
@@ -188,7 +203,6 @@ const EventsCard = ({ eventsList }) => {
                             src={eventsList[index].nextImg[0]}
                             alt="event-img"
                             className=' w-[16%] object-left object-cover rounded-xl rounded-r-none'
-                            ref={nextRef}
                         />
 
                         <motion.div
@@ -200,10 +214,7 @@ const EventsCard = ({ eventsList }) => {
                             <div
                                 className='h-fit w-fit'
                                 onClick={onClickNext}
-                                onMouseEnter={hoverNext}
-
                             >
-
                                 <GrNext />
                             </div>
                         </motion.div>
@@ -221,7 +232,10 @@ const EventsCard = ({ eventsList }) => {
                             className=' w-fit text-xs text-zinc-50 bg-zinc-700 border-[1px] rounded-2xl font-poppins px-3 py-1 mt-2'
                             whileHover={{ scale: 1.05, backgroundColor: "#111827", color: "FFFFFF" }}
                             whileTap={{ scale: 0.99 }}
-                            onClick={onClickMore}
+                            onClick={(e) => {
+                                onClickMore(),
+                                    e.stopPropagation()
+                            }}
                         >
                             Know More
                         </motion.button>
@@ -231,24 +245,45 @@ const EventsCard = ({ eventsList }) => {
             </div>
 
             {/* While Hover : Collage Photo*/}
-
-            <AnimatePresence>
-                <motion.div
-                    className={`h-[70vh] md:h-[65vh] w-[80vw] md:w-[25vw] ${clicked ? "block" : "hidden"} ${clicked ? "absolute" : "static"} md:block left-10 -top-4`}
-                    onClick={handleOutsideClick}
+            {/* //For PC  */}
+            {
+                !isMobile &&
+                <div
+                    className={`absolute md:-right-[100%]  `}
                 >
 
                     <motion.div
-                        className={`w-[80%] md:h-[80%] h-[70%] absolute top-[14%] bg-[#717171d8] rounded-2xl pt-2 items-center justify-around z-30`}
-                        initial={{ scale: 1, x: 50, opacity: 0.5 }}
+                        className={`w-[64vw] md:w-[20vw] md:h-[50vh] h-[35vh] absolute md:relative top-[25%] md:top-[14%] bg-[#717171d8] rounded-2xl pt-8 flex-col justify-evenly z-30`}
+                        initial={{ scale: 1, x: 50, opacity: 0 }}
                         // whileInView={{ scale: 1, x: 0, opacity: 1 }}
                         animate={controlSlide}
                         transition={{ duration: 0.5, ease: easeIn }}
                     >
+                        <div className='w-full h-[30%] flex justify-evenly gap-2 overflow-hidden'>
+                            {
 
-                        <Slider {...settings}>
+                                eventsList[index].Img.map((img, slNo) => {
+
+                                    return (
+                                        <img
+                                            key={slNo}
+                                            src={img}
+                                            alt="Event Img"
+                                            className='w-1/5 h-[90%] object-contain rounded-lg bg-black object-center'
+                                        />
+                                    )
+                                })
+                            }
+
+                        </div>
+
+                        <h1 className='text-4xl font-extrabold text-zinc-100 w-full flex justify-center pb-2'>
+                            {eventsList[index].eventName}
+                        </h1>
+
+                        <Slider {...settings} className=' pb-0 mb-0'>
                             {eventsList[index].Img.map((img, slideIndex) => (
-                                <div key={slideIndex} className="w-full flex justify-center items-center h-[45%] pt-5 md:pt-0 ">
+                                <div key={slideIndex} className="w-full flex justify-center items-center h-[50%] pt-5 md:pt-0">
                                     <img
                                         src={img}
                                         alt="Event Img"
@@ -258,28 +293,69 @@ const EventsCard = ({ eventsList }) => {
                             ))}
                         </Slider>
 
-                        <h1 className='text-4xl font-extrabold text-zinc-100 w-full flex justify-center pb-2'>
-                            {eventsList[index].eventName}
-                        </h1>
-
-                        <div className='flex gap-2 w-full h-[50%] justify-center box-border pb-2'>
-                            <img
-                                src={eventsList[index].Img[currentSlide]}
-                                alt="Event-img"
-                                className='w-full h-full object-contain bg-black object-center '
-                            />
-                            {/* {eventsList[index].Img.length > 1 && (
-                            <img
-                                src={eventsList[index].Img[(currentSlide + 1) % eventsList[index].Img.length]}
-                                alt="Event-img"
-                                className='w-[45%] h-full object-cover object-center rounded-xl'
-                            />
-                        )} */}
-                        </div>
 
                     </motion.div>
-                </motion.div>
-            </AnimatePresence>
+                </div>
+            }
+
+            {/* //For Mobile */}
+            {
+                isMobile &&
+                (
+                    <AnimatePresence>
+                        {
+                            clicked &&
+                            <motion.div
+                                className={`w-[64vw] h-[35vh] absolute top-[25%] bg-[#717171d8] rounded-2xl pt-8 flex-col justify-evenly z-30`}
+                                variants={variants}
+                                initial="initial"
+                                animate="animate"
+                                exit="exit"
+                                transition={{ duration: 0.5, ease: easeIn }}
+                                // onClick={handleOutsideClick}
+                            >
+                                <div className='w-full h-[30%] flex justify-evenly gap-2 overflow-hidden'>
+                                    {
+
+                                        eventsList[index].Img.map((img, slNo) => {
+
+                                            return (
+                                                <img
+                                                    key={slNo}
+                                                    src={img}
+                                                    alt="Event Img"
+                                                    className='w-1/5 h-[90%] object-contain rounded-lg bg-black object-center'
+                                                />
+                                            )
+                                        })
+                                    }
+
+                                </div>
+
+                                <h1 className='text-4xl font-extrabold text-zinc-100 w-full flex justify-center pb-2'>
+                                    {eventsList[index].eventName}
+                                </h1>
+
+                                <Slider {...settings} className=' pb-0 mb-0'>
+                                    {eventsList[index].Img.map((img, slideIndex) => (
+                                        <div key={slideIndex} className="w-full flex justify-center items-center h-[50%] pt-5 md:pt-0">
+                                            <img
+                                                src={img}
+                                                alt="Event Img"
+                                                className=' w-full pl-2 pr-2 h-28 object-fill object-center'
+                                            />
+                                        </div>
+                                    ))}
+                                </Slider>
+
+
+                            </motion.div>
+
+
+                        }
+                    </AnimatePresence>
+                )
+            }
 
             {/* Dino-Know More */}
             <AnimatePresence>

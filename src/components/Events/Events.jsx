@@ -38,13 +38,13 @@ const Events = ({ id, className }) => {
         <div ref={ref} className='absolute top-[25%] w-10 h-10 '></div>
 
         <div className="w-full md:w-1/2 ">
-          <h1 className='w-full h-[6.5rem] overflow-y-hidden overflow-hidden relative mb-18 md:text-start md:box-border md:pl-20 '>
+          <h1 className='w-full h-[6.5rem] overflow-y-hidden overflow-hidden relative mb-24 mt-12 md:text-start md:box-border md:pl-20 '>
             {isInView &&
               "EVENTS".split("").map((item, index) => {
                 if (index == 1) {
                   return (         
                     <motion.span
-                      className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bebas-neue font-semibold text-zinc-800 relative tracking-wide"
+                      className="text-8xl font-bebas-neue font-semibold text-zinc-800 relative tracking-wide"
                       whileHover={{ fontSize: 60, fontStyle: "italic" }}
                       initial={{ bottom: "-100%", }}
                       animate={{ bottom: "0" }}
@@ -57,7 +57,7 @@ const Events = ({ id, className }) => {
                 else {
                   return (
                     <motion.span
-                      className='text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bebas-neue font-bold text-zinc-800 relative tracking-wide'
+                      className='text-8xl font-bebas-neue font-bold text-zinc-800 relative tracking-wide'
                       initial={{ bottom: "-100%", }}
                       animate={{ bottom: "0" }}
                       transition={{ ease: easeIn, delay: index * 0.1 }}
@@ -71,7 +71,7 @@ const Events = ({ id, className }) => {
           </h1>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-10 mt-10 justify-center flex-wrap">
+        <div className="flex flex-col md:flex-row gap-10 mt-10 justify-center flex-wrap pb-24">
 
           <EventsCard
             eventName="Orientation"
