@@ -125,7 +125,7 @@ const DepartmentsDesktop = ({ id, className }) => {
   return (
     <section
       id={id}
-      className={`${className} transition-all duration-500 ease-in-out mb-20`}
+      className={`${className} transition-all duration-500 ease-in-out mb-20 mt-28`}
     >
       <div className="flex flex-col py-10">
         <h1 className="text-9xl text-right mr-10 text-[#272727] font-bebas-neue mt-10 mb-10 animate-fade-in">
