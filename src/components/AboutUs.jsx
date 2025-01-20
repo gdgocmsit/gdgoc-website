@@ -36,7 +36,7 @@ const AboutUs = ({ id, className }) => {
     <section id={id} className={className}>
       {isMobile ? (
         <div className="flex flex-col justify-center items-center">
-          <div className="aboutUsTextBoxMobile text-[#272727] text-8xl mt-2 mb-8 pb-6 font-extrabold whitespace-nowrap flex justify-center">
+          <div className="aboutUsTextBoxMobile text-[#272727] text-[7rem] mt-2 mb-6  font-extrabold whitespace-nowrap flex justify-center">
             <h1>ABOUT US</h1>
           </div>
           <div className="sliderMobile">
