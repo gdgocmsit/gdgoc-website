@@ -43,7 +43,7 @@ const ContactUs = ({ id }) => {
         </div>
       </div>
       <div className="right gap-10 flex flex-col ml-7 mr-7 w-full md:items-center">
-        <h1 className="font-bebas-neue uppercase text-5xl lg:hidden">
+        <h1 className="font-bebas-neue uppercase text-8xl lg:hidden mt-6">
           contact us
         </h1>
         <input

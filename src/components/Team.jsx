@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import "../styles/Teams.css";
 import Naman from "/assets/Naman.jpg";
 import Nevin from "/assets/Nevin.jpg";
@@ -210,19 +210,19 @@ const Team = ({ id, className }) => {
     };
 
     checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
+    window.addEventListener("resize", checkScreenSize);
 
-    return () => window.removeEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
   const getSlideStyle = (index) => {
-    const baseStyle = { 
-      transition: 'all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1)',
-      position: 'absolute',
-      width: '100%',
-      height: '100%',
+    const baseStyle = {
+      transition: "all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1)",
+      position: "absolute",
+      width: "100%",
+      height: "100%",
     };
-    
+
     let diff = index - currentSlide;
 
     // Adjust diff for cyclic behavior
@@ -230,11 +230,22 @@ const Team = ({ id, className }) => {
     if (diff < -Math.floor(totalSlides / 2)) diff += totalSlides;
 
     if (isSmallScreen) {
-      if (diff === 0) return { ...baseStyle, zIndex: 3, opacity: 1, transform: 'translateX(0)' };
-      return { ...baseStyle, zIndex: 1, opacity: 0, transform: `translateX(${100 * Math.sign(diff)}%)` };
+      if (diff === 0)
+        return {
+          ...baseStyle,
+          zIndex: 3,
+          opacity: 1,
+          transform: "translateX(0)",
+        };
+      return {
+        ...baseStyle,
+        zIndex: 1,
+        opacity: 0,
+        transform: `translateX(${100 * Math.sign(diff)}%)`,
+      };
     }
 
-    const translateX = diff * 68; 
+    const translateX = diff * 68;
     const opacity = 1 - Math.abs(diff) * 0.3;
     const scale = 1 - Math.abs(diff) * 0.1;
     const zIndex = totalSlides - Math.abs(diff);
@@ -288,7 +299,7 @@ const Team = ({ id, className }) => {
         </div>
 
         <div className="py-10">
-          <h2 className="text-5xl sm:text-6xl lg:text-8xl xl:text-9xl mb-3 text-center font-bebas-neue text-black">
+          <h2 className="text-8xl sm:text-6xl lg:text-8xl xl:text-9xl mb-3 text-center font-bebas-neue text-black">
             OUR TEAM
           </h2>
 
@@ -301,7 +312,7 @@ const Team = ({ id, className }) => {
                     className="absolute w-full flex flex-col items-center justify-center gap-4 sm:gap-8 py-1 px-4"
                     style={getSlideStyle(index)}
                   >
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-center font-bebas-neue mb-4 mt-1 sm:mt-5">
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-center font-bebas-neue mb-4 mt-6 sm:mt-6">
                       {department}
                     </h2>
                     <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 md:gap-16 lg:gap-24 w-full px-4 sm:px-8">
@@ -317,8 +328,11 @@ const Team = ({ id, className }) => {
                           {member.title && (
                             <h3
                               className="text-center text-lg sm:text-xl lg:text-3xl font-text font-bold text-black mb-4 px-4 py-2 rounded-2xl"
-                              style={{ 
-                                backgroundColor: member.title === "HEAD" ? "#EA4335" : "#FBBC04"
+                              style={{
+                                backgroundColor:
+                                  member.title === "HEAD"
+                                    ? "#EA4335"
+                                    : "#FBBC04",
                               }}
                             >
                               {member.title}
@@ -399,5 +413,3 @@ const Team = ({ id, className }) => {
 };
 
 export default Team;
-
-
