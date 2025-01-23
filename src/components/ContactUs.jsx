@@ -2,7 +2,7 @@ const ContactUs = ({ id }) => {
   return (
     <section
       id={id}
-      className="relative flex pt-10 md:pt-20 bg-white md:justify-between lg:h-[390px] pb-10 md:mb-0 z-10"
+      className="relative flex pt-10 md:pt-20 bg-gray-100 md:justify-between lg:h-[390px] pb-10 md:mb-0 z-10"
     >
       <div className="left hidden lg:flex w-1/2 text-white font-bebas-neue">
         {/* Left section content remains unchanged */}
@@ -43,7 +43,7 @@ const ContactUs = ({ id }) => {
         </div>
       </div>
       <div className="right gap-10 flex flex-col ml-7 mr-7 w-full md:items-center">
-        <h1 className="font-bebas-neue uppercase text-8xl lg:hidden mt-6">
+        <h1 className="font-bebas-neue uppercase  text-7xl md:text-8xl  lg:hidden mt-6">
           contact us
         </h1>
         <input

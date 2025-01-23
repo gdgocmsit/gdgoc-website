@@ -57,16 +57,16 @@ const App = () => {
         <section id="#" className="h-screen">
           <HeroSection />
         </section>
-        <section id="aboutUs" className="h-[60%] pb-20 flex justify-center">
+        <section id="aboutUs" className="h-[60%] pt-40 px-15  pb-16 flex justify-center">
           <AboutUs />
         </section>
-        <section id="events" className="h-screen bg-red-500">
+        <section id="events" className="h-screen mt-2 ">
           <Events />
         </section>
-        <section id="departments">
+        <section id="departments " className="py-28 ">
           <Departments />
         </section>
-        <section id="team">
+        <section id="team" className="">
           <Team />
         </section>
         <section id="contactUs">

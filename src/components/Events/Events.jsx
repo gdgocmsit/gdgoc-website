@@ -46,7 +46,7 @@ const Events = ({ id, className }) => {
 
   return (
     <section id={id} className={className}>
-      <div className="w-full min-h-screen bg-white relative py-28 px-5 items-center">
+      <div className="w-full min-h-screen bg-gray-100 relative py-25 md:py-28 px-5 items-center">
         <div ref={ref} className="absolute top-[25%] w-10 h-10 "></div>
 
         <div className="w-full md:w-1/2 ">

@@ -63,7 +63,7 @@
 }
 
 .aboutUsTextBox {
-    font-size: 10rem;
+    font-size: clamp(3rem, 8vw, 10rem);;
     font-weight: 800;
     font-family: 'Bebas Neue', sans-serif;
     animation: moveAboutUs linear forwards;
@@ -77,6 +77,8 @@
 }
 
 .textUnderAboutUs {
+    margin-left: 30px;
+
     opacity: 0;
     animation: textAppear 2s forwards linear;
     animation-timeline: view();
@@ -84,12 +86,14 @@
     animation-range-end: entry 500%;
 }
 .textUnderAboutUsMobile{
+   
     display: flex;
     margin-top: 30px;
     max-width: 90%;
     font-size: 0.9rem;
 }
 .sliderMobile{
+   
     height: 300px;
     width: 90%;
     max-width: 550px;
@@ -102,7 +106,7 @@
         max-width: calc(100vw - 25px);
     }
     .sliderMobile{
-        height: 250px;
+        height: 30vh; 
         width: 90%;
         max-width:calc(100vw - 20px);
         overflow: hidden;
@@ -111,6 +115,34 @@
     }
 }
 
+@media (max-width: 768px) {
+    .aboutUsTextBox {
+        font-size: 5rem;
+    }
+
+    .sliderMobile {
+        height: 30vh;
+        border: 1px solid gray;
+    }
+
+    .textUnderAboutUsMobile {
+        font-size: 1rem;
+        margin: 20px auto;
+    }
+}
+
+@media (max-width: 512px) {
+    .sliderMobile {
+        height: 250px;
+        max-width: calc(100vw - 20px);
+        margin: 0 auto;
+    }
+
+    .textUnderAboutUsMobile {
+        font-size: 0.9rem;
+        margin: 10px;
+    }
+}
 @keyframes move1 {
     from {
         transform: rotate(5deg) translate(0px, 0px);

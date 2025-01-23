@@ -44,11 +44,11 @@ const DepartmentsDesktop = ({ id, className }) => {
 
   const cardVariants = {
     expanded: {
-      width: "310px",
-      height: "470px",
+      width: "320px",
+      height: "450px",
     },
     collapsed: {
-      width: "200px",
+      width: "170px",
       height: "400px",
     },
   };
@@ -127,8 +127,8 @@ const DepartmentsDesktop = ({ id, className }) => {
       id={id}
       className={`${className} transition-all duration-500 ease-in-out mb-20 mt-28`}
     >
-      <div className="flex flex-col py-10">
-        <h1 className="text-9xl text-right mr-10 text-[#272727] font-bebas-neue mt-10 mb-10 animate-fade-in">
+      <div className="flex flex-col  ">
+        <h1 className="text-9xl text-center mx-auto text-[#272727] font-bebas-neue  mt-10 mb-10 animate-fade-in">
           DEPARTMENTS
         </h1>
         <div className="flex flex-wrap justify-center gap-4">
@@ -148,7 +148,7 @@ const DepartmentsDesktop = ({ id, className }) => {
                 animate={index === expandedIndex ? "expanded" : "collapsed"}
                 transition={{ duration: 0.2 }}
                 onClick={() => handleCardClick(index)}
-                style={{ width: "250px", height: "400px" }}
+                style={{ width: "250px", height: "300px" }}
               >
                 <div
                   className={`w-36 h-40 rounded-medium flex items-center ${dept.color1} justify-center text-3xl mt-10 transition-opacity duration-500`}
@@ -159,12 +159,12 @@ const DepartmentsDesktop = ({ id, className }) => {
                     className={`filter brightness-0 ${dept.imgcss}`}
                   />
                 </div>
-                <p className="mt-4 text-white text-7xl font-bebas-neue">
+                <p className="mt-8 text-white text-5xl font-bebas-neue">
                   {dept.name}
                 </p>
                 {index === expandedIndex && (
                   <motion.p
-                    className="text-black text-center font-poppins text-lg mr-2 p-1"
+                    className="text-black text-center font-poppins text-md mr-2 p-1"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5, duration: 0.3 }}
@@ -284,8 +284,8 @@ const DepartmentsMobile = ({ id, className }) => {
 
   return (
     <section id={id} className={className}>
-      <div className="bg-gray-100 scroll-smooth mb-24">
-        <h1 className="card-body-h1 text-7xl text-right  text-[#272727] font-bebas-neue mt-10 mb-10">
+      <div className="bg-gray-100 scroll-smooth mb-15">
+        <h1 className="card-body-h1 text-7xl text-center  text-[#272727] font-bebas-neue mt-10 mb-10">
           DEPARTMENTS
         </h1>
         <div className="relative container flex justify-center items-center">

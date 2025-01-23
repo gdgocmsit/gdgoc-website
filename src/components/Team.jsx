@@ -284,7 +284,7 @@ const Team = ({ id, className }) => {
             </div>
           </div>
           <div className="mt-28 sm:mt-72 lg:mt-72 text-center w-full px-4 sm:px-8 lg:px-16">
-            <p className="text-gray-600 text-base sm:text-lg leading-relaxed font-poppins">
+            <p className="text-gray-600 py-10 text-base sm:text-lg leading-relaxed font-poppins">
               <b>Harshita Gupta</b>, a very unique individual and the{" "}
               <b>GDG Lead at MSIT</b>, is an award-winning coder by heart and a
               relentless innovator. She has made her mark by winning prestigious

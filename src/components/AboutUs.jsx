@@ -36,7 +36,7 @@ const AboutUs = ({ id, className }) => {
     <section id={id} className={className}>
       {isMobile ? (
         <div className="flex flex-col justify-center items-center">
-          <div className="aboutUsTextBoxMobile text-[#272727] text-[7rem] mt-2 mb-6  font-extrabold whitespace-nowrap flex justify-center">
+          <div className="aboutUsTextBoxMobile text-[#272727] text-[7rem]  mb-6  font-extrabold whitespace-nowrap flex justify-center">
             <h1>ABOUT US</h1>
           </div>
           <div className="sliderMobile">
@@ -53,7 +53,7 @@ const AboutUs = ({ id, className }) => {
             </Slider>
           </div>
 
-          <div className="textUnderAboutUsMobile">
+          <div className="textUnderAboutUsMobile  ">
             <h1>
               At GDSC MSIT,we aim to learn, teach and grow. Together, the place
               where creative minds come together to build something amazing
@@ -86,8 +86,8 @@ const AboutUs = ({ id, className }) => {
           <div className="aboutUsTextBox z-800 text-[#272727] absolute whitespace-nowrap">
             <h1>ABOUT US</h1>
           </div>
-          <div className="textUnderAboutUs absolute text-[1.3rem] w-[600px] transform translate-x-[-400px] translate-y-[300px] text-center">
-            <h1>
+          <div className="textUnderAboutUs absolute text-[1.3rem] w-[600px] transform translate-x-[-350px] translate-y-[300px] text-center">
+            <h1 className="font-poppins">
               At GDSC MSIT,we aim to learn, teach and grow. Together, the place
               where creative minds come together to build something amazing
             </h1>
