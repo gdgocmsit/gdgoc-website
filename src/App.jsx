@@ -9,6 +9,7 @@ import ContactUs from "./components/ContactUs";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Background from "./components/Background";
+import CustomCursor from "./components/Cursor";
 
 const throttle = (callback, delay) => {
   let lastTime = 0;
@@ -52,6 +53,7 @@ const App = () => {
   return (
     <>
       <Navbar />
+      <CustomCursor/>
       {/* <Background /> */}
       <div className="min-h-screen bg-gray-100">
         <section id="#" className="h-screen">
