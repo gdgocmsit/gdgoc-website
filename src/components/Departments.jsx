@@ -127,8 +127,8 @@ const DepartmentsDesktop = ({ id, className }) => {
       id={id}
       className={`${className} transition-all duration-500 ease-in-out mb-20 mt-28`}
     >
-      <div className="flex flex-col  ">
-        <h1 className="text-9xl text-center mx-auto text-[#272727] font-bebas-neue  mt-10 mb-10 animate-fade-in">
+      <div className="flex flex-col   ">
+        <h1 className="text-8xl font-semibold   text-left ml-20  text-[#272727] font-bebas-neue pt-0  mb-16     ">
           DEPARTMENTS
         </h1>
         <div className="flex flex-wrap justify-center gap-4">

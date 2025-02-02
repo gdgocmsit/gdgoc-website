@@ -49,17 +49,17 @@ const ContactUs = ({ id }) => {
         <input
           type="text"
           placeholder="Full Name"
-          className="relative z-20 border-b-[1px] focus:outline-none md:w-[500px] pr-20 focus:border-[#666666] focus:border-b-2 transition-colors border-[#858585] p-1"
+          className="relative z-20 border-b-[1px] focus:outline-none md:w-[500px] pr-20 focus:border-[#666666] focus:border-b-2 transition-colors bg-transparent border-[#858585] p-1"
         />
         <input
           type="text"
           placeholder="Email"
-          className="relative z-20 border-b-[1px] focus:outline-none md:w-[500px] pr-20 focus:border-[#666666] focus:border-b-2 transition-colors border-[#858585] p-1"
+          className="relative z-20 border-b-[1px] focus:outline-none md:w-[500px] pr-20 focus:border-[#666666] focus:border-b-2 transition-colors bg-transparent border-[#858585] p-1"
         />
         <input
           type="text"
           placeholder="Message"
-          className="relative z-20 border-b-[1px] focus:outline-none md:w-[500px] pr-20 focus:border-[#666666] focus:border-b-2 transition-colors border-[#858585] p-1"
+          className="relative z-20 border-b-[1px] focus:outline-none md:w-[500px] pr-20 focus:border-[#666666] focus:border-b-2 transition-colors bg-transparent border-[#858585] p-1"
         />
         <div className="flex justify-start md:justify-start md:mb-5">
           <button className="relative z-20 p-2 bg-[#2EB574] hover:bg-green-600 text-white rounded-xl">

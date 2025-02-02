@@ -49,7 +49,7 @@ const App = () => {
     };
   }, []);
 
-  return (
+  return ( 
     <>
       <Navbar />
       {/* <Background /> */}
@@ -57,19 +57,19 @@ const App = () => {
         <section id="#" className="h-screen">
           <HeroSection />
         </section>
-        <section id="aboutUs" className="h-[60%] pt-40 px-15  pb-16 flex justify-center">
+        <section id="aboutUs" className="h-[60%]  px-15 pt-40 md:pt-0 lg:pt-0 pb-16 flex justify-center">
           <AboutUs />
         </section>
-        <section id="events" className="h-screen mt-2 ">
+        <section id="events" className="md:py-28 lg:pt-[50px] lg:pb-[150px] ">
           <Events />
         </section>
-        <section id="departments " className="py-28 ">
+        <section id="departments" className="py-40 pt-4 pb-28 ">
           <Departments />
         </section>
-        <section id="team" className="">
+        <section id="team" className="lg:pt-[50px] " >
           <Team />
         </section>
-        <section id="contactUs">
+        <section id="contactUs" >
           <ContactUs />
         </section>
       </div>

@@ -46,11 +46,11 @@ const Events = ({ id, className }) => {
 
   return (
     <section id={id} className={className}>
-      <div className="w-full min-h-screen bg-gray-100 relative py-25 md:py-28 px-5 items-center">
+      <div className="w-full min-h-screen bg-gray-100 relative lg:pb-[200px] md:py-20 px-5 items-center">
         <div ref={ref} className="absolute top-[25%] w-10 h-10 "></div>
 
         <div className="w-full md:w-1/2 ">
-          <h1 className="w-full h-[6.5rem] overflow-y-hidden overflow-hidden relative mb-24 mt-12 md:text-start md:box-border md:pl-20 ">
+          <h1 className="w-full h-[6.5rem] overflow-y-hidden overflow-hidden relative mb-24 mt-6 md:text-start md:box-border md:pl-20 ">
             {isInView &&
               "EVENTS".split("").map((item, index) => {
                 if (index == 1) {

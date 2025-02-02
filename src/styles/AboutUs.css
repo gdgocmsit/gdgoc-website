@@ -62,15 +62,38 @@
     box-shadow: 0px 7px 10px 0px #EA4335;
 }
 
+
+
+
+
 .aboutUsTextBox {
-    font-size: clamp(3rem, 8vw, 10rem);;
+    font-size: 10rem; 
     font-weight: 800;
     font-family: 'Bebas Neue', sans-serif;
-    animation: moveAboutUs linear forwards;
+    white-space: nowrap; 
+    animation: moveAboutUs linear both;
     animation-timeline: view();
-    animation-range-start: entry 100%;
-    animation-range-end: entry 300%;
+    animation-range-start: entry 10%;
+    animation-range-end: exit -20%;
+    will-change: transform, font-weight; 
 }
+/* .aboutUsTextBox {
+    font-size: 10rem;
+    font-weight: 800;
+    font-family: 'Bebas Neue', sans-serif;
+    white-space: nowrap;
+    animation: moveAboutUs linear both;
+    animation-timeline: view();
+    animation-range-start: entry 10%;
+    animation-range-end: exit -20%;
+    will-change: transform;
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+} */
+
 
 .aboutUsTextBoxMobile {
     font-family: 'Bebas Neue', sans-serif;
@@ -213,20 +236,33 @@
     }
 }
 
-@keyframes moveAboutUs {
+
+/* @keyframes moveAboutUs {
     from {
         transform: translate(0px, 0px);
         font-size: 10rem;
         font-weight: 800;
     }
-
     to {
         transform: translate(-400px, 200px);
         font-size: 6rem;
         font-weight: 600;
         white-space: nowrap;
     }
+} */
+
+@keyframes moveAboutUs {
+    from {
+        transform: translate(0, 0) scale(1);
+        font-weight: 800;
+    }
+    to {
+        transform: translate(-400px, 200px) scale(0.6);
+        font-weight: 600;
+    }
 }
+
+
 
 @keyframes textAppear {
     from {
