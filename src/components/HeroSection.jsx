@@ -172,10 +172,10 @@ const FeatureCarousel = () => {
   );
 };
 
-export default function HeroSection() {
+export default function HeroSection({id,className}) {
   return (
     <>
-      <Background />
+      {/* <Background /> */}
       <div className="relative min-h-[70%] overflow-hidden md:pt-20 md:mt-0 pt-44">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
           <div className="flex flex-col items-center justify-center space-y-12 sm:space-y-16">

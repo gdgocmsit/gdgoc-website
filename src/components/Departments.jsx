@@ -125,7 +125,7 @@ const DepartmentsDesktop = ({ id, className }) => {
   return (
     <section
       id={id}
-      className={`${className} transition-all duration-500 ease-in-out mb-20 mt-28`}
+      className={`${className} transition-all duration-500 ease-in-out mb-10  mt-28 bg-white`}
     >
       <div className="flex flex-col py-10">
         <h1 className="text-9xl text-right mr-10 text-[#272727] font-bebas-neue mt-10 mb-10 animate-fade-in">
@@ -284,8 +284,8 @@ const DepartmentsMobile = ({ id, className }) => {
 
   return (
     <section id={id} className={className}>
-      <div className="bg-gray-100 scroll-smooth mb-24">
-        <h1 className="card-body-h1 text-7xl text-right  text-[#272727] font-bebas-neue mt-10 mb-10">
+      <div className="bg-white scroll-smooth mb-24 mt-28">
+        <h1 className="card-body-h1 text-7xl text-center  text-[#272727] font-bebas-neue mt-10 mb-10">
           DEPARTMENTS
         </h1>
         <div className="relative container flex justify-center items-center">

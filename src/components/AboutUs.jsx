@@ -33,9 +33,9 @@ const AboutUs = ({ id, className }) => {
     cssEase: "linear",
   };
   return (
-    <section id={id} className={className}>
+    <section id={id} className={className}> 
       {isMobile ? (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center mt-5 bg-white">
           <div className="aboutUsTextBoxMobile text-[#272727] text-[7rem] mt-2 mb-6  font-extrabold whitespace-nowrap flex justify-center">
             <h1>ABOUT US</h1>
           </div>
@@ -61,7 +61,7 @@ const AboutUs = ({ id, className }) => {
           </div>
         </div>
       ) : (
-        <div className="relative h-screen mx-[10px] -mt-5 flex justify-center items-center">
+        <div className="relative h-screen mx-[10px] -mt-5 flex justify-center items-center ">
           <div className="box1 z-100 bg-[#4285F4] absolute h-60 w-60 rounded-[20px] flex justify-center items-center overflow-hidden ">
             <img className="h-full w-auto object-cover" src={AboutUs4} alt="" />
           </div>
