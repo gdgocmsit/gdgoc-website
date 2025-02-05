@@ -261,7 +261,7 @@ const Team = ({ id, className }) => {
 
   return (
     <section id={id} className={className}>
-      <div className="w-full overflow-hidden">
+      <div className="w-full overflow-hidden bg-white">
         <div className="relative py-14 px-3 sm:px-6 lg:px-8">
           <div className="relative">
             <h1 className="text-center font-bebas-neue text-6xl sm:text-9xl lg:text-[10rem] xl:text-[14rem] leading-none mb-4">
