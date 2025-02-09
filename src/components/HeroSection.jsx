@@ -1,53 +1,16 @@
-/* eslint-disable react/prop-types */
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { FaGoogle, FaCode, FaLightbulb } from "react-icons/fa";
-import { useKeenSlider } from "keen-slider/react";
-import "keen-slider/keen-slider.min.css";
-import Background from "./Background";
-
-const FeatureCard = ({ icon: Icon, text, description, position }) => (
-  <motion.div
-    whileHover={{
-      scale: 1.05,
-      rotate: position === "left" ? -5 : position === "right" ? 5 : 0,
-    }}
-    whileTap={{ scale: 0.95 }}
-    className="relative group h-full feature-card"
-  >
-    <div className="absolute inset-0 bg-gradient-to-r md:h-[80%] h-[80%] from-[#4285F4] to-[#0F9D58] rounded-[2rem] blur opacity-40 transition duration-300" />
-    <div className="relative flex flex-col items-center p-8 bg-white/80 backdrop-blur-sm rounded-[2rem] shadow-lg overflow-hidden h-[100%]">
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-blue-200 to-green-200 opacity-100 transition-opacity duration-300"
-        initial={false}
-        animate={{ scale: [1, 1.5, 1] }}
-        transition={{ repeat: Infinity, duration: 5 }}
-      />
-      <div className="relative z-10 p-5 bg-white rounded-full shadow-inner mb-4">
-        <Icon className="h-10 w-10 sm:h-7 sm:w-7 text-blue-500" />
-      </div>
-      <h3 className="relative z-10 text-2xl sm:text-xl font-semibold text-gray-800 mb-10 sm:mb-1">
-        {text}
-      </h3>
-      <p className="relative text-lg sm:text-sm z-10 text-gray-600 text-center">
-        {description}
-      </p>
-    </div>
-  </motion.div>
-);
-
-const AnimatedText = ({ text }) => (
-  <motion.span
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5 }}
-    className="inline-block"
-  >
-    {text}
-  </motion.span>
-);
+import {
+  FaGoogle,
+  FaCode,
+  FaLightbulb,
+  FaRocket,
+  FaCalendar,
+  FaMapMarkerAlt,
+  FaUsers,
+} from "react-icons/fa";
 
 const FallingLetter = ({ children, delay }) => {
   const controls = useAnimation();
@@ -58,17 +21,17 @@ const FallingLetter = ({ children, delay }) => {
       await new Promise((resolve) => setTimeout(resolve, 900 + delay * 100));
       await controls.start({
         y: ["-100vh", "0vh"],
-        rotate: [randomRotation, randomRotation, randomRotation / 2, 0],
-        opacity: [0, 1, 1],
+        rotate: [randomRotation, randomRotation / 2, 0],
+        opacity: [0, 1],
         transition: {
           y: { type: "spring", stiffness: 50, damping: 10, duration: 1.5 },
           rotate: { type: "spring", stiffness: 60, damping: 8, duration: 1.5 },
-          opacity: { duration: 0.3, times: [0, 0.2, 1] },
+          opacity: { duration: 0.5 },
         },
       });
     };
     sequence();
-  }, [controls, delay, randomRotation]);
+  }, []);
 
   return (
     <motion.span
@@ -80,169 +43,109 @@ const FallingLetter = ({ children, delay }) => {
   );
 };
 
-const FallingText = ({ text, startDelay }) => (
-  <span className="inline-flex">
-    {text.split("").map((letter, index) => (
-      <FallingLetter key={index} delay={startDelay + index}>
-        {letter}
-      </FallingLetter>
-    ))}
-  </span>
+const FallingText = ({ text, startDelay }) => {
+  return (
+    <span className="inline-flex">
+      {text.split("").map((letter, index) => (
+        <FallingLetter key={index} delay={startDelay + index}>
+          {letter}
+        </FallingLetter>
+      ))}
+    </span>
+  );
+};
+
+const FeatureCard = ({ Icon, title, color }) => (
+  <motion.div
+    whileHover={{ scale: 1.05 }}
+    className="bg-white p-4 md:p-5 rounded-xl shadow-lg flex items-center space-x-4 w-full max-w-xs border-l-4"
+    style={{ borderColor: color }}
+  >
+    <Icon className="text-2xl md:text-3xl" style={{ color }} />
+    <h3 className="text-sm md:text-md font-semibold">{title}</h3>
+  </motion.div>
 );
 
-const FeatureCarousel = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [sliderRef] = useKeenSlider(
-    {
-      loop: true,
-      mode: "free-snap",
-      slides: {
-        perView: 1,
-        spacing: 15,
-      },
-      created(s) {
-        s.moveToIdx(1);
-      },
-      updated(s) {
-        setCurrentSlide(s.track.details.rel);
-      },
-      animationEnded(s) {
-        setCurrentSlide(s.track.details.rel);
-      },
-    },
-    [
-      (slider) => {
-        let timeout;
-        let mouseOver = false;
-        function clearNextTimeout() {
-          clearTimeout(timeout);
-        }
-        function nextTimeout() {
-          clearTimeout(timeout);
-          if (mouseOver) return;
-          timeout = setTimeout(() => {
-            slider.next();
-          }, 2000);
-        }
-        slider.on("created", () => {
-          slider.container.addEventListener("mouseover", () => {
-            mouseOver = true;
-            clearNextTimeout();
-          });
-          slider.container.addEventListener("mouseout", () => {
-            mouseOver = false;
-            nextTimeout();
-          });
-          nextTimeout();
-        });
-        slider.on("dragStarted", clearNextTimeout);
-        slider.on("animationEnded", nextTimeout);
-        slider.on("updated", nextTimeout);
-      },
-    ]
-  );
+const EventCard = ({ title, date, location, attendees }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+    className="bg-white rounded-lg shadow-md p-4 md:p-5 w-full max-w-xs hover:shadow-lg transition-shadow duration-300"
+  >
+    <h3 className="font-semibold text-gray-800 mb-2 text-center">{title}</h3>
+    <div className="flex items-center text-sm text-gray-600 mb-1">
+      <FaCalendar className="mr-2 text-[#4285F4] text-lg bg-blue-100 p-1 rounded-full" />
+      <span>{date}</span>
+    </div>
+    <div className="flex items-center text-sm text-gray-600 mb-1">
+      <FaMapMarkerAlt className="mr-2 text-[#EA4335]" />
+      <span>{location}</span>
+    </div>
+    <div className="flex items-center text-sm text-gray-600">
+      <FaUsers className="mr-2 text-[#0F9D58]" />
+      <span>{attendees} Attendees</span>
+    </div>
+  </motion.div>
+);
+
+const HeroSection = () => {
+  const [currentTech, setCurrentTech] = useState("Android");
+  const techStack = ["Android", "Web", "Cloud", "AI", "IoT"];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTech((prev) => {
+        const currentIndex = techStack.indexOf(prev);
+        return techStack[(currentIndex + 1) % techStack.length];
+      });
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div ref={sliderRef} className="keen-slider h-[320px] max-w-[90%] mx-auto">
-      <div className="keen-slider__slide">
-        <FeatureCard
-          icon={FaGoogle}
-          text="Google Campaign"
-          description="Join our Google campaigns and events to learn from experts."
-          position="left"
-        />
-      </div>
-      <div className="keen-slider__slide">
-        <FeatureCard
-          icon={FaCode}
-          text="Learning Sessions"
-          description="Enhance your skills through interactive workshops and sessions."
-          position="center"
-        />
-      </div>
-      <div className="keen-slider__slide">
-        <FeatureCard
-          icon={FaLightbulb}
-          text="Innovative Projects"
-          description="Build real-world projects with cutting-edge technologies."
-          position="right"
-        />
+    <div className="min-h-screen flex flex-col mt-10 items-center justify-center px-6 sm:px-10 md:px-16 py-12">
+      <div className="max-w-7xl w-full flex flex-col lg:flex-row items-center gap-12">
+        {/* Left Section */}
+        <div className="text-center lg:text-left w-full lg:w-1/2 space-y-8">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-none flex justify-center lg:justify-start">
+            <span className="text-[#4285F4]">
+              <FallingText text="GDG" startDelay={0} />
+            </span>
+            <span className="text-[#0F9D58] ml-3">
+              <FallingText text="MSIT" startDelay={3} />
+            </span>
+          </h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-lg sm:text-xl md:text-2xl text-gray-700 font-medium"
+          >
+            Empowering students through <span className="text-[#EA4335] font-bold">{currentTech}</span> technology.
+          </motion.p>
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <FeatureCard Icon={FaGoogle} title="Google Campaign" color="#4285F4" />
+            <FeatureCard Icon={FaCode} title="Coding Workshops" color="#FBBC04" />
+            <FeatureCard Icon={FaLightbulb} title="Innovative Projects" color="#0F9D58" />
+            <FeatureCard Icon={FaRocket} title="Career Growth" color="#EA4335" />
+          </motion.div>
+        </div>
+
+        {/* Right Section */}
+        <div className="flex justify-center w-full lg:w-1/2">
+          <motion.div className="bg-white rounded-3xl shadow-2xl p-6 w-full max-w-sm">
+            <h2 className="text-lg md:text-2xl font-bold mb-6 text-[#4285F4] text-center">
+              Upcoming/Recent Events
+            </h2>
+            <EventCard title="Google I/O Extended 2023" date="May 15, 2023" location="MSIT Auditorium" attendees="500+" />
+            <EventCard title="Android Dev Summit" date="June 10, 2023" location="Virtual Event" attendees="1000+" />
+            <EventCard title="Cloud Next '23" date="July 5, 2023" location="MSIT Tech Hub" attendees="300+" />
+          </motion.div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default function HeroSection({id,className}) {
-  return (
-    <>
-      {/* <Background /> */}
-      <div className="relative min-h-[70%] overflow-hidden md:pt-20 md:mt-0 pt-44">
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
-          <div className="flex flex-col items-center justify-center space-y-12 sm:space-y-16">
-            {/* Main Title */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              className="text-center relative"
-            >
-              <motion.div
-                animate={{
-                  rotate: [0, 5, -5, 0],
-                  scale: [1, 1.02, 0.98, 1],
-                }}
-                transition={{
-                  duration: 10,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
-                className="absolute -inset-4 sm:-inset-6 md:-inset-8 bg-gradient-to-r from-blue-500/10 via-green-500/10 to-red-500/10 rounded-2xl blur-2xl"
-              />
-              <h1 className="relative text-7xl sm:text-8xl md:text-9xl font-black tracking-tighter">
-                <span className="bg-clip-text text-[#272727] flex items-center justify-center gap-8">
-                  <FallingText text="GDG" startDelay={0} />
-                  <FallingText text="MSIT" startDelay={3} />
-                </span>
-              </h1>
-              <p className="mt-6 text-lg sm:text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto">
-                <AnimatedText text="Empowering students through technology and innovation" />
-              </p>
-            </motion.div>
-
-            {/* Feature Cards */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="w-full max-w-5xl mx-auto"
-            >
-              <div className="hidden md:grid grid-cols-3 gap-6 sm:gap-8">
-                <FeatureCard
-                  icon={FaGoogle}
-                  text="Google Campaign"
-                  description="Join our Google campaigns and events to learn from experts."
-                  position="left"
-                />
-                <FeatureCard
-                  icon={FaCode}
-                  text="Learning Sessions"
-                  description="Enhance your skills through interactive workshops and sessions."
-                  position="center"
-                />
-                <FeatureCard
-                  icon={FaLightbulb}
-                  text="Innovative Projects"
-                  description="Build real-world projects with cutting-edge technologies."
-                  position="right"
-                />
-              </div>
-              <div className="md:hidden ">
-                <FeatureCarousel />
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
+export default HeroSection;
