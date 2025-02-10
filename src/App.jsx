@@ -69,7 +69,7 @@ const App = () => {
             <section id="hero" className="h-screen">
               <HeroSection />
             </section>
-            <section id="aboutUs" className="h-3/5 pt-40 md:pt-0 pb-20 flex justify-center">
+            <section id="aboutUs" className="h-3/5 mt-[30rem] md:mt-0 pb-20 flex justify-center">
               <AboutUs />
             </section>
             <section id="events" className="h-screen ">
