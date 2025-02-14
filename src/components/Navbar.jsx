@@ -47,7 +47,7 @@ const Navbar = () => {
 
   const handleNavClick = (href) => {
     if (window.location.pathname !== "/") {
-      navigate("/", { replace: true }); // Replace se history me duplicate entry nahi aayegi
+      navigate("/", { replace: true });
     }
   
     setTimeout(() => {
@@ -57,7 +57,7 @@ const Navbar = () => {
       } else {
         window.location.hash = href;
       }
-    }, 100); // Slight delay to ensure DOM updates first
+    }, 100);
   
     setIsMenuOpen(false);
   };

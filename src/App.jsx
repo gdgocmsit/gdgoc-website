@@ -74,8 +74,8 @@ const MainContent = () => {
   const navigate = useNavigate();
 
   const handleNavClick = (sectionId) => {
-    window.history.replaceState(null, null, "/"); // Pehle route clear karna
-    window.location.hash = sectionId; // Phir hashtag add karna
+    window.history.replaceState(null, null, "/");
+    window.location.hash = sectionId;
   };
 
   return (

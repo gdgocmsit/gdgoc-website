@@ -54,7 +54,7 @@ export default function EventPage() {
           e.preventDefault();
           setIsTransitioning(true);
   
-          let reversedCards = [...removedCards]; // Copy of removed cards
+          let reversedCards = [...removedCards];
           let newActiveCards = [...activeCards];
   
           let interval = setInterval(() => {
@@ -67,7 +67,7 @@ export default function EventPage() {
               clearInterval(interval);
               setIsTransitioning(false);
             }
-          }, 300); // Adjust timing for smooth effect
+          }, 300);
         } else if (e.deltaY > 0 && activeCards.length === 1) {
           setTimeout(() => setEnablePageScroll(true), 500);
         }
