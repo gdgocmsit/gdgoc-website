@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "/assets/gdgLogo.png";
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleScroll = () => {
     const sections = document.querySelectorAll("section");
@@ -35,13 +37,39 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const resetPage = () => {
+    navigate("/");
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 0);
+    setIsMenuOpen(false);
+  };
+
+  const handleNavClick = (href) => {
+    if (window.location.pathname !== "/") {
+      navigate("/", { replace: true }); // Replace se history me duplicate entry nahi aayegi
+    }
+  
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      } else {
+        window.location.hash = href;
+      }
+    }, 100); // Slight delay to ensure DOM updates first
+  
+    setIsMenuOpen(false);
+  };
+  
+
   const navLinks = [
-    { href: "#", label: "Home" },
-    { href: "#aboutUs", label: "About Us" },
-    { href: "#events", label: "Events" },
-    { href: "#departments", label: "Departments" },
-    { href: "#team", label: "Team" },
-    { href: "#contactUs", label: "Contact Us" },
+    { href: "#", label: "Home", onClick: resetPage },
+    { href: "#aboutUs", label: "About Us", onClick: () => handleNavClick("#aboutUs") },
+    { href: "#events", label: "Events", onClick: () => handleNavClick("#events") },
+    { href: "#departments", label: "Departments", onClick: () => handleNavClick("#departments") },
+    { href: "#team", label: "Team", onClick: () => handleNavClick("#team") },
+    { href: "#contactUs", label: "Contact Us", onClick: () => handleNavClick("#contactUs") },
   ];
 
   return (
@@ -53,6 +81,10 @@ const Navbar = () => {
             <a
               key={link.href}
               href={link.href}
+              onClick={(e) => {
+                e.preventDefault();
+                link.onClick();
+              }}
               className={`text-lg transition-colors duration-200 ${
                 activeLink === link.href.slice(1)
                   ? "text-blue-600 font-semibold"
@@ -73,6 +105,10 @@ const Navbar = () => {
         <div className="hidden md:block">
           <a
             href="#contactUs"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick("#contactUs");
+            }}
             className={`text-lg transition-colors duration-200 ${
               activeLink === "contactUs"
                 ? "text-blue-600 font-semibold"
@@ -119,12 +155,15 @@ const Navbar = () => {
             <a
               key={link.href}
               href={link.href}
+              onClick={(e) => {
+                e.preventDefault();
+                link.onClick();
+              }}
               className={`text-lg py-2 px-4 rounded-full transition-all duration-200 w-4/5 text-center ${
                 activeLink === link.href.slice(1)
                   ? "bg-blue-600 text-white font-semibold"
                   : "text-gray-600 hover:bg-blue-100 hover:text-blue-600"
               }`}
-              onClick={() => setIsMenuOpen(false)}
             >
               {link.label}
             </a>

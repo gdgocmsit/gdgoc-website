@@ -284,7 +284,7 @@ const DepartmentsMobile = ({ id, className }) => {
 
   return (
     <section id={id} className={className}>
-      <div className="bg-white scroll-smooth mb-24 mt-28">
+      <div className="bg-white scroll-smooth mb-24 pt-10 mt-72 md:mt-28">
         <h1 className="card-body-h1 text-7xl text-center  text-[#272727] font-bebas-neue mt-10 mb-10">
           DEPARTMENTS
         </h1>
