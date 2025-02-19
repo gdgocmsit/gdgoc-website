@@ -91,7 +91,7 @@ const MainContent = () => {
                 <section id="hero" className="h-screen">
                   <HeroSection />
                 </section>
-                <section id="aboutUs" className="h-3/5 mt-[30rem] md:mt-0 pb-20 flex justify-center">
+                <section id="aboutUs" className="h-3/5 mt-[32rem] md:mt-10 pb-20 flex justify-center">
                   <AboutUs />
                 </section>
                 <section id="events" className="h-screen ">
