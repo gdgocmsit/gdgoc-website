@@ -1,5 +1,8 @@
+import Footer from "./Footer";
+
 const ContactUs = ({ id }) => {
   return (
+    <>
     <section
       id={id}
       className="relative flex pt-10 md:pt-20 bg-white md:justify-between lg:h-[390px] pb-10 md:mb-0 z-10"
@@ -68,6 +71,8 @@ const ContactUs = ({ id }) => {
         </div>
       </div>
     </section>
+    <Footer />
+    </>
   );
 };
 
