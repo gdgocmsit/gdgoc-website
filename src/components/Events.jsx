@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import img1 from "/assets/Orientation2.JPG";
+import img1 from "/assets/orientation2.JPG";
 import img2 from "/assets/orientation3.jpg";
 import img3 from "/assets/aboutUs9.jpg";
 import img4 from "/assets/aboutUs4.jpg";
