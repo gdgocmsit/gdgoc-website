@@ -86,7 +86,7 @@ export default function EventPage() {
   return (
     <div
       ref={containerRef}
-      className={`min-h-screen w-full bg-gray-100 ${enablePageScroll ? "overflow-y-auto" : "overflow-hidden"}`}
+      className={`h-auto pb-10 w-full ${enablePageScroll ? "overflow-y-auto" : "overflow-hidden"}`}
     >
       <div className="sticky top-0 h-screen flex items-center justify-center">
         <div className="relative h-[60vh] w-full max-w-4xl">
