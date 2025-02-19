@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import img1 from "../../public/EventsImgs/Orientation2.JPG";
-import img2 from "../../public/EventsImgs/orientation3.jpg";
+import img1 from "/assets/Orientation2.JPG";
+import img2 from "/assets/orientation3.jpg";
 import img3 from "/assets/aboutUs9.jpg";
 import img4 from "/assets/aboutUs4.jpg";
 import img5 from "/assets/aboutUs8.jpg";
 import img6 from "/assets/aboutUs2.jpg";
-import img7 from "../../public/EventsImgs/orientation1.jpg";
+import img7 from "/assets/orientation1.jpg";
 import img8 from "/assets/aboutUs3.jpg";
 import img9 from "/assets/aboutUs1.png";
 
