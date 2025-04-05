@@ -1,32 +1,54 @@
-"use client"
+"use client";
 
-import { useEffect, useState, useRef } from "react"
-import { motion, useAnimation, AnimatePresence } from "framer-motion"
-import { FaGoogle, FaCode, FaLightbulb, FaRocket, FaCalendar, FaMapMarkerAlt, FaUsers } from "react-icons/fa"
+import { useEffect, useState, useRef } from "react";
+import { motion, useAnimation, AnimatePresence } from "framer-motion";
+import {
+  FaGoogle,
+  FaCode,
+  FaLightbulb,
+  FaRocket,
+  FaCalendar,
+  FaMapMarkerAlt,
+  FaUsers,
+} from "react-icons/fa";
 
 const FallingLetter = ({ children, delay }) => {
-  const controls = useAnimation()
-  const randomRotation = Math.random() * 360 - 180
+  const controls = useAnimation();
+  const randomRotation = Math.random() * 360 - 180;
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
     const sequence = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 900 + delay * 100))
-      await controls.start({
-        y: ["-100vh", "0vh"],
-        rotate: [randomRotation, randomRotation / 2, 0],
-        opacity: [0, 1],
-        transition: {
-          y: { type: "spring", stiffness: 50, damping: 10, duration: 1.5 },
-          rotate: { type: "spring", stiffness: 60, damping: 8, duration: 1.5 },
-          opacity: { duration: 0.5 },
-        },
-      })
-    }
-    sequence()
-  }, [controls, delay, randomRotation])
+      // Only run the animation if it hasn't run before
+      if (!hasAnimated.current) {
+        hasAnimated.current = true;
+        await new Promise((resolve) => setTimeout(resolve, 900 + delay * 100));
+        await controls.start({
+          y: ["-100vh", "0vh"],
+          rotate: [randomRotation, randomRotation / 2, 0],
+          opacity: [0, 1],
+          transition: {
+            y: { type: "spring", stiffness: 50, damping: 10, duration: 1.5 },
+            rotate: {
+              type: "spring",
+              stiffness: 60,
+              damping: 8,
+              duration: 1.5,
+            },
+            opacity: { duration: 0.5 },
+          },
+        });
+      }
+    };
+    sequence();
+  }, [controls, delay, randomRotation]);
 
   return (
-    <motion.span style={{ display: "inline-block", opacity: 0 }} animate={controls} className="relative">
+    <motion.span
+      style={{ display: "inline-block", opacity: hasAnimated.current ? 1 : 0 }}
+      animate={controls}
+      className="relative"
+    >
       {children}
       <motion.div
         className="absolute bottom-0 left-0 w-full h-1 rounded-full"
@@ -34,14 +56,15 @@ const FallingLetter = ({ children, delay }) => {
         animate={{ width: "100%" }}
         transition={{ delay: 1.5 + delay * 0.1, duration: 0.3 }}
         style={{
-          background: "linear-gradient(90deg, #4285F4, #EA4335, #FBBC04, #34A853, #4285F4)",
+          background:
+            "linear-gradient(90deg, #4285F4, #EA4335, #FBBC04, #34A853, #4285F4)",
           backgroundSize: "200% 100%",
           animation: "gradientMove 2s linear infinite",
         }}
       />
     </motion.span>
-  )
-}
+  );
+};
 
 const FallingText = ({ text, startDelay }) => {
   return (
@@ -52,8 +75,8 @@ const FallingText = ({ text, startDelay }) => {
         </FallingLetter>
       ))}
     </span>
-  )
-}
+  );
+};
 
 const FeatureCard = ({ Icon, title, color, description }) => (
   <motion.div
@@ -76,44 +99,74 @@ const FeatureCard = ({ Icon, title, color, description }) => (
       <p className="text-xs text-gray-600 mt-1">{description}</p>
     </div>
   </motion.div>
-)
+);
 
-const EventCard = ({ title, date, location, attendees, index, isPast = false }) => (
+const EventCard = ({
+  title,
+  date,
+  location,
+  attendees,
+  index,
+  isPast = false,
+}) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
     whileHover={{ y: -5 }}
-    className={`bg-white rounded-xl shadow-lg p-5 w-full hover:shadow-xl transition-all duration-300 border ${isPast ? "border-gray-200" : "border-[#4285F4]/20"} relative`}
+    className={`bg-white rounded-xl shadow-lg p-5 w-full hover:shadow-xl transition-all duration-300 border ${
+      isPast ? "border-gray-200" : "border-[#4285F4]/20"
+    } relative`}
   >
     {!isPast && (
       <div className="absolute -top-3 -right-3 z-10 bg-[#4285F4] text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
         New
       </div>
     )}
-    <h3 className={`font-semibold ${isPast ? "text-gray-600" : "text-gray-800"} text-base mb-3`}>{title}</h3>
+    <h3
+      className={`font-semibold ${
+        isPast ? "text-gray-600" : "text-gray-800"
+      } text-base mb-3`}
+    >
+      {title}
+    </h3>
     <div className="space-y-2">
       <div className="flex items-center text-xs text-gray-600">
         <div
-          className={`w-7 h-7 rounded-full ${isPast ? "bg-gray-100" : "bg-[#E3F2FD]"} flex items-center justify-center mr-2`}
+          className={`w-7 h-7 rounded-full ${
+            isPast ? "bg-gray-100" : "bg-[#E3F2FD]"
+          } flex items-center justify-center mr-2`}
         >
-          <FaCalendar className={isPast ? "text-gray-400" : "text-[#4285F4]"} size={12} />
+          <FaCalendar
+            className={isPast ? "text-gray-400" : "text-[#4285F4]"}
+            size={12}
+          />
         </div>
         <span>{date}</span>
       </div>
       <div className="flex items-center text-xs text-gray-600">
         <div
-          className={`w-7 h-7 rounded-full ${isPast ? "bg-gray-100" : "bg-[#FDEDE3]"} flex items-center justify-center mr-2`}
+          className={`w-7 h-7 rounded-full ${
+            isPast ? "bg-gray-100" : "bg-[#FDEDE3]"
+          } flex items-center justify-center mr-2`}
         >
-          <FaMapMarkerAlt className={isPast ? "text-gray-400" : "text-[#EA4335]"} size={12} />
+          <FaMapMarkerAlt
+            className={isPast ? "text-gray-400" : "text-[#EA4335]"}
+            size={12}
+          />
         </div>
         <span>{location}</span>
       </div>
       <div className="flex items-center text-xs text-gray-600">
         <div
-          className={`w-7 h-7 rounded-full ${isPast ? "bg-gray-100" : "bg-[#E3F9ED]"} flex items-center justify-center mr-2`}
+          className={`w-7 h-7 rounded-full ${
+            isPast ? "bg-gray-100" : "bg-[#E3F9ED]"
+          } flex items-center justify-center mr-2`}
         >
-          <FaUsers className={isPast ? "text-gray-400" : "text-[#0F9D58]"} size={12} />
+          <FaUsers
+            className={isPast ? "text-gray-400" : "text-[#0F9D58]"}
+            size={12}
+          />
         </div>
         <span>{attendees} Attendees</span>
       </div>
@@ -136,36 +189,36 @@ const EventCard = ({ title, date, location, attendees, index, isPast = false }) 
       </motion.button>
     )}
   </motion.div>
-)
+);
 
 const HeroSection = () => {
-  const [currentTech, setCurrentTech] = useState("Android")
-  const techStack = ["Android", "Web", "Cloud", "AI", "IoT"]
-  const [isHovering, setIsHovering] = useState(false)
-  const carouselRef = useRef(null)
-  const [activeTab, setActiveTab] = useState("upcoming")
+  const [currentTech, setCurrentTech] = useState("Android");
+  const techStack = ["Android", "Web", "Cloud", "AI", "IoT"];
+  const [isHovering, setIsHovering] = useState(false);
+  const carouselRef = useRef(null);
+  const [activeTab, setActiveTab] = useState("upcoming");
 
   const upcomingEvents = [
     {
-      title: "Google I/O Extended 2023",
-      date: "May 15, 2023",
-      location: "MSIT Auditorium",
-      attendees: "500+",
+      title: "Not Available",
+      date: "NA",
+      location: "NA",
+      attendees: "NA",
     },
     {
-      title: "Android Dev Summit",
-      date: "June 10, 2023",
-      location: "Virtual Event",
-      attendees: "1000+",
+      title: "Not Available",
+      date: "NA",
+      location: "NA",
+      attendees: "NA",
     },
-  ]
+  ];
 
   const pastEvents = [
     {
-      title: "Cloud Next '22",
-      date: "July 5, 2022",
-      location: "MSIT Tech Hub",
-      attendees: "300+",
+      title: "Interquest Seminar",
+      date: "24th March",
+      location: "Hall 406, MSIT",
+      attendees: "100+",
     },
     {
       title: "Machine Learning Workshop",
@@ -173,19 +226,19 @@ const HeroSection = () => {
       location: "MSIT Innovation Lab",
       attendees: "200+",
     },
-  ]
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (!isHovering) {
         setCurrentTech((prev) => {
-          const currentIndex = techStack.indexOf(prev)
-          return techStack[(currentIndex + 1) % techStack.length]
-        })
+          const currentIndex = techStack.indexOf(prev);
+          return techStack[(currentIndex + 1) % techStack.length];
+        });
       }
-    }, 2000)
-    return () => clearInterval(interval)
-  }, [isHovering, techStack])
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [isHovering, techStack]);
 
   const featureCards = [
     {
@@ -212,10 +265,10 @@ const HeroSection = () => {
       color: "#EA4335",
       description: "Boost your career with industry connections.",
     },
-  ]
+  ];
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
+    <div className="min-h-screen mt-10 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12 overflow-x-hidden w-full">
       <div className="max-w-7xl w-full flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
         {/* Left Section */}
         <div className="text-center lg:text-left w-full lg:w-1/2">
@@ -273,7 +326,10 @@ const HeroSection = () => {
                     {currentTech}
                   </motion.span>
                 </AnimatePresence>
-                <motion.div className="absolute bottom-0 left-0 h-[3px] w-full bg-[#EA4335]" layoutId="underline" />
+                <motion.div
+                  className="absolute bottom-0 left-0 h-[3px] w-full bg-[#EA4335]"
+                  layoutId="underline"
+                />
               </motion.span>{" "}
               technology.
             </p>
@@ -302,20 +358,24 @@ const HeroSection = () => {
             transition={{ delay: 0.8 }}
             className="flex justify-center lg:justify-start gap-4"
           >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-[#4285F4] text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Join Community
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-white text-[#4285F4] font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-[#4285F4]"
-            >
-              Learn More
-            </motion.button>
+            <a href="https://chat.whatsapp.com/FJO99dIJBRtH29SZta0lyg">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 bg-[#4285F4] text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                Join Community
+              </motion.button>
+            </a>
+            <a href="https://developers.google.com/community">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 bg-white text-[#4285F4] font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-[#4285F4]"
+              >
+                Learn More
+              </motion.button>
+            </a>
           </motion.div>
         </div>
 
@@ -325,10 +385,8 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="bg-gray-100 rounded-3xl shadow-2xl p-8 w-full max-w-md relative"
+            className="bg-gray-100 rounded-3xl shadow-2xl p-8 w-full max-w-md relative border-2 border-[#4285F4]"
           >
-            <div className="absolute -top-3 -right-3 -left-3 h-2 bg-gradient-to-r from-[#4285F4] via-[#EA4335] to-[#0F9D58] rounded-t-xl" />
-
             <h2 className="text-xl font-bold mb-6 text-center flex items-center justify-center gap-2">
               <span className="relative inline-block">
                 <span className="text-[#4285F4]">Upcoming</span>
@@ -345,7 +403,11 @@ const HeroSection = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`px-4 py-2 text-sm font-medium ${activeTab === "upcoming" ? "text-[#4285F4] border-b-2 border-[#4285F4]" : "text-gray-500"}`}
+                  className={`px-4 py-2 text-sm font-medium ${
+                    activeTab === "upcoming"
+                      ? "text-[#4285F4] border-b-2 border-[#4285F4]"
+                      : "text-gray-500"
+                  }`}
                   onClick={() => setActiveTab("upcoming")}
                 >
                   Upcoming Events
@@ -353,7 +415,11 @@ const HeroSection = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`px-4 py-2 text-sm font-medium ${activeTab === "past" ? "text-[#4285F4] border-b-2 border-[#4285F4]" : "text-gray-500"}`}
+                  className={`px-4 py-2 text-sm font-medium ${
+                    activeTab === "past"
+                      ? "text-[#4285F4] border-b-2 border-[#4285F4]"
+                      : "text-gray-500"
+                  }`}
                   onClick={() => setActiveTab("past")}
                 >
                   Past Events
@@ -408,42 +474,22 @@ const HeroSection = () => {
                 </AnimatePresence>
               </div>
             </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9 }}
-              className="mt-8"
-            >
-              <h3 className="text-sm font-medium text-gray-500 mb-3">Join our mailing list</h3>
-              <div className="flex">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="flex-1 px-4 py-2 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#4285F4] focus:border-transparent"
-                />
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-4 py-2 bg-[#4285F4] text-white rounded-r-lg"
-                >
-                  Subscribe
-                </motion.button>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </div>
 
       <style jsx global>{`
         @keyframes gradientMove {
-          0% { background-position: 0% 50%; }
-          100% { background-position: 100% 50%; }
+          0% {
+            background-position: 0% 50%;
+          }
+          100% {
+            background-position: 100% 50%;
+          }
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default HeroSection
-
+export default HeroSection;
