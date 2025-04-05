@@ -1,28 +1,20 @@
-"use client";
+"use client"
 
-import { useEffect, useState, useRef } from "react";
-import { motion, useAnimation, AnimatePresence } from "framer-motion";
-import {
-  FaGoogle,
-  FaCode,
-  FaLightbulb,
-  FaRocket,
-  FaCalendar,
-  FaMapMarkerAlt,
-  FaUsers,
-} from "react-icons/fa";
+import { useEffect, useState, useRef } from "react"
+import { motion, useAnimation, AnimatePresence } from "framer-motion"
+import { FaGoogle, FaCode, FaLightbulb, FaRocket, FaCalendar, FaMapMarkerAlt, FaUsers } from "react-icons/fa"
 
 const FallingLetter = ({ children, delay }) => {
-  const controls = useAnimation();
-  const randomRotation = Math.random() * 360 - 180;
-  const hasAnimated = useRef(false);
+  const controls = useAnimation()
+  const randomRotation = Math.random() * 360 - 180
+  const hasAnimated = useRef(false)
 
   useEffect(() => {
     const sequence = async () => {
       // Only run the animation if it hasn't run before
       if (!hasAnimated.current) {
-        hasAnimated.current = true;
-        await new Promise((resolve) => setTimeout(resolve, 900 + delay * 100));
+        hasAnimated.current = true
+        await new Promise((resolve) => setTimeout(resolve, 900 + delay * 100))
         await controls.start({
           y: ["-100vh", "0vh"],
           rotate: [randomRotation, randomRotation / 2, 0],
@@ -37,11 +29,11 @@ const FallingLetter = ({ children, delay }) => {
             },
             opacity: { duration: 0.5 },
           },
-        });
+        })
       }
-    };
-    sequence();
-  }, [controls, delay, randomRotation]);
+    }
+    sequence()
+  }, [controls, delay, randomRotation])
 
   return (
     <motion.span
@@ -56,15 +48,14 @@ const FallingLetter = ({ children, delay }) => {
         animate={{ width: "100%" }}
         transition={{ delay: 1.5 + delay * 0.1, duration: 0.3 }}
         style={{
-          background:
-            "linear-gradient(90deg, #4285F4, #EA4335, #FBBC04, #34A853, #4285F4)",
+          background: "linear-gradient(90deg, #4285F4, #EA4335, #FBBC04, #34A853, #4285F4)",
           backgroundSize: "200% 100%",
           animation: "gradientMove 2s linear infinite",
         }}
       />
     </motion.span>
-  );
-};
+  )
+}
 
 const FallingText = ({ text, startDelay }) => {
   return (
@@ -75,8 +66,8 @@ const FallingText = ({ text, startDelay }) => {
         </FallingLetter>
       ))}
     </span>
-  );
-};
+  )
+}
 
 const FeatureCard = ({ Icon, title, color, description }) => (
   <motion.div
@@ -99,16 +90,9 @@ const FeatureCard = ({ Icon, title, color, description }) => (
       <p className="text-xs text-gray-600 mt-1">{description}</p>
     </div>
   </motion.div>
-);
+)
 
-const EventCard = ({
-  title,
-  date,
-  location,
-  attendees,
-  index,
-  isPast = false,
-}) => (
+const EventCard = ({ title, date, location, attendees, index, isPast = false, link }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
@@ -123,13 +107,7 @@ const EventCard = ({
         New
       </div>
     )}
-    <h3
-      className={`font-semibold ${
-        isPast ? "text-gray-600" : "text-gray-800"
-      } text-base mb-3`}
-    >
-      {title}
-    </h3>
+    <h3 className={`font-semibold ${isPast ? "text-gray-600" : "text-gray-800"} text-base mb-3`}>{title}</h3>
     <div className="space-y-2">
       <div className="flex items-center text-xs text-gray-600">
         <div
@@ -137,10 +115,7 @@ const EventCard = ({
             isPast ? "bg-gray-100" : "bg-[#E3F2FD]"
           } flex items-center justify-center mr-2`}
         >
-          <FaCalendar
-            className={isPast ? "text-gray-400" : "text-[#4285F4]"}
-            size={12}
-          />
+          <FaCalendar className={isPast ? "text-gray-400" : "text-[#4285F4]"} size={12} />
         </div>
         <span>{date}</span>
       </div>
@@ -150,10 +125,7 @@ const EventCard = ({
             isPast ? "bg-gray-100" : "bg-[#FDEDE3]"
           } flex items-center justify-center mr-2`}
         >
-          <FaMapMarkerAlt
-            className={isPast ? "text-gray-400" : "text-[#EA4335]"}
-            size={12}
-          />
+          <FaMapMarkerAlt className={isPast ? "text-gray-400" : "text-[#EA4335]"} size={12} />
         </div>
         <span>{location}</span>
       </div>
@@ -163,55 +135,58 @@ const EventCard = ({
             isPast ? "bg-gray-100" : "bg-[#E3F9ED]"
           } flex items-center justify-center mr-2`}
         >
-          <FaUsers
-            className={isPast ? "text-gray-400" : "text-[#0F9D58]"}
-            size={12}
-          />
+          <FaUsers className={isPast ? "text-gray-400" : "text-[#0F9D58]"} size={12} />
         </div>
         <span>{attendees} Attendees</span>
       </div>
     </div>
     {!isPast ? (
-      <motion.button
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.97 }}
-        className="mt-3 w-full py-1.5 rounded-lg bg-gradient-to-r from-[#4285F4] to-[#34A853] text-white text-sm font-medium"
-      >
-        Register Now
-      </motion.button>
+      <a href={link} target="_blank" rel="noopener noreferrer" className="block w-full">
+        <motion.button
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          className="mt-3 w-full py-1.5 rounded-lg bg-gradient-to-r from-[#4285F4] to-[#34A853] text-white text-sm font-medium"
+        >
+          Register Now
+        </motion.button>
+      </a>
     ) : (
-      <motion.button
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.97 }}
-        className="mt-3 w-full py-1.5 rounded-lg border border-gray-300 text-gray-500 text-sm font-medium"
-      >
-        View Details
-      </motion.button>
+      <a href={link} target="_blank" rel="noopener noreferrer" className="block w-full">
+        <motion.button
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          className="mt-3 w-full py-1.5 rounded-lg border border-gray-300 text-gray-500 text-sm font-medium"
+        >
+          View Details
+        </motion.button>
+      </a>
     )}
   </motion.div>
-);
+)
 
 const HeroSection = () => {
-  const [currentTech, setCurrentTech] = useState("Android");
-  const techStack = ["Android", "Web", "Cloud", "AI", "IoT"];
-  const [isHovering, setIsHovering] = useState(false);
-  const carouselRef = useRef(null);
-  const [activeTab, setActiveTab] = useState("upcoming");
+  const [currentTech, setCurrentTech] = useState("Android")
+  const techStack = ["Android", "Web", "Cloud", "AI", "IoT"]
+  const [isHovering, setIsHovering] = useState(false)
+  const carouselRef = useRef(null)
+  const [activeTab, setActiveTab] = useState("upcoming")
 
   const upcomingEvents = [
     {
-      title: "Not Available",
-      date: "NA",
-      location: "NA",
-      attendees: "NA",
+      title: "Google-Powered Solution Challenge 2025",
+      date: "6th Jan - 2nd week of July",
+      location: "Online",
+      attendees: "200+",
+      link: "https://vision.hack2skill.com/event/solutionschallenge2025?utm_source=hack2skill&utm_medium=homepage",
     },
     {
       title: "Not Available",
       date: "NA",
       location: "NA",
       attendees: "NA",
+      link: "#",
     },
-  ];
+  ]
 
   const pastEvents = [
     {
@@ -219,26 +194,28 @@ const HeroSection = () => {
       date: "24th March",
       location: "Hall 406, MSIT",
       attendees: "100+",
+      link: "#",
     },
     {
-      title: "Machine Learning Workshop",
-      date: "March 12, 2022",
-      location: "MSIT Innovation Lab",
-      attendees: "200+",
+      title: "GDG Game Night",
+      date: "24th -25th Jan",
+      location: "Online",
+      attendees: "100+",
+      link: "#",
     },
-  ];
+  ]
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (!isHovering) {
         setCurrentTech((prev) => {
-          const currentIndex = techStack.indexOf(prev);
-          return techStack[(currentIndex + 1) % techStack.length];
-        });
+          const currentIndex = techStack.indexOf(prev)
+          return techStack[(currentIndex + 1) % techStack.length]
+        })
       }
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [isHovering, techStack]);
+    }, 2000)
+    return () => clearInterval(interval)
+  }, [isHovering, techStack])
 
   const featureCards = [
     {
@@ -265,7 +242,7 @@ const HeroSection = () => {
       color: "#EA4335",
       description: "Boost your career with industry connections.",
     },
-  ];
+  ]
 
   return (
     <div className="min-h-screen mt-10 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12 overflow-x-hidden w-full">
@@ -326,10 +303,7 @@ const HeroSection = () => {
                     {currentTech}
                   </motion.span>
                 </AnimatePresence>
-                <motion.div
-                  className="absolute bottom-0 left-0 h-[3px] w-full bg-[#EA4335]"
-                  layoutId="underline"
-                />
+                <motion.div className="absolute bottom-0 left-0 h-[3px] w-full bg-[#EA4335]" layoutId="underline" />
               </motion.span>{" "}
               technology.
             </p>
@@ -404,9 +378,7 @@ const HeroSection = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className={`px-4 py-2 text-sm font-medium ${
-                    activeTab === "upcoming"
-                      ? "text-[#4285F4] border-b-2 border-[#4285F4]"
-                      : "text-gray-500"
+                    activeTab === "upcoming" ? "text-[#4285F4] border-b-2 border-[#4285F4]" : "text-gray-500"
                   }`}
                   onClick={() => setActiveTab("upcoming")}
                 >
@@ -416,9 +388,7 @@ const HeroSection = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className={`px-4 py-2 text-sm font-medium ${
-                    activeTab === "past"
-                      ? "text-[#4285F4] border-b-2 border-[#4285F4]"
-                      : "text-gray-500"
+                    activeTab === "past" ? "text-[#4285F4] border-b-2 border-[#4285F4]" : "text-gray-500"
                   }`}
                   onClick={() => setActiveTab("past")}
                 >
@@ -446,6 +416,7 @@ const HeroSection = () => {
                           attendees={event.attendees}
                           index={idx}
                           isPast={false}
+                          link={event.link}
                         />
                       ))}
                     </motion.div>
@@ -467,6 +438,7 @@ const HeroSection = () => {
                           attendees={event.attendees}
                           index={idx}
                           isPast={true}
+                          link={event.link}
                         />
                       ))}
                     </motion.div>
@@ -489,7 +461,8 @@ const HeroSection = () => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default HeroSection;
+export default HeroSection
+
