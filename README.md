@@ -15,7 +15,7 @@ Follow these steps to set up the project on your local machine:
 1. **Clone the Repository**Open your terminal and run:
 
    ```bash
-   git clone https://github.com/your-username/gdgoc-website.git
+   git clone https://github.com/gdgocmsit/gdgoc-website.git
    cd gdgoc-website
    ```
 2. **Install Dependencies**Make sure you have [Node.js](https://nodejs.org/) installed. Then, run:
