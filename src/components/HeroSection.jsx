@@ -151,15 +151,7 @@ const EventCard = ({ title, date, location, attendees, index, isPast = false, li
         </motion.button>
       </a>
     ) : (
-      <a href={link} target="_blank" rel="noopener noreferrer" className="block w-full">
-        <motion.button
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          className="mt-3 w-full py-1.5 rounded-lg border border-gray-300 text-gray-500 text-sm font-medium"
-        >
-          View Details
-        </motion.button>
-      </a>
+      <></>
     )}
   </motion.div>
 )
