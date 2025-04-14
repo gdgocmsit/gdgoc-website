@@ -324,7 +324,7 @@ const HeroSection = () => {
             transition={{ delay: 0.8 }}
             className="flex justify-center lg:justify-start gap-4"
           >
-            <a href="https://chat.whatsapp.com/FJO99dIJBRtH29SZta0lyg">
+            <a href="https://gdg.community.dev/gdg-on-campus-maharaja-surajmal-institute-of-technology-delhi-india/">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
