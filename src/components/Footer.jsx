@@ -1,7 +1,7 @@
 import GDG from "/assets/Group 39.png";
 import logo from "/assets/gdgLogo.png";
 import Frame from "/assets/Frame.png";
-import Dino from "/assets/unnamed (1) 2.png";
+import Dino from "/assets/dinoFooter.png";
 import styled, { keyframes } from "styled-components";
 
 function Footer() {
